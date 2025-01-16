@@ -1,0 +1,46 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/healthRecords/healthRecords",
+    "pages/product/product",
+    "pages/connectUs/connectUs",
+    "pages/logs/logs"
+  ],
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/healthRecords/healthRecords",
+        "text": "健康记录"
+      },
+      {
+        "pagePath": "pages/product/product",
+        "text": "卓敏产品"
+      },
+      {
+        "pagePath": "pages/connectUs/connectUs",
+        "text": "联络客服"
+      }
+    ]
+  },
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "style": "v2",
+  "rendererOptions": {
+    "skyline": {
+      "defaultDisplayBlock": true,
+      "disableABTest": true,
+      "sdkVersionBegin": "3.0.0",
+      "sdkVersionEnd": "15.255.255"
+    }
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

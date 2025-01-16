@@ -1,0 +1,25 @@
+<navigation-bar title="健康记录" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+<view class="container">
+  <view class="health-list">
+    <view class="health-item">
+      <view class="item-header">
+        <text class="title">今日健康数据</text>
+        <text class="date">{{currentDate}}</text>
+      </view>
+      <view class="item-content">
+        <view class="data-item">
+          <text class="label">步数</text>
+          <text class="value">0 步</text>
+        </view>
+        <view class="data-item">
+          <text class="label">心率</text>
+          <text class="value">-- 次/分</text>
+        </view>
+        <view class="data-item">
+          <text class="label">睡眠</text>
+          <text class="value">-- 小时</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,6 @@
+<navigation-bar title="产品" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+<view class="container">
+  <view class="product-list">
+    <!-- 产品列表内容 -->
+  </view>
+</view> 

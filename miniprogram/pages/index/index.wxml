@@ -1,0 +1,14 @@
+<view class="bg" hover-class="none" hover-stop-propagation="false">
+  <view class="bg-header" hover-class="none" hover-stop-propagation="false">
+    你好, Tony
+    
+  </view>
+  
+</view>
+<view class="container">
+
+  <view class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+    <text class="userinfo-nickname">Tony</text>
+  </view>
+</view>

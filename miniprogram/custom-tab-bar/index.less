@@ -1,0 +1,45 @@
+@import '../styles/theme.less';
+.custom-tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 153rpx;
+  background: #ffffff;
+  display: flex;
+  padding-bottom: env(safe-area-inset-bottom);
+  border-top: 1rpx solid #f0f0f0;
+  box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.05);
+  z-index: 9999;
+  padding-top:17rpx;
+}
+
+.tabbar-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:top;
+  gap: 10rpx;
+
+  &.active {
+    transform: scale(1.05);
+    transition: transform 0.2s ease;
+
+    .tabbar-text {
+      color: @primary-color;
+    }
+  }
+
+  .tabbar-icon {
+    width: 47rpx;
+    height: 47rpx;
+    margin-bottom: 4rpx;
+  }
+
+  .tabbar-text {
+    font-size: 22rpx;
+    color: #999999;
+    transition: color 0.3s ease;
+  }
+} 

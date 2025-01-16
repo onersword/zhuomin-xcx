@@ -1,0 +1,23 @@
+@import '../../styles/theme.less';
+
+.container {
+  min-height: 100vh;
+  padding-bottom: calc(110rpx + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+  background: #f6f6f6;
+}
+
+.product-list {
+  width: 100%;
+  padding: 20rpx;
+}
+
+.product-container {
+  .product-title {
+    color: @text-primary;
+  }
+  
+  .price {
+    color: @primary-color;
+  }
+} 

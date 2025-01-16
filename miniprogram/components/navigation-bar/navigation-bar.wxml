@@ -1,0 +1,25 @@
+<view class="navigation-bar" style="padding-top: {{statusBarHeight}}px;">
+  <view 
+    class="navigation-bar__inner {{ios ? 'ios' : 'android'}}" 
+    style="margin-top: {{statusBarHeight}}px; color: {{color}}; background: {{background}};"
+  >
+    <view 
+      class="navigation-bar__left" 
+      wx:if="{{back}}"
+      bind:tap="back"
+    >
+      <view class="navigation-bar__buttons">
+        <view class="navigation-bar__button">
+          <image 
+            class="navigation-bar__button__icon"
+            src="back.svg"
+            mode="aspectFit"
+          />
+        </view>
+      </view>
+    </view>
+    <view class="navigation-bar__center">
+      <text>{{title}}</text>
+    </view>
+  </view>
+</view>

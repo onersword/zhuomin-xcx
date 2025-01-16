@@ -1,0 +1,53 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/healthRecords/healthRecords",
+    "pages/product/product",
+    "pages/connectUs/connectUs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black"
+  },
+  "usingComponents": {
+    "custom-tabbar": "/components/tabbar/tabbar"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#999999",
+    "selectedColor": "#1296db",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home-active.png"
+      },
+      {
+        "pagePath": "pages/healthRecords/healthRecords",
+        "text": "健康记录",
+        "iconPath": "images/health.png",
+        "selectedIconPath": "images/health-active.png"
+      },
+      {
+        "pagePath": "pages/product/product",
+        "text": "产品",
+        "iconPath": "images/product.png",
+        "selectedIconPath": "images/product-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "useExtendedLib": {
+    "weui": true
+  },
+  "renderer": "webview",
+  "rendererOptions": {
+    "skyline": {
+      "defaultDisplayBlock": true
+    }
+  }
+} 
