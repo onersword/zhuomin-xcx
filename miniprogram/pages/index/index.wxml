@@ -6,6 +6,8 @@
   
 </view>
 <view class="container">
+  <view class="" hover-class="none" hover-stop-propagation="false">test</view>
+  <calendar></calendar>
 
   <view class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>

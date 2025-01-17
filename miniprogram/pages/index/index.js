@@ -49,5 +49,9 @@ Page({
     this.setData({
       "userInfo.nickName": nickName
     })
+  },
+
+  onShow() {
+    // ... existing code ...
   }
 }) 

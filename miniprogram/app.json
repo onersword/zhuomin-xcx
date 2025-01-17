@@ -3,11 +3,13 @@
     "pages/index/index",
     "pages/healthRecords/healthRecords",
     "pages/product/product",
-    "pages/connectUs/connectUs",
-    "pages/logs/logs"
+    "pages/connectUs/connectUs"
   ],
   "tabBar": {
     "custom": true,
+    "color": "#000000",
+    "selectedColor": "#000000",
+    "backgroundColor": "#000000",
     "list": [
       {
         "pagePath": "pages/index/index",

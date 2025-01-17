@@ -1,4 +1,4 @@
-<view class="custom-tabbar">
+<view class="tab-bar">
   <view 
     wx:for="{{list}}" 
     wx:key="pagePath"
