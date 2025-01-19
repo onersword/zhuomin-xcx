@@ -1,0 +1,59 @@
+.schedule-list {
+  padding: 20rpx;
+  
+  .schedule-item {
+    margin-bottom: 20rpx;
+    padding: 30rpx;
+    border-radius: 16rpx;
+    position: relative;
+    
+    // 基础样式
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 8rpx;
+      border-top-left-radius: 16rpx;
+      border-bottom-left-radius: 16rpx;
+    }
+
+    .content {
+      font-size: 32rpx;
+      color: #333;
+      margin-bottom: 10rpx;
+      display: block;
+    }
+
+    .time {
+      font-size: 26rpx;
+      color: #999;
+      display: block;
+    }
+  }
+
+  // 珊瑚色样式
+  .schedule-coral {
+    background-color: rgba(255, 240, 235, 0.8);
+    &::before {
+      background-color: #FF9B8A;
+    }
+  }
+
+  // 蓝色样式
+  .schedule-blue {
+    background-color: rgba(235, 240, 255, 0.8);
+    &::before {
+      background-color: #8AA3FF;
+    }
+  }
+
+  // 紫色样式
+  .schedule-purple {
+    background-color: rgba(245, 235, 255, 0.8);
+    &::before {
+      background-color: #B88AFF;
+    }
+  }
+} 

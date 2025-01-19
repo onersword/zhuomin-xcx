@@ -9,6 +9,11 @@ Page({
     hasUserInfo: false,
     canIUseGetUserProfile: false,
     canIUseNicknameComp: true,
+    calendarConfig: {
+      hideHeader: true,
+      weekMode:false,
+    },
+    targetDate: 1735660800000  // 2025-01-01 00:00:00
   },
   
   onLoad() {
@@ -19,9 +24,10 @@ Page({
     }
   },
 
-  bindViewTap() {
+  goToSchedule() {
+    console.log('goToSchedule')
     wx.navigateTo({
-      url: '../logs/logs'
+      url: '../schedule/schedule'
     })
   },
 

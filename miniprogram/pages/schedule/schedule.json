@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "calendar": "/components/calendar/index",
+    "schedule-item": "/components/scheduleItem/index"
+  },
+  "navigationBarBackgroundColor": "#3827FF",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#3827FF",
+  "backgroundTextStyle": "light"
+} 

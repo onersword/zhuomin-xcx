@@ -1,0 +1,36 @@
+.schedule-item {
+  display: flex;
+  flex-direction: column;
+  padding: 32rpx 24rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  margin-bottom: 20rpx;
+  
+  .title {
+    font-size: 32rpx;
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 12rpx;
+  }
+  
+  .time {
+    font-size: 28rpx;
+    color: #999;
+  }
+
+  // 不同类型日程的样式
+  &.schedule-coral {
+    background: rgba(255, 127, 80, 0.1);
+    border-left: 8rpx solid #FF7F50;
+  }
+  
+  &.schedule-blue {
+    background: rgba(65, 105, 225, 0.1);
+    border-left: 8rpx solid #4169E1;
+  }
+  
+  &.schedule-purple {
+    background: rgba(147, 112, 219, 0.1);
+    border-left: 8rpx solid #9370DB;
+  }
+} 

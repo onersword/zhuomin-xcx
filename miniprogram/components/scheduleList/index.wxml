@@ -1,0 +1,6 @@
+<view class="schedule-list">
+  <view class="schedule-item {{item.styleClass}}" wx:for="{{scheduleList}}" wx:key="id">
+    <text class="content">{{item.content}}</text>
+    <text class="time">{{item.formattedTime}}</text>
+  </view>
+</view> 

@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/healthRecords/healthRecords",
     "pages/product/product",
-    "pages/connectUs/connectUs"
+    "pages/connectUs/connectUs",
+    "pages/schedule/schedule"
   ],
   "tabBar": {
     "custom": true,
@@ -30,8 +31,7 @@
     ]
   },
   "window": {
-    "navigationBarTextStyle": "black",
-    "navigationStyle": "custom"
+    "navigationBarTextStyle": "black"
   },
   "style": "v2",
   "rendererOptions": {

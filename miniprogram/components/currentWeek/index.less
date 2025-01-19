@@ -1,0 +1,50 @@
+@import "../../styles/theme.less";
+
+.current-week {
+  width: 100%;
+  padding: 20rpx;
+  
+  .week-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10rpx;
+  }
+  
+  .week-day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 14.28%;
+    padding: 5rpx 0;
+  }
+  
+  .day-name {
+    font-size: 24rpx;
+    color: @secondary-color;
+    margin-bottom: 8rpx;
+  }
+  
+  .day-number {
+    font-size: 28rpx;
+    color: @primary-color;
+  }
+  
+  .today {
+    background-color: @highlight-bg;
+    border-radius: 8rpx;
+  }
+  
+  .other-month {
+    color: @disabled-color;
+  }
+  
+  .target {
+    background-color: @highlight-color;
+    border-radius: 8rpx;
+    
+    .day-name,
+    .day-number {
+      color: #fff;
+    }
+  }
+} 

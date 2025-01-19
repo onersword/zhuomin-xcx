@@ -1,13 +1,29 @@
 <view class="bg" hover-class="none" hover-stop-propagation="false">
-  <view class="bg-header" hover-class="none" hover-stop-propagation="false">
-    你好, Tony
-    
-  </view>
-  
 </view>
+
 <view class="container">
+  <view class="header" hover-class="none" hover-stop-propagation="false">
+    你好, Tony
+
+  </view>
+  <view class="schedule-container" hover-class="none" hover-stop-propagation="false">
+    <view class="" hover-class="none" hover-stop-propagation="false">
+     <month-title timestamp="{{1735660800000}}" />
+    </view>
+    <view class="" hover-class="none" hover-stop-propagation="false" bindtap="goToSchedule">
+      查看日程
+
+    </view>
+
+    <view class="current-week">
+      <current-week timestamp="{{1735660800000}}" />
+      <!-- 其他内容 -->
+    </view>
+
+  </view>
+
   <view class="" hover-class="none" hover-stop-propagation="false">test</view>
-  <calendar></calendar>
+
 
   <view class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>

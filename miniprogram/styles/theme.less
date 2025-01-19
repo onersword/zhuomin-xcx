@@ -1,7 +1,16 @@
-// 主要颜色
-@primary-color: #4A3AFF;
+// rpx 转换函数
+.rpx(@name, @px) {
+  @{name}: (@px * 2) * 1rpx;
+}
 
-// 衍生色
+// 颜色变量
+@primary-color: #333;
+@secondary-color: #666;
+@disabled-color: #999;
+@highlight-color: #007AFF;
+@highlight-bg: #e6f3ff;
+
+// 主要颜色
 @primary-light: lighten(@primary-color, 10%);
 @primary-dark: darken(@primary-color, 10%);
 

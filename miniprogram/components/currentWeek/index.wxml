@@ -1,0 +1,11 @@
+<view class="current-week">
+  <month-title year="{{currentYear}}" month="{{currentMonth}}"></month-title>
+  <view class="week-container">
+    <view class="week-day {{item.isToday ? 'today' : ''}} {{!item.isCurrentMonth ? 'other-month' : ''}} {{item.isTarget ? 'target' : ''}}" 
+          wx:for="{{weekDays}}" 
+          wx:key="index">
+      <text class="day-name">{{weekDayNames[index]}}</text>
+      <text class="day-number">{{item.date}}</text>
+    </view>
+  </view>
+</view> 

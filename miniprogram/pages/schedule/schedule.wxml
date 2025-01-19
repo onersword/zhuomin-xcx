@@ -1,0 +1,19 @@
+<view class="schedule-container">
+  <view class="schedule-header">
+    <text class="header-title">我的日程</text>
+  </view>
+
+  <view class="" hover-class="none" hover-stop-propagation="false">
+    <calendar/>
+  </view>
+  
+  <view class="schedule-list">
+    <schedule-item 
+      wx:for="{{scheduleList}}" 
+      wx:key="id"
+      content="{{item.content}}"
+      time="{{item.formattedTime}}"
+      styleClass="{{item.styleClass}}"
+    />
+  </view>
+</view> 

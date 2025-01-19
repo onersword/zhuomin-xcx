@@ -1,0 +1,3 @@
+<view class="month-title">
+  <text>{{year}}年{{month}}月</text>
+</view> 
