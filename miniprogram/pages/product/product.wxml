@@ -1,6 +1,8 @@
-<navigation-bar title="产品" back="{{false}}" color="black" background="#FFF"></navigation-bar>
-<view class="container">
-  <view class="product-list">
-    <!-- 产品列表内容 -->
+<view class="header-area" hover-class="none" hover-stop-propagation="false">
+  <view class="header-container">
+    <view class="header-left" hover-class="none" hover-stop-propagation="false">
+      卓敏产品
+    </view>
+
   </view>
-</view> 
+</view>

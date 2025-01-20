@@ -1,7 +1,5 @@
-<view class="bg" hover-class="none" hover-stop-propagation="false"></view>
-
-<view class="container">
-  <view class="header" hover-class="none" hover-stop-propagation="false">
+<view class="header-area" hover-class="none" hover-stop-propagation="false">
+  <view class="header-container">
     <view class="header-left" hover-class="none" hover-stop-propagation="false">
       健康档案
     </view>
@@ -9,7 +7,11 @@
       <image src="/images/download.svg"></image>
       下载PDF
     </view>
+
   </view>
+</view>
+
+<view class="container">
 
   <view class="card">
     <view class="info-item">
