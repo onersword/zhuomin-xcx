@@ -7,12 +7,13 @@
 
   </view>
   <view class="schedule-container" hover-class="none" hover-stop-propagation="false">
-    <view class="" hover-class="none" hover-stop-propagation="false">
-      <month-title timestamp="{{1735660800000}}" />
-    </view>
-    <view class="" hover-class="none" hover-stop-propagation="false" bindtap="goToSchedule">
-      查看日程
+    <view class="top-area" hover-class="none" hover-stop-propagation="false">
+      <month-title />
+      <view class="top-right" hover-class="none" hover-stop-propagation="false" bindtap="goToSchedule">
+        查看日程
+        <image  src="/images/area-right-white.svg" ></image>
 
+      </view>
     </view>
 
     <view class="current-week">
