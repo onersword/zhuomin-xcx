@@ -3,7 +3,8 @@
     "calendar": "/components/calendar/index",
     "current-week": "/components/currentWeek/index",
     "month-title": "/components/monthTitle/index",
-    "schedule-item": "/components/scheduleItem/index"
+    "schedule-item": "/components/scheduleItem/index",
+    "health-list": "/components/healthList/index"
   },
   "navigationStyle": "custom"
 }

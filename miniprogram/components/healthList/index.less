@@ -1,0 +1,42 @@
+.health-list {
+  margin: 30rpx;
+  border-radius: 20rpx;
+  padding: 20rpx;
+  
+  .list-title {
+    font-size: 36rpx;
+    font-weight: bold;
+    color: #333;
+    padding: 20rpx;
+    border-bottom: 3px solid #94A0A1;
+  }
+  
+  .list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30rpx 20rpx;
+    border-bottom: 1px solid #D4DCDD;
+    
+    &:last-child {
+      border-bottom: none;
+    }
+    
+    .item-left {
+      font-size: 32rpx;
+      color: #333;
+      .item-time{
+      color: #999;
+      font-size: 28rpx;
+
+      }
+    }
+    
+    .item-right {
+        image{
+        width: 20rpx;
+        height: 20rpx;;
+        }
+    }
+  }
+} 

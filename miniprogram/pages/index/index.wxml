@@ -11,7 +11,7 @@
       <month-title />
       <view class="top-right" hover-class="none" hover-stop-propagation="false" bindtap="goToSchedule">
         查看日程
-        <image  src="/images/area-right-white.svg" ></image>
+        <image src="/images/area-right-white.svg"></image>
 
       </view>
     </view>
@@ -25,11 +25,18 @@
 
   </view>
 
-  <view class="" hover-class="none" hover-stop-propagation="false">test</view>
+  <health-list list="{{healthManageList}}" />
 
-
-  <view class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-    <text class="userinfo-nickname">Tony</text>
+  <view class="purchased-services">
+    <view class="title">已购服务</view>
+    <view class="service-list">
+      <view class="service-item" wx:for="{{purchasedServices}}" wx:key="id">
+        <image class="service-icon" src="{{item.icon}}" mode="aspectFill"></image>
+        <view class="service-info">
+          <view class="service-name">{{item.name}}</view>
+          <view class="service-desc">{{item.description}}</view>
+        </view>
+      </view>
+    </view>
   </view>
 </view>

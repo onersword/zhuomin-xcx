@@ -1,3 +1,6 @@
+page{
+  background-color: #F5F7F8;
+}
 .bg {
   position: absolute;
   top: 0;
@@ -72,5 +75,47 @@
 
   .user-motto {
     color: #333;
+  }
+}
+
+.purchased-services {
+  margin: 40rpx 34rpx;
+  
+  .title {
+    font-size: 34rpx;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 20rpx;
+  }
+  
+  .service-list {
+    .service-item {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      padding: 20rpx;
+      border-radius: 16rpx;
+      margin-bottom: 20rpx;
+      
+      .service-icon {
+        width: 100rpx;
+        height: 100rpx;
+        margin-right: 20rpx;
+        border-radius: 16rpx;
+      }
+      
+      .service-info {
+        flex: 1;
+        .service-name {
+          font-size: 32rpx;
+          color: #333;
+          margin-bottom: 8rpx;
+        }
+        .service-desc {
+          font-size: 26rpx;
+          color: #666;
+        }
+      }
+    }
   }
 }
