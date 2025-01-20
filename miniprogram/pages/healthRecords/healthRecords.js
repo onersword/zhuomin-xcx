@@ -14,9 +14,15 @@ Page({
     });
   },
 
-  onShow() {
-    // 页面显示时的逻辑
-  },
+  onShow: function() {
+    if (typeof this.getTabBar === 'function' &&
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 1
+      })
+    }
+
+},
 
   onPullDownRefresh() {
     // 下拉刷新逻辑
