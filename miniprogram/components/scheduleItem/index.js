@@ -1,9 +1,21 @@
+import { formatTime } from '../../utils/util'
+
 Component({
   properties: {
-    // 时间
+    // 修改 time 属性为时间戳
     time: {
-      type: String,
-      value: ''
+      type: Number,
+      value: 0,
+      observer: function(newVal) {
+        if (newVal) {
+          // 将时间戳转换为格式化的时间字符串
+          const formattedTime = formatTime(new Date(newVal))
+          
+          this.setData({
+            formattedTime: formattedTime
+          })
+        }
+      }
     },
     // 内容
     content: {
@@ -17,7 +29,9 @@ Component({
     }
   },
 
-  data: {},
+  data: {
+    formattedTime: ''  // 添加新的数据属性存储格式化后的时间
+  },
 
   methods: {
     // 点击日程项

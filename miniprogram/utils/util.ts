@@ -9,7 +9,7 @@ export const formatTime = (date: Date) => {
   return (
     [year, month, day].map(formatNumber).join('/') +
     ' ' +
-    [hour, minute, second].map(formatNumber).join(':')
+    [hour, minute].map(formatNumber).join(':')
   )
 }
 

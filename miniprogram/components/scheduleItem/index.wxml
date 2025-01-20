@@ -1,4 +1,4 @@
-<view class="schedule-item {{styleClass}}" bind:tap="onTapSchedule">
-  <view class="title">{{content}}</view>
-  <view class="time">{{time}}</view>
+<view class="schedule-item {{styleClass}}" bindtap="onTapSchedule">
+  <text class="content">{{content}}</text>
+  <text class="time">{{formattedTime}}</text>
 </view> 

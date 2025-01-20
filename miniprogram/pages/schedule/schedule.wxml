@@ -1,9 +1,9 @@
 <view class="schedule-container">
   <view class="schedule-header">
-    <text class="header-title">我的日程</text>
+    <text class="header-title">日程</text>
   </view>
 
-  <view class="" hover-class="none" hover-stop-propagation="false">
+  <view class="calendar-area" hover-class="none" hover-stop-propagation="false">
     <calendar/>
   </view>
   
@@ -12,7 +12,7 @@
       wx:for="{{scheduleList}}" 
       wx:key="id"
       content="{{item.content}}"
-      time="{{item.formattedTime}}"
+      time="{{item.time}}"
       styleClass="{{item.styleClass}}"
     />
   </view>

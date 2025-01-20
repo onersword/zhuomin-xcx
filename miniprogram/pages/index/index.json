@@ -2,7 +2,8 @@
   "usingComponents": {
     "calendar": "/components/calendar/index",
     "current-week": "/components/currentWeek/index",
-    "month-title": "/components/monthTitle/index"
+    "month-title": "/components/monthTitle/index",
+    "schedule-item": "/components/scheduleItem/index"
   },
   "navigationStyle": "custom"
 }

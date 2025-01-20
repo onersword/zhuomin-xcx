@@ -14,31 +14,26 @@ Page({
       { 
         id: 1,
         time: 1705026000000,  // 2024-01-12 09:00:00
-        content: '晨会',
+        content: '这是一个日程提醒标题',
         styleClass: 'schedule-coral'
       },
       { 
         id: 2,
         time: 1705047000000,  // 2024-01-12 14:30:00
-        content: '项目评审',
+        content: '这是一个日程提醒标题',
         styleClass: 'schedule-blue'
       },
       { 
         id: 3,
         time: 1705047000000,
-        content: '团队会议',
+        content: '项目评审',
         styleClass: 'schedule-purple'
       }
     ]
     
-    // 格式化时间
-    const formattedData = mockData.map(item => ({
-      ...item,
-      formattedTime: this.formatTimestamp(item.time)
-    }))
 
     this.setData({
-      scheduleList: formattedData
+      scheduleList:mockData
     })
   },
 

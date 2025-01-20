@@ -8,7 +8,7 @@
   </view>
   <view class="schedule-container" hover-class="none" hover-stop-propagation="false">
     <view class="" hover-class="none" hover-stop-propagation="false">
-     <month-title timestamp="{{1735660800000}}" />
+      <month-title timestamp="{{1735660800000}}" />
     </view>
     <view class="" hover-class="none" hover-stop-propagation="false" bindtap="goToSchedule">
       查看日程
@@ -19,6 +19,8 @@
       <current-week timestamp="{{1735660800000}}" />
       <!-- 其他内容 -->
     </view>
+
+    <schedule-item time="{{1735660800000}}" content="本周没有需要关注的日程" styleClass="schedule-coral" />
 
   </view>
 
