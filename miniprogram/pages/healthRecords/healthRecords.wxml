@@ -1,25 +1,68 @@
-<navigation-bar title="健康记录" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+<view class="bg" hover-class="none" hover-stop-propagation="false"></view>
+
 <view class="container">
-  <view class="health-list">
-    <view class="health-item">
-      <view class="item-header">
-        <text class="title">今日健康数据</text>
-        <text class="date">{{currentDate}}</text>
-      </view>
-      <view class="item-content">
-        <view class="data-item">
-          <text class="label">步数</text>
-          <text class="value">0 步</text>
-        </view>
-        <view class="data-item">
-          <text class="label">心率</text>
-          <text class="value">-- 次/分</text>
-        </view>
-        <view class="data-item">
-          <text class="label">睡眠</text>
-          <text class="value">-- 小时</text>
-        </view>
-      </view>
+  <view class="header" hover-class="none" hover-stop-propagation="false">
+    <view class="header-left" hover-class="none" hover-stop-propagation="false">
+      健康档案
+    </view>
+    <view class="header-right" hover-class="none" hover-stop-propagation="false">
+      <image src="/images/download.svg"></image>
+      下载PDF
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="info-item">
+      <text class="label">档案编号</text>
+      <text class="value">{{userInfo.recordId}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">建档日期</text>
+      <text class="value">{{userInfo.createDate}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">姓名</text>
+      <text class="value">{{userInfo.name}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">性别</text>
+      <text class="value">{{userInfo.gender}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">国籍</text>
+      <text class="value">{{userInfo.nationality}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">出生日期</text>
+      <text class="value">{{userInfo.birthDate}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">身份证号/护照号</text>
+      <text class="value">{{userInfo.idNumber}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">家庭地址</text>
+      <text class="value">{{userInfo.address}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">电话</text>
+      <text class="value">{{userInfo.phone}}</text>
+    </view>
+  </view>
+
+  <view class="card medical-info">
+    <view class="title">医疗信息</view>
+    <view class="info-item">
+      <text class="label">医疗保险</text>
+      <text class="value">{{medicalInfo.insurance}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">医保</text>
+      <text class="value">{{medicalInfo.medicalCare}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">职业</text>
+      <text class="value">{{medicalInfo.occupation}}</text>
     </view>
   </view>
 </view>

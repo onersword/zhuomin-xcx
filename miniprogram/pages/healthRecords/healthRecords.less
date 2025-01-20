@@ -1,60 +1,88 @@
-.container {
-  min-height: 100vh;
-  padding-bottom: calc(110rpx + env(safe-area-inset-bottom));
-  box-sizing: border-box;
-  background: #f6f6f6;
+page {
+  background-color: #F5F7F8;
 }
 
-.health-list {
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   width: 100%;
+  height: 340rpx;
+  background-image: url('https://7a68-zhuomin-1gqebsmr805ac1ca-1257151041.tcb.qcloud.la/bg.jpeg?sign=ccfd8e23b70f3e5f0c347de67a6a23dc&t=1737041224');
+  background-size: 100%;
+  background-position: bottom center;
+  z-index: -1;
 }
 
-.health-item {
-  background: #fff;
-  border-radius: 12rpx;
-  padding: 20rpx;
-  margin-bottom: 20rpx;
-  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
 
-  .item-header {
+.container {
+  padding-top: 240rpx;
+  padding-bottom: 200rpx;
+  box-sizing: border-box;
+
+  .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 20rpx;
-    border-bottom: 1rpx solid #eee;
+    padding:0 50rpx;
+    color: #fff;
 
-    .title {
-      font-size: 32rpx;
-      font-weight: bold;
+    .header-left {
+      font-size: 50rpx;
+
     }
 
-    .date {
-      font-size: 28rpx;
-      color: #666;
+    .header-right {
+      
+      font-size: 25rpx;
+      image {
+        margin-right: 10rpx;
+        width: 24rpx;
+        height: 24rpx;
+      }
+
     }
   }
 
-  .item-content {
-    padding-top: 20rpx;
-    display: flex;
-    justify-content: space-around;
+  .card {
+    margin: 40rpx;
+    padding: 40rpx;
+    background: #FFFFFF;
+    border-radius: 20rpx;
+    box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.06);
 
-    .data-item {
+    &.medical-info {
+      margin-top: 20rpx;
+
+      .title {
+        font-size: 32rpx;
+        font-weight: 500;
+        color: #333333;
+        margin-bottom: 30rpx;
+      }
+    }
+
+    .info-item {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
+      padding: 20rpx 0;
+      border-bottom: 2rpx solid #F5F7F8;
+
+      &:last-child {
+        border-bottom: none;
+      }
 
       .label {
+        color: #999999;
         font-size: 28rpx;
-        color: #666;
-        margin-bottom: 10rpx;
       }
 
       .value {
-        font-size: 32rpx;
-        font-weight: bold;
-        color: #333;
+        color: #333333;
+        font-size: 28rpx;
       }
     }
   }
-} 
+}

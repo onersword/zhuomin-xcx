@@ -1,20 +1,24 @@
 Page({
   data: {
-    currentDate: '',
+    userInfo: {
+      recordId: 'ZMCX2025001',
+      createDate: '2025-01-02',
+      name: '饶宇',
+      gender: '男',
+      nationality: '中国',
+      birthDate: '1976-11-06',
+      idNumber: '3623***001X',
+      address: '-----',
+      phone: '-----'
+    },
+    medicalInfo: {
+      insurance: '医保',
+      medicalCare: '医保',
+      occupation: '退休'
+    }
   },
 
-  onLoad() {
-    // 设置当前日期
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    this.setData({
-      currentDate: `${year}-${month}-${day}`
-    });
-  },
-
-  onShow: function() {
+  onShow: function () {
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({
@@ -22,10 +26,13 @@ Page({
       })
     }
 
-},
+  },
 
-  onPullDownRefresh() {
-    // 下拉刷新逻辑
-    wx.stopPullDownRefresh();
+  // 下载PDF功能
+  downloadPDF: function() {
+    wx.showToast({
+      title: 'PDF下载中...',
+      icon: 'loading'
+    });
   }
 }); 
