@@ -1,10 +1,33 @@
 Component({
   data: {
     selected: 0,
-    list: [{
-      pagePath: "/pages/index/index",
-      text: "首页"
-    }]
+
+    list: [
+      {
+        pagePath: "/pages/index/index",
+        text: "健康管理",
+        iconPath: "/images/guanli.svg",
+        selectedIconPath: "/images/guanli_active.svg"
+      },
+      {
+        pagePath: "/pages/healthRecords/healthRecords",
+        text: "健康档案",
+        iconPath: "/images/dangan.svg",
+        selectedIconPath: "/images/dangan_active.svg"
+      },
+      {
+        pagePath: "/pages/product/product",
+        text: "卓敏产品",
+        iconPath: "/images/chanpin.svg",
+        selectedIconPath: "/images/chanpin_active.svg"
+      },
+      {
+        pagePath: "/pages/connectUs/connectUs",
+        text: "联络客服",
+        iconPath: "/images/kefu.svg",
+        selectedIconPath: "/images/kefu_active.svg"
+      }
+    ]
   },
   
   methods: {

@@ -1,37 +1,40 @@
 .schedule-item {
   display: flex;
   flex-direction: column;
-  padding: 32rpx 24rpx;
+  justify-content: center;
   background: #fff;
   border-radius: 16rpx;
-  margin-bottom: 20rpx;
+  height: 120rpx;
+  padding: 0 30rpx;
 
-  .content{
-    font-size: 32rpx;
+
+  .content {
+    font-size: 30rpx;
     color: #000;
     font-weight: 600;
-    margin-bottom: 12rpx;
   }
 
   .time {
-    font-size: 28rpx;
+    font-weight: 600;
+    font-size: 24rpx;
     color: #999;
   }
 
   // 不同类型日程的样式
   &.schedule-coral {
+    box-shadow: 9rpx 0px 0px 0px #F6945D inset;
     background: #FFEFE7;
-    border-left: 8rpx solid #F6945D;
     ;
   }
 
   &.schedule-blue {
     background: #D3E4F4;
-    border-left: 8rpx solid #3374C7;
+    box-shadow: 9rpx 0px 0px 0px #3374C7 inset;
+
   }
 
   &.schedule-purple {
-    background:#EDDFEF;
-    border-left: 8rpx solid #821886;
+    box-shadow: 9rpx 0px 0px 0px #621265 inset;
+    background: #EDDFEF;
   }
 }

@@ -5,14 +5,15 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 153rpx;
+  height: 132rpx;
   background: #ffffff;
   display: flex;
+  justify-content: center;
+  gap: 64rpx;
   padding-bottom: env(safe-area-inset-bottom);
-  border-top: 1rpx solid #f0f0f0;
-  box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.05);
   z-index: 9999;
-  padding-top:17rpx;
+  padding: 11rpx 56rpx 0 56rpx;
+
 }
 
 .tabbar-item {
@@ -21,21 +22,18 @@
   flex-direction: column;
   align-items: center;
   justify-content:top;
-  gap: 10rpx;
+  gap: 6rpx;
 
   &.active {
-    transform: scale(1.05);
-    transition: transform 0.2s ease;
 
     .tabbar-text {
-      color: @primary-color;
+      color: #4A3AFF;
     }
   }
 
   .tabbar-icon {
-    width: 47rpx;
-    height: 47rpx;
-    margin-bottom: 4rpx;
+    width: 56rpx;
+    height: 56rpx;
   }
 
   .tabbar-text {

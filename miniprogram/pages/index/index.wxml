@@ -1,29 +1,34 @@
-<view class="bg" hover-class="none" hover-stop-propagation="false">
-</view>
 
-<view class="container">
+<view class="header-area" hover-class="none" hover-stop-propagation="false">
   <view class="header" hover-class="none" hover-stop-propagation="false">
+    
     你好, Tony
-
   </view>
+
   <view class="schedule-container" hover-class="none" hover-stop-propagation="false">
     <view class="top-area" hover-class="none" hover-stop-propagation="false">
       <month-title />
       <view class="top-right" hover-class="none" hover-stop-propagation="false" bindtap="goToSchedule">
+        <view>
         查看日程
+        </view>
         <image src="/images/area-right-white.svg"></image>
 
       </view>
     </view>
 
     <view class="current-week">
-      <current-week timestamp="{{1735660800000}}" />
+      <current-week />
       <!-- 其他内容 -->
     </view>
 
     <schedule-item time="{{1735660800000}}" content="本周没有需要关注的日程" styleClass="schedule-coral" />
 
   </view>
+  
+</view>
+
+<view class="container">
 
   <health-list list="{{healthManageList}}" />
 
