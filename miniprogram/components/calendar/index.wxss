@@ -77,6 +77,11 @@
 .next-handle {
     padding: 20rpx;
 }
+.todo-mark {
+    height: 10rpx;
+    width: 30rpx;
+    color: red;
+}
 
 .date-in-handle {
     height: 80rpx;
@@ -133,10 +138,11 @@
 }
 
 .date-desc {
-    width: 150%;
-    height: 32rpx;
+    border-radius: 2rpx;
+    width: 90%;
+    height: 6rpx;
     font-size: 20rpx;
-    line-height: 32rpx;
+    bottom: 0;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);

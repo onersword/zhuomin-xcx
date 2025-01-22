@@ -3,6 +3,9 @@ import { calcJumpData } from './core'
 import { renderCalendar } from './render'
 import { calcTargetYMInfo } from './helper'
 import { dateUtil, calendarGesture, logger } from './utils/index'
+import todo from './plugins/todo'
+
+plugins.use(todo);
 
 Component({
   options: {

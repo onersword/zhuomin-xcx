@@ -4,7 +4,7 @@
   </view>
 
   <view class="calendar-area" hover-class="none" hover-stop-propagation="false">
-    <calendar config="{{calendarConfig}}"/>
+    <calendar id="calendar" config="{{calendarConfig}}"/>
   </view>
   
   <view class="schedule-list">
