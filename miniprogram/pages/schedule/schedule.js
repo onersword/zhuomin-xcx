@@ -56,19 +56,19 @@ Page({
     const mockData = [
       { 
         id: 1,
-        time: 1705026000000,  // 2024-01-12 09:00:00
+        time: new Date(2025, 0, 23).getTime(),  // 2025-01-23
         content: '这是一个日程提醒标题',
         styleClass: 'schedule-coral'
       },
       { 
         id: 2,
-        time: 1705047000000,  // 2024-01-12 14:30:00
+        time: new Date(2025, 0, 25).getTime(),  // 2025-01-25
         content: '这是一个日程提醒标题',
         styleClass: 'schedule-blue'
       },
       { 
         id: 3,
-        time: 1705047000000,
+        time: new Date(2025, 0, 28).getTime(),  // 2025-01-28
         content: '项目评审',
         styleClass: 'schedule-purple'
       }
