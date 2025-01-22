@@ -8,16 +8,16 @@
         <!-- <text class="prev-handle iconfont icon-doubleleft" bindtap="changeDate" data-type="prev_year"></text> -->
         <text class="prev-handle iconfont icon-left" bindtap="changeDate" data-type="prev_month"></text>
       </view>
-      <view class="flex date-in-handle b lr cc" bindtap="doubleClickJumpToToday">{{calendar.curYear || "--"}} 年 {{calendar.curMonth || "--"}} 月</view>
+      <view class="date-in-handle b lr cc" bindtap="doubleClickJumpToToday">{{calendar.curYear || "--"}} 年 {{calendar.curMonth || "--"}} 月</view>
       <view class="next fs36" wx:if="{{!config.weekMode}}">
         <text class="next-handle iconfont icon-right" bindtap="changeDate" data-type="next_month"></text>
         <!-- <text class="next-handle iconfont icon-doubleright" bindtap="changeDate" data-type="next_year"></text> -->
       </view>
     </view>
     <!-- 星期栏 -->
-    <view class="weeks b lr ac {{config.theme}}_week-color">
+    <!-- <view class="weeks b lr ac {{config.theme}}_week-color">
       <view class="week fs28" wx:for="{{calendar.weeksCh}}" wx:key="index" data-idx="{{index}}">{{item}}</view>
-    </view>
+    </view> -->
     <!-- 日历面板主体 -->
     <view class="b lr wrap" bindtouchstart="calendarTouchstart" catchtouchmove="calendarTouchmove" catchtouchend="calendarTouchend">
       <!-- 上月日期格子 -->

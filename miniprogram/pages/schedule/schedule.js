@@ -1,6 +1,9 @@
 Page({
   data: {
-    scheduleList: []
+    scheduleList: [],
+    calendarConfig: {
+      highlightToday: true,
+    }
   },
 
   onLoad: function() {
