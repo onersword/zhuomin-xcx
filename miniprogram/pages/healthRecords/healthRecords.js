@@ -14,7 +14,14 @@ Page({
     medicalInfo: {
       insurance: '医保',
       medicalCare: '医保',
-      occupation: '退休'
+      occupation: '退休',
+      emergencyContact: 'Sasa',
+      relationship: '配偶',
+      emergencyPhone: '-----',
+      emergencyBirthDate: '1976-11-06',
+      emergencyIdNumber: '3623***001X',
+      emergencyAddress: '-----',
+      emergencyContactPhone: '-----'
     }
   },
 

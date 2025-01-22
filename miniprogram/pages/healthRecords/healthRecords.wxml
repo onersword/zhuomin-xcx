@@ -66,5 +66,33 @@
       <text class="label">职业</text>
       <text class="value">{{medicalInfo.occupation}}</text>
     </view>
+    <view class="info-item">
+      <text class="label">紧急联系人</text>
+      <text class="value">{{medicalInfo.emergencyContact}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">关系</text>
+      <text class="value">{{medicalInfo.relationship}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">紧急联系人电话</text>
+      <text class="value">{{medicalInfo.emergencyPhone}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">出生日期</text>
+      <text class="value">{{medicalInfo.emergencyBirthDate}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">身份证号/护照号</text>
+      <text class="value">{{medicalInfo.emergencyIdNumber}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">家庭地址</text>
+      <text class="value">{{medicalInfo.emergencyAddress}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">电话</text>
+      <text class="value">{{medicalInfo.emergencyContactPhone}}</text>
+    </view>
   </view>
 </view>
