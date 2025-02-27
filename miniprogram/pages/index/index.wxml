@@ -2,7 +2,7 @@
 <view class="header-area" hover-class="none" hover-stop-propagation="false">
   <view class="header" hover-class="none" hover-stop-propagation="false">
     
-    你好, Tony
+    你好,{{userInfo.nickName}}
   </view>
 
   <view class="schedule-container" hover-class="none" hover-stop-propagation="false">
