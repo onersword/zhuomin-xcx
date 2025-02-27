@@ -6,6 +6,11 @@
     "pages/connectUs/connectUs",
     "pages/schedule/schedule"
   ],
+  "permission": {
+    "scope.userInfo": {
+      "desc": "你的用户信息将用于完善会员资料"
+    }
+  },
   "tabBar": {
     "custom": true,
     "color": "#000000",

@@ -1,8 +1,20 @@
+
+
 <view class="header-area" hover-class="none" hover-stop-propagation="false">
-    <view class="header-container">
-      <view class="header-left" hover-class="none" hover-stop-propagation="false">
-        联络客服
-      </view>
-  
+  <view class="header-container">
+    <view class="header-left" hover-class="none" hover-stop-propagation="false">
+      联络客服
     </view>
+
   </view>
+
+
+</view>
+
+<view class="connect-us" hover-class="none" hover-stop-propagation="false">
+  <view class="contact-btn" hover-class="none" hover-stop-propagation="false">
+    联系客服微信
+  </view>
+
+</view>
+
