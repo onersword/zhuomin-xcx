@@ -1,8 +1,33 @@
-<view class="header-area" hover-class="none" hover-stop-propagation="false">
-  <view class="header-container">
-    <view class="header-left" hover-class="none" hover-stop-propagation="false">
-      卓敏产品
+<view class="container">
+  <view class="header-area">
+    <view class="header-container">
+      <view class="header-left">
+        卓敏产品
+      </view>
+    </view>
+  </view>
+
+  <view class="product-list-area" hover-class="none" hover-stop-propagation="false">
+    <view class="area-title" hover-class="none" hover-stop-propagation="false">
+      推荐套餐
     </view>
 
+    <view class="product-list">
+      <view class="product-item bg{{item.type}}" wx:for="{{products}}" wx:key="id">
+        <view class="product-container">
+          <view class="product-title">{{item.name}}</view>
+          <view class="product-desc">{{item.description}}</view>
+          <view>
+            <view class="price-row">
+              <text class="price-label">价格：</text>
+              <text class="price">{{item.price}}</text>
+              <text class="price-split">｜</text>
+              <text class="duration">{{item.duration}}</text>
+            </view>
+          </view>
+
+        </view>
+      </view>
+    </view>
   </view>
 </view>

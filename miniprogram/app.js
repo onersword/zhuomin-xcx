@@ -4,10 +4,10 @@ App({
   },
   
   onLaunch() {
-    wx.showLoading({
-      title: '加载中',
-      mask: true
-    });
+    // wx.showLoading({
+    //   title: '加载中',
+    //   mask: true
+    // });
     // 初始化云开发
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
@@ -50,9 +50,9 @@ App({
             },
             fail: (err) => {
               console.error('登录失败：', err);
-              wx.redirectTo({
-                url: '/pages/login/login'
-              });
+              // wx.redirectTo({
+              //   url: '/pages/login/login'
+              // });
             }
           });
         }
