@@ -1,0 +1,7 @@
+<view class="register-container">
+  <view class="register-title">完成注册</view>
+  <view class="register-desc">请绑定手机号以完成注册</view>
+  <button class="phone-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+    绑定手机号
+  </button>
+</view> 

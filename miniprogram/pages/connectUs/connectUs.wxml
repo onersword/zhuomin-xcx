@@ -1,5 +1,3 @@
-
-
 <view class="header-area" hover-class="none" hover-stop-propagation="false">
   <view class="header-container">
     <view class="header-left" hover-class="none" hover-stop-propagation="false">

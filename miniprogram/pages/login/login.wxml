@@ -1,0 +1,7 @@
+<view class="login-container">
+  <view class="logo" hover-class="none" hover-stop-propagation="false">
+    <image src="/images/logo.png" mode="widthFix"></image>
+  </view>
+  <view class="login-title">您还未创建健康档案</view>
+  <button class="login-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">创建健康档案</button>
+</view> 
