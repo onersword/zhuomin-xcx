@@ -20,7 +20,7 @@
           <view>
             <view class="price-row">
               <text class="price-label">价格：</text>
-              <text class="price">{{item.price}}</text>
+              <text class="price">{{item.formattedPrice}}</text>
               <text class="price-split">｜</text>
               <text class="duration">{{item.duration}}</text>
             </view>
@@ -37,10 +37,18 @@
     </view>
 
     <view class="product-list">
-      <view class="product-item bg{{item.type}}" wx:for="{{products}}" wx:key="id">
+      <view class="product-item bg-other" wx:for="{{otherProducts}}" wx:key="id">
         <view class="product-container">
           <view class="product-title">{{item.name}}</view>
           <view class="product-desc">{{item.description}}</view>
+          <view>
+            <view class="price-row">
+              <text class="price-label">价格：</text>
+              <text class="price">{{item.formattedPrice}}</text>
+              <text class="price-split">｜</text>
+              <text class="duration">{{item.duration}}</text>
+            </view>
+          </view>
         </view>
       </view>
     </view>

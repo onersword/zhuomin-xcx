@@ -1,3 +1,4 @@
+const { request } = require('../../utils/request')
 Page({
   data: {
     userInfo: {
@@ -33,6 +34,7 @@ Page({
       })
     }
 
+    this.getUserRecords()
   },
 
   // 下载PDF功能
@@ -41,5 +43,13 @@ Page({
       title: 'PDF下载中...',
       icon: 'loading'
     });
+  },
+
+  async getUserRecords() {
+    const data = await request({
+      path: '/api/records',
+      method: 'GET'
+    })
+    console.log('userRecords', data)
   }
 }); 
