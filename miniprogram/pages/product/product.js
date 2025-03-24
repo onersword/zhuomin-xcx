@@ -188,5 +188,13 @@ Page({
         selected: 2
       })
     }
+  },
+
+  // 跳转至产品详情页
+  navigateToProductInfo(e) {
+    const productId = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: `/pages/productInfo/productInfo?id=${productId}`
+    })
   }
-}) 
+})

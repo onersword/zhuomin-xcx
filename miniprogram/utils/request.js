@@ -49,7 +49,7 @@ const request = async (options) => {
         success: (res) => {
           if (res.statusCode === 401) {
             // Token expired or invalid, redirect to login
-            wx.redirectTo({ url: '/pages/login/login' })
+            // wx.redirectTo({ url: '/pages/login/login' })
             reject(new Error('Unauthorized'))
             return
           }
