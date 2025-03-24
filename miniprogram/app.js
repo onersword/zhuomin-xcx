@@ -1,3 +1,5 @@
+const { request } = require("./utils/request");
+
 App({
   globalData: {
     userInfo: null
@@ -25,36 +27,19 @@ App({
         if (res.code) {
           console.log('登录成功，获取到code：', res.code);
           // 调用云托管登录接口
-          wx.cloud.callContainer({
+          request({
             path: '/api/login',
-            header: {
-              'X-WX-SERVICE': 'mr-lao',
-              'content-type': 'application/json'
-            },
             method: 'POST',
             data: {
               code: res.code
-            },
-            success: (response) => {
-              wx.hideLoading();
-              console.log('登录成功，获取到token：', response.data.token);
-              if (response.data.token) {
-                wx.setStorageSync('token', response.data.token);
-                // TODO
-
-              // } else {
-              //   wx.redirectTo({
-              //     url: '/pages/login/login'
-              //   });
-              }
-            },
-            fail: (err) => {
-              console.error('登录失败：', err);
-              // wx.redirectTo({
-              //   url: '/pages/login/login'
-              // });
             }
-          });
+          }).then(data=> {
+            console.log('jwt'.data);
+            if (data) {
+              wx.setStorageSync('token', data.token);
+              // TODO
+            }
+          })
         }
       },
       fail: () => {

@@ -1,17 +1,32 @@
 # API 文档
 
-*云开发容器地址: BASE_URL*
+_云开发容器地址: BASE_URL_
 `https://mr-lao-146870-5-1345362468.sh.run.tcloudbase.com/`
 
-*小程序示例*
+_小程序示例_
+
 ```
+## 示例3
+wx.cloud.callContainer({
+  "config": {
+    "env": "prod-8gvh8k8d1aeb0797"
+  },
+  "path": "/api/count",
+  "header": {
+    "X-WX-SERVICE": "mr-lao",
+    "content-type": "application/json"
+  },
+  "method": "GET",
+  "data": ""
+})
+
 # 登录
 wx.login({
   success: res => {
     // 发送 res.code 到后台换取 openId, sessionKey, unionId
     // console.log(res)
     wx.request({
-        url: 'http://127.0.0.1:3000/api/login', // 你的后端 API
+        url: 'https://mr-lao-146870-5-1345362468.sh.run.tcloudbase.com/api/login', // 你的后端 API
         method: 'POST',
         data: { code: res.code },
         success(response) {
@@ -25,6 +40,80 @@ wx.login({
       });
   }
 })
+
+# 获取档案
+wx.request({
+  url: 'https://mr-lao-146870-5-1345362468.sh.run.tcloudbase.com/api/records',
+  method: 'GET',
+  success: res => {
+    console.log(res)
+  }
+})
+
+=> 
+# status = 0, 未绑定手机号
+{
+    "userInfo": {
+        "id": "a0dec35c-da0a-4ae4-b98c-86e2eda458f4",
+        "wechatId": "oe_Lx6_ax-tfSk5n84igwadmM-lg",
+        "name": "oe_Lx6_ax-tfSk5n84igwadmM-lg",
+        "phoneNumber": null,
+        "status": 0,
+        "createdAt": "2025-03-23T14:36:36.000Z",
+        "updatedAt": "2025-03-23T16:03:30.000Z"
+    },
+    "records": null
+}
+# status = 1, 已绑定手机号
+{
+    "userInfo": {
+        "id": "a0dec35c-da0a-4ae4-b98c-86e2eda458f4",
+        "wechatId": "oe_Lx6_ax-tfSk5n84igwadmM-lg",
+        "name": "oe_Lx6_ax-tfSk5n84igwadmM-lg",
+        "phoneNumber": "13.....4",
+        "status": 1,
+        "createdAt": "2025-03-23T14:36:36.000Z",
+        "updatedAt": "2025-03-23T16:03:30.000Z"
+    },
+    "records": null
+}
+
+# 有档案信息
+{
+    "userInfo": {
+        "id": "a0dec35c-da0a-4ae4-b98c-86e2eda458f4",
+        "wechatId": "oe_Lx6_ax-tfSk5n84igwadmM-lg",
+        "name": "oe_Lx6_ax-tfSk5n84igwadmM-lg",
+        "phoneNumber": "13.....4",
+        "status": 1,
+        "createdAt": "2025-03-23T14:36:36.000Z",
+        "updatedAt": "2025-03-23T16:03:30.000Z"
+    },
+    "records": {
+        "医疗信息": {
+            "关系": "配偶",
+            "电话": "----",
+            "职业": "退休",
+            "出生日期": "1976-11-06",
+            "医疗保险": "医保",
+            "家庭地址": "----",
+            "紧急联系人": "Sasa",
+            "紧急联系人电话": "----",
+            "身份证号/护照号": "3623***001X"
+        },
+        "档案信息": {
+            "国籍": "中国",
+            "姓名": "饶宇",
+            "性别": "男",
+            "电话": "----",
+            "出生日期": "1976-11-06",
+            "家庭地址": "----",
+            "建档日期": "2025-01-02",
+            "档案编号": "ZMCX2025001",
+            "身份证号/护照号": "3623***001X"
+        }
+    }
+}
 
 # 绑定手机号
 <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">获取手机号</button>
@@ -42,17 +131,31 @@ curl --location 'https://mr-lao-146870-5-1345362468.sh.run.tcloudbase.com/api/re
     "code": "88e095fb4b3498ff1dbad064aa4f94dd2ddf182e55c313108ccd21fe8e45f947"
 }'
 
+# 已经上传档案，等待审核
+
+curl --location 'https://mr-lao-146870-5-1345362468.sh.run.tcloudbase.com/api/users/a0dec35c-da0a-4ae4-b98c-86e2eda458f4/review' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcGVuaWQiOiJvZV9MeDZfYXgtdGZTazVuODRpZ3dhZG1NLWxnIiwiaWF0IjoxNzQyMzA1NDIxLCJleHAiOjE3NDI5MTAyMjF9.URfh54ikPrEz5DGofUQXAtmpga9Pi_xyHqm1tMsTujU'  
+=>
+{
+  "code": 0,
+  "message": "等待审核"
+}
+
 # 获取商品列表
 curl --location 'https://mr-lao-146870-5-1345362468.sh.run.tcloudbase.com/api/products' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcGVuaWQiOiJvZV9MeDZfYXgtdGZTazVuODRpZ3dhZG1NLWxnIiwiaWF0IjoxNzQyMzA1NDIxLCJleHAiOjE3NDI5MTAyMjF9.URfh54ikPrEz5DGofUQXAtmpga9Pi_xyHqm1tMsTujU'
 
+# 获取用户的商品列表
+curl --location 'https://mr-lao-146870-5-1345362468.sh.run.tcloudbase.com/api/users/a0dec35c-da0a-4ae4-b98c-86e2eda458f4/products' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcGVuaWQiOiJvZV9MeDZfYXgtdGZTazVuODRpZ3dhZG1NLWxnIiwiaWF0IjoxNzQyMzA1NDIxLCJleHAiOjE3NDI5MTAyMjF9.URfh54ikPrEz5DGofUQXAtmpga9Pi_xyHqm1tMsTujU'
+
 # 获取提醒事项
 curl --location 'https://mr-lao-146870-5-1345362468.sh.run.tcloudbase.com/api/reminders' \
---header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcGVuaWQiOiJvZV9MeDZfYXgtdGZTazVuODRpZ3dhZG1NLWxnIiwiaWF0IjoxNzQyMzA1NDIxLCJleHAiOjE3NDI5MTAyMjF9.URfh54ikPrEz5DGofUQXAtmpga9Pi_xyHqm1tMsTujU'  
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcGVuaWQiOiJvZV9MeDZfYXgtdGZTazVuODRpZ3dhZG1NLWxnIiwiaWF0IjoxNzQyMzA1NDIxLCJleHAiOjE3NDI5MTAyMjF9.URfh54ikPrEz5DGofUQXAtmpga9Pi_xyHqm1tMsTujU'
 
 # 获取档案
 curl --location 'https://mr-lao-146870-5-1345362468.sh.run.tcloudbase.com/api/files' \
---header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcGVuaWQiOiJvZV9MeDZfYXgtdGZTazVuODRpZ3dhZG1NLWxnIiwiaWF0IjoxNzQyMzA1NDIxLCJleHAiOjE3NDI5MTAyMjF9.URfh54ikPrEz5DGofUQXAtmpga9Pi_xyHqm1tMsTujU'  
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcGVuaWQiOiJvZV9MeDZfYXgtdGZTazVuODRpZ3dhZG1NLWxnIiwiaWF0IjoxNzQyMzA1NDIxLCJleHAiOjE3NDI5MTAyMjF9.URfh54ikPrEz5DGofUQXAtmpga9Pi_xyHqm1tMsTujU'
 ```
 
 ## 认证相关

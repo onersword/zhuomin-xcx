@@ -30,4 +30,19 @@
       </view>
     </view>
   </view>
+
+  <view class="product-list-area" hover-class="none" hover-stop-propagation="false">
+    <view class="area-title" hover-class="none" hover-stop-propagation="false">
+      其他服务
+    </view>
+
+    <view class="product-list">
+      <view class="product-item bg{{item.type}}" wx:for="{{products}}" wx:key="id">
+        <view class="product-container">
+          <view class="product-title">{{item.name}}</view>
+          <view class="product-desc">{{item.description}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>

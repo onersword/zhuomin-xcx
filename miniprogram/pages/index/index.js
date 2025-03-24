@@ -1,3 +1,4 @@
+const { request } = require('../../utils/request.js')
 // index.js
 Page({
   data: {
@@ -110,5 +111,24 @@ Page({
       })
     }
 
+    // this.getReminders()
+    this.getProducts();
+
   },
+
+  async getReminders() {
+    const data = request({
+      path: '/api/reminders',
+      method: 'GET'
+    })
+    console.log('reminders', data)
+  },
+
+  async getProducts() {
+    const data = request({
+      path: '/api/products',
+      method: 'GET'
+    })
+    console.log('products', data)
+  }
 }) 
