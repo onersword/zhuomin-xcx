@@ -1,51 +1,43 @@
 <view class="product-info">
-  <view class="title">家庭医生套餐 基础版</view>
+  <view class="title">{{productInfo[currentId].title}}</view>
 
   <view class="service-section">
     <view class="section-title">服务大类:</view>
-    <view class="service-item">
-      <view class="item-title">家庭医生健康管理基础套餐（含）</view>
-
-      <view class="sub-item">
-
-        <view class="sub-item-title-container" hover-class="none" hover-stop-propagation="false">
-          <view class="sub-item-title">健康咨询</view>
-          <view class="frequency">无限次</view>
+    
+    <block wx:for="{{productInfo[currentId].services}}" wx:key="title">
+      <view class="service-item">
+        <view class="item-title-container">
+          <view class="item-title">{{item.title}}</view>
+          <view class="frequency" wx:if="{{item.frequency}}">{{item.frequency}}</view>
         </view>
-        <view class="description">包括常见疾病咨询、日常饮食咨询、就医分诊咨询、日常用药咨询、门诊报告解读等（无限次，仅限本人使用，子女可代替咨询）</view>
+        
+        <block wx:for="{{item.subServices}}" wx:for-item="subItem" wx:key="title">
+          <view class="sub-item">
+            <view class="sub-item-title-container" wx:if="{{subItem.title}}">
+              <view class="sub-item-title">{{subItem.title}}</view>
+              <view class="frequency" wx:if="{{subItem.frequency}}">{{subItem.frequency}}</view>
+            </view>
+            <view class="frequency" wx:if="{{!subItem.title && subItem.frequency}}">{{subItem.frequency}}</view>
+            <view class="description" wx:if="{{subItem.description}}">{{subItem.description}}</view>
+            <block wx:if="{{subItem.descriptions}}">
+              <view class="description" wx:for="{{subItem.descriptions}}" wx:for-item="desc" wx:key="*this">
+                {{desc}}
+              </view>
+            </block>
+          </view>
+        </block>
       </view>
-
-      <view class="sub-item">
-        <view class="sub-item-title-container" hover-class="none" hover-stop-propagation="false">
-          <view class="sub-item-title">健康评估</view>
-          <view class="frequency">1次</view>
-        </view>
-        <view class="description">建立并维护连续、动态的电子健康档案，并根据健康档案制定管理计划及年度体检方案（仅限本人使用）</view>
-      </view>
-
-      <view class="sub-item">
-        <view class="sub-item-title">私享会所服务</view>
-        <view class="description">免费使用经渡会所的如下服务：运动和健身场所；健康教育和讲座；康复和理疗讲座；微压氧舱体验</view>
-      </view>
-
-      <view class="sub-item">
-        <view class="sub-item-title">一站式就医服务（含）上海各大三甲医院</view>
-        <view class="frequency">2次</view>
-        <view class="description">诊前一对一专人沟通，全面了解就诊需求；精准分诊，针对性推荐医生；并协助门诊预约安排；</view>
-        <view class="description">全程导医陪诊、代办就诊手续，包括挂号、缴费、检查预约，排队配药等，并协助医生沟通病情，记录注意事项；</view>
-        <view class="description">诊后定期随访跟踪，指导后续健康维护；</view>
-      </view>
-    </view>
+    </block>
   </view>
-
+  
 </view>
 
 <view class="price-section">
   <view class="total-price">
     <text>价格：</text>
-    <text class="price">4,999</text>
+    <text class="price">{{productInfo[currentId].price}}</text>
     <text class="price-split">｜</text>
-    <text class="duration">1年</text>
+    <text class="duration">{{productInfo[currentId].duration}}</text>
   </view>
-  <button class="contact-btn">联系客服购买</button>
+  <button class="contact-btn" bindtap="handleContact">联系客服购买</button>
 </view>
