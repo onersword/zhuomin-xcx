@@ -111,9 +111,9 @@ Page({
       })
     }
 
-    // this.getReminders()
+    this.getReminders()
     this.getProducts();
-
+    this.getFiles();
   },
 
   async getReminders() {
@@ -130,5 +130,12 @@ Page({
       method: 'GET'
     })
     console.log('products', data)
+  },
+  async getFiles() {
+    const data = request({
+      path: '/api/files',
+      method: 'GET'
+    })
+    console.log('files', data)
   }
 }) 

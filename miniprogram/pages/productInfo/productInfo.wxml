@@ -7,14 +7,19 @@
       <view class="item-title">家庭医生健康管理基础套餐（含）</view>
 
       <view class="sub-item">
-        <view class="sub-item-title">健康咨询</view>
-        <view class="frequency">无限次</view>
+
+        <view class="sub-item-title-container" hover-class="none" hover-stop-propagation="false">
+          <view class="sub-item-title">健康咨询</view>
+          <view class="frequency">无限次</view>
+        </view>
         <view class="description">包括常见疾病咨询、日常饮食咨询、就医分诊咨询、日常用药咨询、门诊报告解读等（无限次，仅限本人使用，子女可代替咨询）</view>
       </view>
 
       <view class="sub-item">
-        <view class="sub-item-title">健康评估</view>
-        <view class="frequency">1次</view>
+        <view class="sub-item-title-container" hover-class="none" hover-stop-propagation="false">
+          <view class="sub-item-title">健康评估</view>
+          <view class="frequency">1次</view>
+        </view>
         <view class="description">建立并维护连续、动态的电子健康档案，并根据健康档案制定管理计划及年度体检方案（仅限本人使用）</view>
       </view>
 
@@ -28,6 +33,7 @@
         <view class="frequency">2次</view>
         <view class="description">诊前一对一专人沟通，全面了解就诊需求；精准分诊，针对性推荐医生；并协助门诊预约安排；</view>
         <view class="description">全程导医陪诊、代办就诊手续，包括挂号、缴费、检查预约，排队配药等，并协助医生沟通病情，记录注意事项；</view>
+        <view class="description">诊后定期随访跟踪，指导后续健康维护；</view>
       </view>
     </view>
   </view>
