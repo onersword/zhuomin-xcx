@@ -13,7 +13,7 @@
     </view>
 
     <view class="product-list">
-      <view class="product-item bg{{item.type}}" wx:for="{{products}}" wx:key="id" bindtap="navigateToProductInfo" data-id="{{item.id}}">
+      <view class="product-item bg{{item.type}}" wx:for="{{products}}" wx:key="id" bindtap="navigateToProductInfo" data-id="{{item.id}}" data-type="{{'normal'}}">
         <view class="product-container">
           <view class="product-title">{{item.name}}</view>
           <view class="product-desc">{{item.description}}</view>
@@ -37,7 +37,7 @@
     </view>
 
     <view class="product-list">
-      <view class="product-item bg-other" wx:for="{{otherProducts}}" wx:key="id" bindtap="navigateToProductInfo" data-id="{{item.id}}">
+      <view class="product-item bg-other" wx:for="{{otherProducts}}" wx:key="id" bindtap="navigateToProductInfo" data-id="{{item.id}}" data-type="{{'other'}}">
         <view class="product-container">
           <view class="product-title">{{item.name}}</view>
           <view class="product-desc">{{item.description}}</view>

@@ -1,4 +1,4 @@
-<view class="product-info">
+<view class="product-info" wx:if="{{type === 'normal'}}">
   <view class="title">{{productInfo[currentId].title}}</view>
 
   <view class="service-section">
@@ -29,17 +29,14 @@
       </view>
     </block>
   </view>
-
-
 </view>
 
-<view class="product-info" hover-class="none" hover-stop-propagation="false">
-  <view class="title">{{productInfo[currentId].title}}</view>
+<view class="product-info" wx:if="{{type === 'other'}}">
+  <view class="title">{{otherInfo.title}}</view>
   <view class="service-section">
     <view class="section-title">详细内容:</view>
-    <view class="container" hover-class="none" hover-stop-propagation="false">
-      专业陪诊全程代办服务，全程协助开单、预约检查、陪同检查、领取报告、报告解读等（本服务不含医院诊疗费）不含医院收取检查费（预估2000-2500元左右）；
-
+    <view class="container">
+      {{otherInfo.description}}
     </view>
   </view>
 </view>
@@ -47,9 +44,9 @@
 <view class="price-section">
   <view class="total-price">
     <text>价格：</text>
-    <text class="price">{{productInfo[currentId].price}}</text>
+    <text class="price">{{type === 'other' ? otherInfo.price : productInfo[currentId].price}}</text>
     <text class="price-split">｜</text>
-    <text class="duration">{{productInfo[currentId].duration}}</text>
+    <text class="duration">{{type === 'other' ? otherInfo.duration : productInfo[currentId].duration}}</text>
   </view>
   <button class="contact-btn" bindtap="handleContact">联系客服购买</button>
 </view>

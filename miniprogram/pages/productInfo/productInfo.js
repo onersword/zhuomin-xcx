@@ -1,6 +1,13 @@
 Page({
   data: {
-    currentId: 3, // 1: 基础版, 2: 升级版, 3: 企业版
+    currentId: 1,
+    type: 'normal',
+    otherInfo: {
+      title: '专业陪诊服务',
+      description: '专业陪诊全程代办服务，全程协助开单、预约检查、陪同检查、领取报告、报告解读等（本服务不含医院诊疗费）不含医院收取检查费（预估2000-2500元左右）；',
+      price: 499,
+      duration: '次'
+    },
     productInfo: {
       1: {
         title: '家庭医生套餐 基础版',
@@ -150,11 +157,21 @@ Page({
   },
 
   onLoad(options) {
-    if (options.id) {
-      this.setData({
-        currentId: Number(options.id)
-      });
+    console.log('Received options:', options); // 调试日志
+    
+    // 确保 type 参数正确设置
+    const type = options.type || 'normal';
+    let currentId = 1;
+
+    // 只在 normal 类型时设置 currentId
+    if (type === 'normal' && options.id) {
+      currentId = Number(options.id);
     }
+
+    this.setData({
+      type,
+      currentId
+    });
   },
 
   // Contact button handler
