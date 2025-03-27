@@ -1,7 +1,6 @@
-
 <view class="header-area" hover-class="none" hover-stop-propagation="false">
   <view class="header" hover-class="none" hover-stop-propagation="false">
-    
+
     你好
   </view>
 
@@ -10,7 +9,7 @@
       <month-title />
       <view class="top-right" hover-class="none" hover-stop-propagation="false" bindtap="goToSchedule">
         <view>
-        查看日程
+          查看日程
         </view>
         <image src="/images/area-right-white.svg"></image>
 
@@ -25,7 +24,7 @@
     <schedule-item time="{{1735660800000}}" content="本周没有需要关注的日程" styleClass="schedule-coral" />
 
   </view>
-  
+
 </view>
 
 <view class="container">
@@ -34,14 +33,19 @@
 
   <view class="purchased-services">
     <view class="title">已购服务</view>
-    <view class="service-list">
-      <view class="service-item" wx:for="{{purchasedServices}}" wx:key="id">
-        <image class="service-icon" src="{{item.icon}}" mode="aspectFill"></image>
-        <view class="service-info">
-          <view class="service-name">{{item.name}}</view>
-          <view class="service-desc">{{item.description}}</view>
+    <block wx:if="{{data && data.length > 0}}">
+      <view class="service-list">
+        <view class="service-item" wx:for="{{purchasedServices}}" wx:key="id">
+          <image class="service-icon" src="{{item.icon}}" mode="aspectFill"></image>
+          <view class="service-info">
+            <view class="service-name">{{item.name}}</view>
+            <view class="service-desc">{{item.description}}</view>
+          </view>
         </view>
       </view>
+    </block>
+    <view wx:else class="empty-state">
+      <view class="empty-text">您还未有任何健康管理文档</view>
     </view>
   </view>
 </view>
