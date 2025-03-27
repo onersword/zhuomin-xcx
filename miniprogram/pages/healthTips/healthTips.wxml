@@ -4,13 +4,18 @@
   </view>
   <view class="header-container">
     <view class="header-left" hover-class="none" hover-stop-propagation="false">
-      健康小结
+      {{title}}
     </view>
-
   </view>
 </view>
 
-<view class="" hover-class="none" hover-stop-propagation="false">
-  container test
+<scroll-view scroll-y class="tips-container">
 
-</view>
+  <view class="tip-item" wx:for="{{tips}}" wx:key="index">
+    <view class="tip-content">{{item.content}}</view>
+    <view class="tip-time">{{item.createTime}}</view>
+    <view class="split-line" hover-class="none" hover-stop-propagation="false">
+
+    </view>
+  </view>
+</scroll-view>
