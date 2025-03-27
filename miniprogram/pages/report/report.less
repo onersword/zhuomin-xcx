@@ -1,0 +1,100 @@
+page {
+  background-color: #F5F7F8;
+}
+
+
+.header-area {
+  background-image: url('https://636c-cloud1-2g3w0puta97f2130-1345362468.tcb.qcloud.la/bg.jpeg?sign=d3381bf0a834bc64aa829e734be04a5b&t=1740662788');
+  background-position: bottom center;
+  background-size: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 300rpx;
+  z-index: 10;
+
+  .back-btn {
+    padding: 20rpx 30rpx;
+    height: 40rpx;
+
+    image {
+      width: 40rpx;
+      height: 40rpx;
+    }
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20rpx 60rpx;
+    color: #fff;
+    position: absolute;
+    bottom: 0rpx;
+    left: 0;
+    right: 0;
+
+
+
+    .header-left {
+      font-size: 60rpx;
+      font-weight: 400;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10rpx;
+
+      font-size: 28rpx;
+
+      image {
+        width: 31rpx;
+        height: 31rpx;
+      }
+
+    }
+  }
+}
+.report-area {
+  position: fixed;
+  top: 390rpx;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.report-container {
+  padding: 40rpx 50rpx;
+  background: #fff;
+  box-sizing: border-box;
+
+  .report-item {
+    border-radius: 16rpx;
+    margin-bottom: 20rpx;
+    display: flex;
+    flex-direction: column;
+    gap: 18rpx;
+
+    .report-time {
+      font-size: 20rpx;
+      color: #999;
+      margin-bottom: 10rpx;
+      font-weight: 600;
+    }
+
+    .report-content {
+      font-size: 28rpx;
+      color: #333;
+      font-weight: 400;
+    }
+
+    .split-line {
+      width: 100%;
+      height: 1rpx;
+      padding: 0 20rpx;
+      background: #D4DCDD;
+    }
+  }
+}
