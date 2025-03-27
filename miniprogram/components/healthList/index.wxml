@@ -1,6 +1,6 @@
 <view class="health-list">
     <view class="list-title">健康管理</view>
-    <view class="list-item" wx:for="{{data}}" wx:key="index" bindtap="onItemTap" data-index="{{index}}">
+    <view class="list-item" wx:for="{{data}}" wx:key="index" bindtap="goDetail" data-index="{{index}}">
         <view class="item-left">
             <view class="" hover-class="none" hover-stop-propagation="false">
 

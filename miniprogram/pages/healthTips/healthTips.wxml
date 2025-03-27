@@ -1,0 +1,16 @@
+<view class="header-area" style="padding-top: {{statusBarHeight}}px" hover-class="none" hover-stop-propagation="false">
+  <view class="back-btn" bindtap="handleBack">
+    <image src="/images/back-icon.svg" mode="aspectFit" />
+  </view>
+  <view class="header-container">
+    <view class="header-left" hover-class="none" hover-stop-propagation="false">
+      健康小结
+    </view>
+
+  </view>
+</view>
+
+<view class="" hover-class="none" hover-stop-propagation="false">
+  container test
+
+</view>
