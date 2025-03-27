@@ -11,88 +11,88 @@
   </view>
 </view>
 
-<view class="container">
+<scroll-view scroll-y class="scroll-area" enhanced="true" show-scrollbar="false">
+  <view class="container">
 
-  <view class="card">
-    <view class="info-item">
-      <text class="label">档案编号</text>
-      <text class="value">{{userInfo.recordId}}</text>
-    </view>
-    <view class="info-item">
-      <text class="label">建档日期</text>
-      <text class="value">{{userInfo.createDate}}</text>
-    </view>
-    <view class="info-item">
-      <text class="label">姓名</text>
-      <text class="value">{{userInfo.name}}</text>
-    </view>
-    <view class="info-item">
-      <text class="label">性别</text>
-      <text class="value">{{userInfo.gender}}</text>
-    </view>
-    <view class="info-item">
-      <text class="label">国籍</text>
-      <text class="value">{{userInfo.nationality}}</text>
-    </view>
-    <view class="info-item">
-      <text class="label">出生日期</text>
-      <text class="value">{{userInfo.birthDate}}</text>
-    </view>
-    <view class="info-item">
-      <text class="label">身份证号/护照号</text>
-      <text class="value">{{userInfo.idNumber}}</text>
-    </view>
-    <view class="info-item">
-      <text class="label">家庭地址</text>
-      <text class="value">{{userInfo.address}}</text>
-    </view>
-    <view class="info-item">
-      <text class="label">电话</text>
-      <text class="value">{{userInfo.phone}}</text>
+    <view class="card">
+      <view class="info-item">
+        <text class="label">档案编号</text>
+        <text class="value">{{userInfo.recordId}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">建档日期</text>
+        <text class="value">{{userInfo.createDate}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">姓名</text>
+        <text class="value">{{userInfo.name}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">性别</text>
+        <text class="value">{{userInfo.gender}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">国籍</text>
+        <text class="value">{{userInfo.nationality}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">出生日期</text>
+        <text class="value">{{userInfo.birthDate}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">身份证号/护照号</text>
+        <text class="value">{{userInfo.idNumber}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">家庭地址</text>
+        <text class="value">{{userInfo.address}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">电话</text>
+        <text class="value">{{userInfo.phone}}</text>
+      </view>
+
+      <view class="title">医疗信息</view>
+      <view class="info-item">
+        <text class="label">医疗保险</text>
+        <text class="value">{{medicalInfo.insurance}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">医保</text>
+        <text class="value">{{medicalInfo.medicalCare}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">职业</text>
+        <text class="value">{{medicalInfo.occupation}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">紧急联系人</text>
+        <text class="value">{{medicalInfo.emergencyContact}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">关系</text>
+        <text class="value">{{medicalInfo.relationship}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">紧急联系人电话</text>
+        <text class="value">{{medicalInfo.emergencyPhone}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">出生日期</text>
+        <text class="value">{{medicalInfo.emergencyBirthDate}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">身份证号/护照号</text>
+        <text class="value">{{medicalInfo.emergencyIdNumber}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">家庭地址</text>
+        <text class="value">{{medicalInfo.emergencyAddress}}</text>
+      </view>
+      <view class="info-item">
+        <text class="label">电话</text>
+        <text class="value">{{medicalInfo.emergencyContactPhone}}</text>
+      </view>
     </view>
   </view>
-
-  <view class="card medical-info">
-    <view class="title">医疗信息</view>
-    <view class="info-item">
-      <text class="label">医疗保险</text>
-      <text class="value">{{medicalInfo.insurance}}</text>
-    </view>
-    <view class="info-item">
-      <text class="label">医保</text>
-      <text class="value">{{medicalInfo.medicalCare}}</text>
-    </view>
-    <view class="info-item">
-      <text class="label">职业</text>
-      <text class="value">{{medicalInfo.occupation}}</text>
-    </view>
-    <view class="info-item">
-      <text class="label">紧急联系人</text>
-      <text class="value">{{medicalInfo.emergencyContact}}</text>
-    </view>
-    <view class="info-item">
-      <text class="label">关系</text>
-      <text class="value">{{medicalInfo.relationship}}</text>
-    </view>
-    <view class="info-item">
-      <text class="label">紧急联系人电话</text>
-      <text class="value">{{medicalInfo.emergencyPhone}}</text>
-    </view>
-    <view class="info-item">
-      <text class="label">出生日期</text>
-      <text class="value">{{medicalInfo.emergencyBirthDate}}</text>
-    </view>
-    <view class="info-item">
-      <text class="label">身份证号/护照号</text>
-      <text class="value">{{medicalInfo.emergencyIdNumber}}</text>
-    </view>
-    <view class="info-item">
-      <text class="label">家庭地址</text>
-      <text class="value">{{medicalInfo.emergencyAddress}}</text>
-    </view>
-    <view class="info-item">
-      <text class="label">电话</text>
-      <text class="value">{{medicalInfo.emergencyContactPhone}}</text>
-    </view>
-  </view>
-</view>
+</scroll-view>
