@@ -27,6 +27,10 @@
 
 </view>
 
+<view class="login-container" hover-class="none" hover-stop-propagation="false">
+  <login bindlogin="doLogin" />
+</view>
+
 <view class="container">
 
   <health-list list="{{healthManageList}}" />

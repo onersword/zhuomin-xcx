@@ -4,7 +4,8 @@
     "current-week": "/components/currentWeek/index",
     "month-title": "/components/monthTitle/index",
     "schedule-item": "/components/scheduleItem/index",
-    "health-list": "/components/healthList/index"
+    "health-list": "/components/healthList/index",
+    "login": "/components/login/login"
   },
   "navigationStyle": "custom"
 }
