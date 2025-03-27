@@ -9,13 +9,16 @@
   </view>
 </view>
 
-<scroll-view scroll-y class="tips-container">
+<scroll-view scroll-y class="tips-area" enhanced="true" show-scrollbar="false">
+  <view class="tips-container">
 
-  <view class="tip-item" wx:for="{{tips}}" wx:key="index">
-    <view class="tip-content">{{item.content}}</view>
-    <view class="tip-time">{{item.createTime}}</view>
-    <view class="split-line" hover-class="none" hover-stop-propagation="false">
 
+    <view class="tip-item" wx:for="{{tips}}" wx:key="index">
+      <view class="tip-content">{{item.content}}</view>
+      <view class="tip-time">{{item.createTime}}</view>
+      <view class="split-line" hover-class="none" hover-stop-propagation="false">
+
+      </view>
     </view>
   </view>
 </scroll-view>
