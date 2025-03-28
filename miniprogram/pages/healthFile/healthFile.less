@@ -1,0 +1,82 @@
+page {
+  background-color: #F5F7F8;
+}
+
+.header-area {
+  background-image: url('https://636c-cloud1-2g3w0puta97f2130-1345362468.tcb.qcloud.la/bg.jpeg?sign=d3381bf0a834bc64aa829e734be04a5b&t=1740662788');
+  background-position: bottom center;
+  background-size: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 300rpx;
+  z-index: 10;
+
+  .back-btn {
+    padding: 20rpx 30rpx;
+    height: 40rpx;
+
+    image {
+      width: 40rpx;
+      height: 40rpx;
+    }
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20rpx 60rpx;
+    color: #fff;
+    position: absolute;
+    bottom: 0rpx;
+    left: 0;
+    right: 0;
+
+    .header-left {
+      font-size: 60rpx;
+      font-weight: 400;
+    }
+  }
+}
+
+.files-area {
+  position: fixed;
+  top: 390rpx;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.files-container {
+  padding: 40rpx 50rpx;
+  background: #fff;
+  box-sizing: border-box;
+
+  .file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30rpx 0;
+    border-bottom: 1rpx solid #D4DCDD;
+
+    .file-info {
+      .file-name {
+        font-size: 28rpx;
+        color: #020202;
+        margin-bottom: 10rpx;
+      }
+
+      .file-time {
+        font-size: 20rpx;
+        color: #999;
+      }
+    }
+
+    .download-btn {
+      width: 31rpx;
+      height: 31rpx;
+    }
+  }
+}
