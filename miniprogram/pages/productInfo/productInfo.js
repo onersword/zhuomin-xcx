@@ -11,7 +11,7 @@ Page({
     productInfo: {
       1: {
         title: '家庭医生套餐 基础版',
-        price: 4999,
+        price: '4,999',
         duration: '1年',
         services: [
           {
@@ -50,7 +50,7 @@ Page({
       },
       2: {
         title: '家庭医生套餐 升级版',
-        price: 8999,
+        price: '8,999',
         duration: '1年',
         services: [
           {
@@ -107,7 +107,7 @@ Page({
       },
       3: {
         title: '家庭医生套餐 企业版',
-        price: 5000,
+        price: '5,000',
         duration: '1年',
         services: [
           {
@@ -160,12 +160,12 @@ Page({
     console.log('Received options:', options); // 调试日志
     
     // 确保 type 参数正确设置
-    const type = options.type || 'normal';
+    const type = options.type === '0' ? 'other' : 'normal';
     let currentId = 1;
 
     // 只在 normal 类型时设置 currentId
-    if (type === 'normal' && options.id) {
-      currentId = Number(options.id);
+    if (options.type) {
+      currentId = Number(options.type);
     }
 
     this.setData({

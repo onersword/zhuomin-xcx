@@ -25,9 +25,10 @@ Component({
 
   methods: {
     onTap() {
+      console.log('data', this.data.product.id, this.data.product.type)
       this.triggerEvent('cardtap', {
-        id: this.data.item.id,
-        type: this.data.type
+        id: this.data.product.id,
+        type: this.data.product.type
       })
     }
   }
