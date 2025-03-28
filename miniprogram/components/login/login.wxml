@@ -2,5 +2,5 @@
   <image class="main-image" src="/images/login-bg.svg" mode="aspectFit"></image>
   <image class="login-image" src="/images/logo.png" mode="aspectFit"></image>
   <view class="title">卓敏健康管理</view>
-  <button class="login-btn" bindtap="doLogin">登录</button>
+  <button class="login-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">登录</button>
 </view>

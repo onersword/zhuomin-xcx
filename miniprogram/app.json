@@ -5,8 +5,6 @@
     "pages/product/product",
     "pages/connectUs/connectUs",
     "pages/schedule/schedule",
-    "pages/login/login",
-    "pages/register/register",
     "pages/productInfo/productInfo",
     "pages/healthTips/healthTips",
     "pages/report/report"
