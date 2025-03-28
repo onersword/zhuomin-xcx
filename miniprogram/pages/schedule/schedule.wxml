@@ -11,8 +11,8 @@
     <schedule-item 
       wx:for="{{scheduleList}}" 
       wx:key="id"
-      content="{{item.content}}"
-      time="{{item.time}}"
+      content="{{item.description}}"
+      time="{{item.remindAt}}"
       styleClass="{{item.styleClass}}"
     />
   </view>

@@ -1,3 +1,4 @@
+const { request } = require('../../utils/request')
 Page({
   data: {
     scheduleList: [],
@@ -11,6 +12,10 @@ Page({
     this.initScheduleData()
   },
   onShow: function() {
+    this.getData()
+  },
+  async getData() {
+
   },
   onReady: function() {
     const calendar = this.selectComponent('#calendar').calendar;
@@ -51,32 +56,45 @@ Page({
     console.log('-- todos --', todos);
   },
 
-  initScheduleData: function() {
-    // mock数据使用时间戳
-    const mockData = [
-      { 
-        id: 1,
-        time: new Date(2025, 0, 23).getTime(),  // 2025-01-23
-        content: '这是一个日程提醒标题',
-        styleClass: 'schedule-coral'
-      },
-      { 
-        id: 2,
-        time: new Date(2025, 0, 25).getTime(),  // 2025-01-25
-        content: '这是一个日程提醒标题',
-        styleClass: 'schedule-blue'
-      },
-      { 
-        id: 3,
-        time: new Date(2025, 0, 28).getTime(),  // 2025-01-28
-        content: '项目评审',
-        styleClass: 'schedule-purple'
-      }
-    ]
-    
+  initScheduleData: async function() {
+    const data = await request({
+      path: '/api/reminders',
+      method: 'GET'
+    })
+    console.log('-- data --', data)
 
     this.setData({
-      scheduleList:mockData
+      scheduleList: data.map(item => {
+        item.remindAt = new Date(item.remindAt).getTime()
+        item.styleClass = ['schedule-coral', 'schedule-blue', 'schedule-purple'][Math.floor(Math.random() * 3)]
+        return item;
+      })
     })
+    // mock数据使用时间戳
+    // const mockData = [
+    //   { 
+    //     id: 1,
+    //     time: new Date(2025, 0, 23).getTime(),  // 2025-01-23
+    //     content: '这是一个日程提醒标题',
+    //     styleClass: 'schedule-coral'
+    //   },
+    //   { 
+    //     id: 2,
+    //     time: new Date(2025, 0, 25).getTime(),  // 2025-01-25
+    //     content: '这是一个日程提醒标题',
+    //     styleClass: 'schedule-blue'
+    //   },
+    //   { 
+    //     id: 3,
+    //     time: new Date(2025, 0, 28).getTime(),  // 2025-01-28
+    //     content: '项目评审',
+    //     styleClass: 'schedule-purple'
+    //   }
+    // ]
+    
+
+    // this.setData({
+    //   scheduleList:mockData
+    // })
   },
 }) 
