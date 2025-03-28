@@ -1,10 +1,12 @@
+<wxs src="../../utils/format.wxs" module="format" />
+
 <view class="header-area" style="padding-top: {{statusBarHeight}}px" hover-class="none" hover-stop-propagation="false">
   <view class="back-btn" bindtap="handleBack">
     <image src="/images/back-icon.svg" mode="aspectFit" />
   </view>
   <view class="header-container">
     <view class="header-left" hover-class="none" hover-stop-propagation="false">
-      {{title}}
+      健康小结
     </view>
   </view>
 </view>
@@ -15,7 +17,7 @@
 
     <view class="tip-item" wx:for="{{tips}}" wx:key="index">
       <view class="tip-content">{{item.content}}</view>
-      <view class="tip-time">{{item.createTime}}</view>
+      <view class="tip-time">{{format.formatTime(item.updatedAt)}}</view>
       <view class="split-line" hover-class="none" hover-stop-propagation="false">
 
       </view>
