@@ -40,15 +40,10 @@
 
   <view class="purchased-services">
     <view class="title">已购服务</view>
-    <block wx:if="{{data && data.length > 0}}">
+    <block wx:if="{{purchasedServices && purchasedServices.length > 0}}">
       <view class="service-list">
-        <view class="service-item" wx:for="{{purchasedServices}}" wx:key="id">
-          <image class="service-icon" src="{{item.icon}}" mode="aspectFill"></image>
-          <view class="service-info">
-            <view class="service-name">{{item.name}}</view>
-            <view class="service-desc">{{item.description}}</view>
-          </view>
-        </view>
+        <product-card wx:for="{{purchasedServices}}" wx:key="id" item="{{item}}" type="normal"
+          bind:cardtap="navigateToProductInfo" />
       </view>
     </block>
     <view wx:else class="empty-state">

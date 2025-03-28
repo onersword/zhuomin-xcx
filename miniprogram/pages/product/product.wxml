@@ -13,21 +13,13 @@
     </view>
 
     <view class="product-list">
-      <view class="product-item bg{{item.type}}" wx:for="{{products}}" wx:key="id" bindtap="navigateToProductInfo" data-id="{{item.id}}" data-type="{{'normal'}}">
-        <view class="product-container">
-          <view class="product-title">{{item.name}}</view>
-          <view class="product-desc">{{item.description}}</view>
-          <view>
-            <view class="price-row">
-              <text class="price-label">价格：</text>
-              <text class="price">{{item.formattedPrice}}</text>
-              <text class="price-split">｜</text>
-              <text class="duration">{{item.duration}}</text>
-            </view>
-          </view>
-
-        </view>
-      </view>
+      <product-card 
+        wx:for="{{products}}" 
+        wx:key="id"
+        item="{{item}}"
+        type="normal"
+        bind:cardtap="navigateToProductInfo"
+      />
     </view>
   </view>
 
@@ -37,20 +29,13 @@
     </view>
 
     <view class="product-list">
-      <view class="product-item bg-other" wx:for="{{otherProducts}}" wx:key="id" bindtap="navigateToProductInfo" data-id="{{item.id}}" data-type="{{'other'}}">
-        <view class="product-container">
-          <view class="product-title">{{item.name}}</view>
-          <view class="product-desc">{{item.description}}</view>
-          <view>
-            <view class="price-row">
-              <text class="price-label">价格：</text>
-              <text class="price">{{item.formattedPrice}}</text>
-              <text class="price-split">｜</text>
-              <text class="duration">{{item.duration}}</text>
-            </view>
-          </view>
-        </view>
-      </view>
+      <product-card 
+        wx:for="{{otherProducts}}" 
+        wx:key="id"
+        item="{{item}}"
+        type="other"
+        bind:cardtap="navigateToProductInfo"
+      />
     </view>
   </view>
 </view>

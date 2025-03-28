@@ -23,6 +23,7 @@ var formatNumber = function(n) {
 }
 
 
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
 }; 

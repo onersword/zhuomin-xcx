@@ -18,4 +18,7 @@ export const formatTime = (time) => {
     const s = n.toString()
     return s[1] ? s : '0' + s
   }
-  
+
+export const formatPrice = (price) => {
+  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+}

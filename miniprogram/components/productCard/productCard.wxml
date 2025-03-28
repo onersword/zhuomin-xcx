@@ -1,0 +1,14 @@
+<view class="product-item bg{{item.type}}" bindtap="onTap">
+  <view class="product-container">
+    <view class="product-title">{{product.name}}</view>
+    <view class="product-desc">{{product.description}}</view>
+    <view>
+      <view class="price-row">
+        <text class="price-label">价格：</text>
+        <text class="price">{{product.price}}</text>
+        <text class="price-split">｜</text>
+        <text class="duration">1{{product.unit}}</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -5,7 +5,8 @@
     "month-title": "/components/monthTitle/index",
     "schedule-item": "/components/scheduleItem/index",
     "health-list": "/components/healthList/index",
-    "login": "/components/login/login"
+    "login": "/components/login/login",
+    "product-card": "/components/productCard/productCard"
   },
   "navigationStyle": "custom"
 }
