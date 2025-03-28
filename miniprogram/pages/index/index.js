@@ -2,49 +2,79 @@ const { request } = require('../../utils/request.js')
 // index.js
 Page({
   data: {
-    userInfo: {
-      avatarUrl: '',
-      nickName: ''
-    },
-    hasUserInfo: false,
-    canIUseGetUserProfile: false,
-    canIUseNicknameComp: true,
+    needShowLogin: false,
     calendarConfig: {
       hideHeader: true,
       weekMode: false,
     },
     targetDate: 1735660800000,  // 2025-01-01 00:00:00
-    healthManageList: [
- 
-    ],
+    healthManageList: {
+      note: null,
+      file: null
+    },
     purchasedServices: [
    
     ]
   },
 
   onLoad() {
-    if (wx.getUserProfile) {
-      this.setData({
-        canIUseGetUserProfile: true
-      })
-
-    }
-    // 查看是否授权
-    wx.getSetting({
-      success: (res) => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
-            success: (res) => {
-              console.log(res.userInfo)
-              this.setData({
-                userInfo: res.userInfo,
-                hasUserInfo: true
-              })
-            }
-          })
-        }
+    const app = getApp();
+    
+    // 保存回调函数的引用，以便之后可以移除
+    this.loginCallback = (isLoggedIn) => {
+      if (isLoggedIn) {
+        this.fetchPageData();
       }
+    };
+    
+    // 添加监听器
+    app.watchLoginStatus(this.loginCallback);
+    
+    if (app.globalData.isLoggedIn) {
+      this.fetchPageData();
+    }
+  },
+
+  onUnload() {
+    // 页面卸载时移除监听器
+    const app = getApp();
+    if (this.loginCallback) {
+      app.unwatchLoginStatus(this.loginCallback);
+    }
+  },
+
+  fetchPageData() {
+    console.log('fetchPageData')
+    this.getProducts();
+    this.getRecords();
+  },
+
+  async getRecords() {
+    const data = await request({
+      path: '/api/records',
+      method: 'GET',
+    })
+    console.log('records', data);
+    if (data.userInfo.status === 0) {
+      // this.setData({
+      //   needShowLogin: true
+      // })
+      return;
+    }
+    if (data.userInfo.status === 1) {
+      wx.redirectTo({
+        url: '/pages/healthRecord/healthRecord'
+      })
+    }
+    const healthManageList = {note: null, file: null};
+    if (data.latestFile) {
+      healthManageList.file = data.latestFile;
+    }
+    if (data.latestNote) {
+      healthManageList.note = data.latestNote;
+    }
+    this.setData({
+      healthManageList: healthManageList
     })
   },
 
@@ -76,13 +106,11 @@ Page({
       })
     }
 
-    this.getReminders()
-    this.getProducts();
-    this.getFiles();
+  
   },
 
   async getReminders() {
-    const data = request({
+    const data = await request({
       path: '/api/reminders',
       method: 'GET'
     })
@@ -90,17 +118,14 @@ Page({
   },
 
   async getProducts() {
-    const data = request({
-      path: '/api/products',
+    const data = await request({
+      path: '/api/users/xxx/products',
       method: 'GET'
+    })
+    this.setData({
+      purchasedServices: data ?? [],
     })
     console.log('products', data)
-  },
-  async getFiles() {
-    const data = request({
-      path: '/api/files',
-      method: 'GET'
-    })
-    console.log('files', data)
-  }
+    },
+
 }) 

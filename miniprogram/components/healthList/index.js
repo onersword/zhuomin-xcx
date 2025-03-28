@@ -1,17 +1,13 @@
-import { formatTime } from "../../utils/util";
 
 Component({
   properties: {
-    list: {
-      type: Array,
-      value: [],
-      observer: function (newArray) {
+    obj: {
+      type: Object,
+      value: {},
+      observer: function (newObj) {
 
         this.setData({
-          data: newArray.map(item => {
-            item.time = formatTime(new Date(item.time))
-            return item;
-          })
+          data: newObj
         })
       }
     }
@@ -27,16 +23,19 @@ Component({
 
       const { index } = e.currentTarget.dataset;
     },
-    goDetail() {
+    goNotes() {
       wx.navigateTo({
         url: '/pages/healthTips/healthTips'
       })
     },
 
+    goFiles() {
+      wx.navigateTo({
+        url: '/pages/healthFile/healthFile'
+      })
+    }
+
   },
 
-  // 将方法暴露给 wxml 使用
-  wxs: {
-    formatTime
-  }
+
 }); 

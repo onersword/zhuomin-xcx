@@ -2,14 +2,36 @@ const { request } = require("./utils/request");
 
 App({
   globalData: {
-    userInfo: null
+    userInfo: null,
+    isLoggedIn: false,
+    eventChannel: null,
+    userId: null,
+    _loginCallbacks: []  // 添加回调数组
+  },
+  
+  // 添加监听相关方法
+  setLoginStatus(status) {
+    this.globalData.isLoggedIn = status;
+    // 触发所有注册的回调
+    this.globalData._loginCallbacks.forEach(callback => {
+      callback(status);
+    });
+  },
+  
+  watchLoginStatus(callback) {
+    if (typeof callback === 'function') {
+      this.globalData._loginCallbacks.push(callback);
+    }
+  },
+
+  unwatchLoginStatus(callback) {
+    const index = this.globalData._loginCallbacks.indexOf(callback);
+    if (index > -1) {
+      this.globalData._loginCallbacks.splice(index, 1);
+    }
   },
   
   onLaunch() {
-    // wx.showLoading({
-    //   title: '加载中',
-    //   mask: true
-    // });
     // 初始化云开发
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
@@ -20,48 +42,32 @@ App({
       })
     }
     
-
     // 执行微信登录
     wx.login({
-      success: res => {
+      success: async (res) => {
         if (res.code) {
           console.log('登录成功，获取到code：', res.code);
           // 调用云托管登录接口
-          request({
+          const data = await request({
             path: '/api/login',
             method: 'POST',
             data: {
               code: res.code
             }
-          }).then(data=> {
-            console.log('jwt'.data);
-            if (data) {
-              wx.setStorageSync('token', data.token);
-              // TODO
-            }
-          })
+          });
+          if (data) {
+            wx.setStorageSync('token', data.token);
+            // 使用新的 setLoginStatus 方法
+            this.setLoginStatus(true);
+          }
         }
       },
       fail: () => {
-        console.log('登录失败');
-        wx.redirectTo({
-          url: '/pages/login/login'
+        wx.showToast({
+          title: '登录失败',
+          icon: 'none'
         });
       }
     });
-
-    // // 检查登录状态
-    // const token = wx.getStorageSync('token');
-    // const isRegistered = wx.getStorageSync('isRegistered');
-    
-    // if (!token) {
-    //   wx.redirectTo({
-    //     url: '/pages/login/login'
-    //   });
-    // } else if (!isRegistered) {
-    //   wx.redirectTo({
-    //     url: '/pages/register/register'
-    //   });
-    // }
   }
 }); 

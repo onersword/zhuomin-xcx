@@ -1,3 +1,5 @@
+const { request } = require('../../utils/request.js')
+
 Component({
   methods: {
     doLogin(e) {
@@ -38,11 +40,18 @@ Component({
             code: e.detail.code
           }
         })
-        console.log('res', res)
-        console.log('jump to index')
-        wx.redirectTo({
-          url: '/pages/index/index'
-        })
+        if (res) {
+          const record = await request({
+            path: '/api/records',
+            method: 'GET',
+          })
+          console.log('record', record)
+          if (record.userInfo.status === 1) {
+            wx.redirectTo({
+              url: '/pages/healthRecord/healthRecord'
+            })
+          }
+        }
   
   
       } catch (error) {

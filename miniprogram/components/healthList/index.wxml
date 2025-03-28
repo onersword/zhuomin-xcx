@@ -1,21 +1,46 @@
+<wxs src="../../utils/format.wxs" module="format" />
+
+
 <view class="health-list">
     <view class="list-title">健康管理</view>
-    <block wx:if="{{data && data.length > 0}}">
-        <view class="list-item" wx:for="{{data}}" wx:key="index" bindtap="goDetail" data-index="{{index}}">
-            <view class="item-left">
-                <view class="" hover-class="none" hover-stop-propagation="false">
-                    {{item.title}}
+    <block wx:if="{{data.note || data.file}}">
+
+        <block wx:if="{{data.note}}">
+
+            <view class="list-item" bindtap="goNotes">
+                <view class="item-left">
+                    <view class="" hover-class="none" hover-stop-propagation="false">
+                        健康小结
+                    </view>
+                    <view class="item-time" hover-class="none" hover-stop-propagation="false">
+                        {{format.formatTime(data.note.updatedAt)}}
+                    </view>
                 </view>
-                <view class="item-time" hover-class="none" hover-stop-propagation="false">
-                    {{item.time}}
+                <view class="item-right">
+                    <image src="/images/area-right-black.svg" />
                 </view>
             </view>
-            <view class="item-right">
-                <image src="/images/area-right-black.svg" />
+        </block>
+
+        <block wx:if="{{data.file}}">
+
+            <view class="list-item" bindtap="goFiles">
+                <view class="item-left">
+                    <view class="" hover-class="none" hover-stop-propagation="false">
+                        体检报告
+                    </view>
+                    <view class="item-time" hover-class="none" hover-stop-propagation="false">
+                        {{format.formatTime(data.file.updatedAt)}}
+                    </view>
+                </view>
+                <view class="item-right">
+                    <image src="/images/area-right-black.svg" />
+                </view>
             </view>
-        </view>
+
+        </block>
     </block>
-    <view wx:else class="empty-state">
+    <view wx:if="{{!data.note && !data.file}}" class="empty-state">
         <view class="empty-text">您还未有任何健康管理文档</view>
     </view>
 </view>

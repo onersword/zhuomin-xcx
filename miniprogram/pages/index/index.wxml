@@ -27,13 +27,16 @@
 
 </view>
 
-<view class="login-container" hover-class="none" hover-stop-propagation="false">
-  <login bindlogin="doLogin" />
-</view>
+<block wx:if="{{needShowLogin}}">
 
+  <view class="login-container" hover-class="none" hover-stop-propagation="false">
+    <login bindlogin="doLogin" />
+  </view>
+
+</block>
 <view class="container">
 
-  <health-list list="{{healthManageList}}" />
+  <health-list obj="{{healthManageList}}" />
 
   <view class="purchased-services">
     <view class="title">已购服务</view>
