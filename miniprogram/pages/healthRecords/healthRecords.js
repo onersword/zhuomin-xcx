@@ -36,9 +36,25 @@ Page({
       method: 'GET'
     })
     console.log('userRecords', data)
-    this.setData({
-      hasRecords: data && data.length > 0
-    })
+    if (data.userInfo.status === 2) {
+      const list = [];
+      for (const key of Object.keys(data.records)) {
+        list.push({
+          label: key,
+          value: data.records[key]
+        })
+
+      }
+
+      this.setData({
+        hasRecords: true,
+        recordInfo: list
+      })
+    } else {
+      this.setData({
+        hasRecords: false,
+      })
+    }
   },
 
   createRecord() {
