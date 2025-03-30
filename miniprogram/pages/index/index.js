@@ -14,7 +14,8 @@ Page({
     },
     purchasedServices: [
 
-    ]
+    ],
+    reminders: []
   },
 
   onLoad() {
@@ -51,6 +52,7 @@ Page({
   fetchPageData() {
     console.log('fetchPageData')
     this.getProducts();
+    this.getReminders();
     this.getRecords();
   },
 
@@ -126,7 +128,23 @@ Page({
       path: '/api/reminders',
       method: 'GET'
     })
-    console.log('reminders', data)
+    
+    // Filter reminders for today
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    
+    const todayReminders = data.filter(reminder => {
+      const reminderTime = new Date(reminder.remindAt);
+      return reminderTime >= today && reminderTime < tomorrow;
+    });
+    
+    this.setData({
+      reminders: todayReminders
+    });
+    
+    console.log('today reminders', todayReminders);
   },
 
   async getProducts() {

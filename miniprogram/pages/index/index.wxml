@@ -21,7 +21,12 @@
       <!-- 其他内容 -->
     </view>
 
-    <schedule-item time="{{1735660800000}}" content="本周没有需要关注的日程" styleClass="schedule-coral" />
+    <block wx:if="{{reminders && reminders.length > 0}}">
+      <block wx:for="{{reminders}}" wx:key="index">
+        <schedule-item time="{{item.remindAt}}" content="{{item.description}}" styleClass="schedule-coral" />
+      </block>
+
+    </block>
 
   </view>
 
