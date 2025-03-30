@@ -32,11 +32,11 @@
 </view>
 
 <view class="product-info" wx:if="{{type === 'other'}}">
-  <view class="title">{{otherInfo.title}}</view>
+  <view class="title">{{product.name}}</view>
   <view class="service-section">
     <view class="section-title">详细内容:</view>
     <view class="container">
-      {{otherInfo.description}}
+      {{product.description}}
     </view>
   </view>
 </view>
@@ -44,9 +44,9 @@
 <view class="price-section">
   <view class="total-price">
     <text>价格：</text>
-    <text class="price">{{type === 'other' ? otherInfo.price : productInfo[currentId].price}}</text>
+    <text class="price">{{type === 'other' ? product.formatPrice : productInfo[currentId].price}}</text>
     <text class="price-split">｜</text>
-    <text class="duration">{{type === 'other' ? otherInfo.duration : productInfo[currentId].duration}}</text>
+    <text class="duration">{{type === 'other' ? '1' + product.unit : productInfo[currentId].duration}}</text>
   </view>
-  <button class="contact-btn" bindtap="handleContact">联系客服购买</button>
+  <button class="contact-btn" bindtap="handleContact" data-id="{{productInfo[currentId].id}}">联系客服购买</button>
 </view>

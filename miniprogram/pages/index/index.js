@@ -13,23 +13,23 @@ Page({
       file: null
     },
     purchasedServices: [
-   
+
     ]
   },
 
   onLoad() {
     const app = getApp();
-    
+
     // 保存回调函数的引用，以便之后可以移除
     this.loginCallback = (isLoggedIn) => {
       if (isLoggedIn) {
         this.fetchPageData();
       }
     };
-    
+
     // 添加监听器
     app.watchLoginStatus(this.loginCallback);
-    
+
     if (app.globalData.isLoggedIn) {
       this.fetchPageData();
     }
@@ -66,7 +66,7 @@ Page({
         url: '/pages/healthRecord/healthRecord'
       })
     }
-    const healthManageList = {note: null, file: null};
+    const healthManageList = { note: null, file: null };
     if (data.latestFile) {
       healthManageList.file = data.latestFile;
     }
@@ -106,7 +106,7 @@ Page({
       })
     }
 
-  
+
   },
 
   async getReminders() {
@@ -126,6 +126,14 @@ Page({
       purchasedServices: data ?? [],
     })
     console.log('products', data)
-    },
+  },
+
+  navigateToProductInfo(e) {
+    console.log('navigateToProductInfo', e.currentTarget.dataset)
+    const { id, type, name, description, price, unit } = e.currentTarget.dataset;
+    wx.navigateTo({
+      url: `/pages/productInfo/productInfo?id=${id}&type=${type}&name=${name}&description=${description}&price=${price}&unit=${unit}`
+    });
+  }
 
 }) 

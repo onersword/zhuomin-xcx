@@ -10,7 +10,7 @@
 </view>
 
 <view class="connect-us" hover-class="none" hover-stop-propagation="false">
-  <view class="contact-btn" hover-class="none" hover-stop-propagation="false">
+  <view class="contact-btn" hover-class="none" hover-stop-propagation="false" bindtap="connectUs">
     联系客服微信
   </view>
 

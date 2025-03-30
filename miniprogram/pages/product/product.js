@@ -57,9 +57,10 @@ Page({
 
   // 跳转至产品详情页
   navigateToProductInfo(e) {
-    const { id, type } = e.currentTarget.dataset;
+    console.log('navigateToProductInfo', e.currentTarget.dataset)
+    const { id, type, name, description, price, unit } = e.currentTarget.dataset;
     wx.navigateTo({
-      url: `/pages/productInfo/productInfo?id=${id}&type=${type}`
+      url: `/pages/productInfo/productInfo?id=${id}&type=${type}&name=${name}&description=${description}&price=${price}&unit=${unit}`
     });
   }
 })

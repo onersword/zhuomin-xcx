@@ -15,7 +15,7 @@
 
     <view class="product-list">
       <product-card wx:for="{{products}}" wx:key="id" item="{{item}}" type="normal"
-        bind:cardtap="navigateToProductInfo" data-id="{{item.id}}" data-type="{{item.type}}" />
+        bind:cardtap="navigateToProductInfo" data-id="{{item.id}}" data-type="{{item.type}}" data-name="{{item.name}}" data-description="{{item.description}}" />
     </view>
   </view>
 
@@ -26,7 +26,7 @@
 
     <view class="product-list">
       <product-card wx:for="{{otherProducts}}" wx:key="id" item="{{item}}" type="other"
-        bind:cardtap="navigateToProductInfo" data-id="{{item.id}}" data-type="{{item.type}}" />
+        bind:cardtap="navigateToProductInfo" data-id="{{item.id}}" data-type="{{item.type}}" data-name="{{item.name}}" data-description="{{item.description}}" data-price="{{item.price}}" data-unit="{{item.unit}}" />
     </view>
   </view>
 </view>

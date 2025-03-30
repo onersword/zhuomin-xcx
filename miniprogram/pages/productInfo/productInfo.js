@@ -1,5 +1,7 @@
+const { formatPrice } = require('../../utils/util')
 Page({
   data: {
+    product: {},
     currentId: 1,
     type: 'normal',
     otherInfo: {
@@ -158,7 +160,7 @@ Page({
 
   onLoad(options) {
     console.log('Received options:', options); // 调试日志
-    
+
     // 确保 type 参数正确设置
     const type = options.type === '0' ? 'other' : 'normal';
     let currentId = 1;
@@ -170,15 +172,35 @@ Page({
 
     this.setData({
       type,
-      currentId
+      currentId,
+      product: {
+        id: options.id,
+        name: options.name,
+        description: options.description,
+        price: options.price,
+        formatPrice: formatPrice(options.price),
+        unit: options.unit
+      }
     });
   },
 
   // Contact button handler
-  handleContact() {
-    wx.showToast({
-      title: '正在连接客服...',
-      icon: 'loading'
-    });
+  handleContact(options) {
+    console.log('handleContact', this.data.product)
+    wx.openCustomerServiceChat({
+      corpId: 'ww62badfd0b511d2ad',
+      extInfo: {
+        url: 'https://work.weixin.qq.com/kfid/kfccbe26094fa4bca51',
+      },
+      sendMessageTitle: '购买套餐: ' + this.data.product.name,
+      // sendMessagePath: '/pages/connectUs/connectUs',
+      // showMessageCard: true,
+      success: () => {
+        console.log('打开客服聊天界面成功, success')
+      },
+      fail: () => {
+        console.log('打开客服聊天界面失败')
+      }
+    })
   }
 })

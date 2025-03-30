@@ -14,6 +14,24 @@ Page({
     }
   },
 
+  connectUs() {
+    wx.openCustomerServiceChat({
+      corpId: 'ww62badfd0b511d2ad',
+      extInfo: {
+        url: 'https://work.weixin.qq.com/kfid/kfccbe26094fa4bca51',
+      },
+      sendMessageTitle: '联系客服',
+      sendMessagePath: '/pages/connectUs/connectUs',
+      showMessageCard: true,
+      success: () => {
+        console.log('打开客服聊天界面成功, success')
+      },
+      fail: () => {
+        console.log('打开客服聊天界面失败')
+      }
+    })
+  },
+
   // 复制联系方式
   copyContact(e) {
     const text = e.currentTarget.dataset.text

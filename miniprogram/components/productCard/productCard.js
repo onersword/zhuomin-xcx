@@ -28,7 +28,9 @@ Component({
       console.log('data', this.data.product.id, this.data.product.type)
       this.triggerEvent('cardtap', {
         id: this.data.product.id,
-        type: this.data.product.type
+        type: this.data.product.type,
+        name: this.data.product.name,
+        description: this.data.product.description
       })
     }
   }
