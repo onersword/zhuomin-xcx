@@ -21,44 +21,44 @@ const request = async (options) => {
   // Make request
   try {
     return new Promise((resolve, reject) => {
-      // wx.cloud.callContainer({
-      //   path: options.path,
-      //   method: options.method || 'GET',
-      //   data: options.data,
-      //   header,
-      //   success: (res) => {
-      //     // Handle response
-      //     if (res.statusCode === 401) {
-      //       // Token expired or invalid, redirect to login
-      //       wx.redirectTo({ url: '/pages/login/login' })
-      //       reject(new Error('Unauthorized'))
-      //       return
-      //     }
-      //     resolve(res.data)
-      //   },
-      //   fail: (error) => {
-      //     console.error('Request failed:', error)
-      //     reject(error)
-      //   }
-      // })
-      wx.request({
-        url: `${BASE_URL}${options.path}`,
+      wx.cloud.callContainer({
+        path: options.path,
         method: options.method || 'GET',
         data: options.data,
         header,
         success: (res) => {
+          // Handle response
           if (res.statusCode === 401) {
             // Token expired or invalid, redirect to login
-            // wx.redirectTo({ url: '/pages/login/login' })
+            wx.redirectTo({ url: '/pages/login/login' })
             reject(new Error('Unauthorized'))
             return
           }
           resolve(res.data)
         },
         fail: (error) => {
+          console.error('Request failed:', error)
           reject(error)
         }
       })
+      // wx.request({
+      //   url: `${BASE_URL}${options.path}`,
+      //   method: options.method || 'GET',
+      //   data: options.data,
+      //   header,
+      //   success: (res) => {
+      //     if (res.statusCode === 401) {
+      //       // Token expired or invalid, redirect to login
+      //       // wx.redirectTo({ url: '/pages/login/login' })
+      //       reject(new Error('Unauthorized'))
+      //       return
+      //     }
+      //     resolve(res.data)
+      //   },
+      //   fail: (error) => {
+      //     reject(error)
+      //   }
+      // })
 
     })
   } catch (error) {

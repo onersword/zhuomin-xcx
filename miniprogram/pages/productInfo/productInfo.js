@@ -193,8 +193,8 @@ Page({
         url: 'https://work.weixin.qq.com/kfid/kfccbe26094fa4bca51',
       },
       sendMessageTitle: '购买套餐: ' + this.data.product.name,
-      // sendMessagePath: '/pages/connectUs/connectUs',
-      // showMessageCard: true,
+      sendMessagePath: '/pages/productInfo/productInfo?id=' + this.data.product.id,
+      showMessageCard: true,
       success: () => {
         console.log('打开客服聊天界面成功, success')
       },

@@ -4,16 +4,14 @@
   </view>
 
   <view class="calendar-area" hover-class="none" hover-stop-propagation="false">
-    <calendar id="calendar" config="{{calendarConfig}}"/>
+    <calendar id="calendar" config="{{calendarConfig}}" />
   </view>
-  
-  <view class="schedule-list">
-    <schedule-item 
-      wx:for="{{scheduleList}}" 
-      wx:key="id"
-      content="{{item.description}}"
-      time="{{item.remindAt}}"
-      styleClass="{{item.styleClass}}"
-    />
-  </view>
-</view> 
+
+  <block wx:if="{{scheduleList.length > 0}}">
+
+    <view class="schedule-list">
+      <schedule-item wx:for="{{scheduleList}}" wx:key="id" content="{{item.description}}" time="{{item.remindAt}}"
+        styleClass="{{item.styleClass}}" />
+    </view>
+  </block>
+</view>
