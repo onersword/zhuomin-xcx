@@ -26,10 +26,15 @@ Page({
         this.fetchPageData();
       }
     };
+    this.bindPhoneCallback = (isBindPhone) => {
+      if (isBindPhone) {
+        this.fetchPageData();
+      }
+    }
 
     // 添加监听器
     app.watchLoginStatus(this.loginCallback);
-
+    app.watchBindPhoneStatus(this.bindPhoneCallback);
     if (app.globalData.isLoggedIn) {
       this.fetchPageData();
     }
@@ -50,21 +55,28 @@ Page({
   },
 
   async getRecords() {
+    const app = getApp();
     const data = await request({
       path: '/api/records',
       method: 'GET',
     })
     console.log('records', data);
     if (data.userInfo.status === 0) {
-      // this.setData({
-      //   needShowLogin: true
-      // })
+      this.setData({
+        needShowLogin: true
+      })
       return;
     }
-    if (data.userInfo.status === 1) {
+    if (data.userInfo.status >= 1) {
+      this.setData({
+        needShowLogin:false,
+      })
+    }
+    if (data.userInfo.status === 1 && !app.globalData.isRedirectToHealthRecord) {
       wx.redirectTo({
         url: '/pages/healthRecord/healthRecord'
       })
+      app.globalData.isRedirectToHealthRecord =true;
     }
     const healthManageList = { note: null, file: null };
     if (data.latestFile) {

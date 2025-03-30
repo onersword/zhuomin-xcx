@@ -19,6 +19,7 @@ Component({
       });
     },
     async getPhoneNumber(e) {
+      const app = getApp();
       if (!e.detail.code) {
         wx.showToast({
           title: '获取手机号失败',
@@ -47,9 +48,7 @@ Component({
           })
           console.log('record', record)
           if (record.userInfo.status === 1) {
-            wx.redirectTo({
-              url: '/pages/healthRecord/healthRecord'
-            })
+            app.setBindPhoneStatus(true);
           }
         }
   

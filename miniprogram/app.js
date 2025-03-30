@@ -3,10 +3,13 @@ const { request } = require("./utils/request");
 App({
   globalData: {
     userInfo: null,
+    isRedirectToHealthRecord: false,
     isLoggedIn: false,
+    isBindPhone: false,
     eventChannel: null,
     userId: null,
-    _loginCallbacks: []  // 添加回调数组
+    _loginCallbacks: [],  // Login callbacks
+    _bindPhoneCallbacks: []  // Add phone binding callbacks
   },
   
   // 添加监听相关方法
@@ -28,6 +31,28 @@ App({
     const index = this.globalData._loginCallbacks.indexOf(callback);
     if (index > -1) {
       this.globalData._loginCallbacks.splice(index, 1);
+    }
+  },
+  
+  // Add phone binding status methods
+  setBindPhoneStatus(status) {
+    this.globalData.isBindPhone = status;
+    // Trigger all registered callbacks
+    this.globalData._bindPhoneCallbacks.forEach(callback => {
+      callback(status);
+    });
+  },
+  
+  watchBindPhoneStatus(callback) {
+    if (typeof callback === 'function') {
+      this.globalData._bindPhoneCallbacks.push(callback);
+    }
+  },
+
+  unwatchBindPhoneStatus(callback) {
+    const index = this.globalData._bindPhoneCallbacks.indexOf(callback);
+    if (index > -1) {
+      this.globalData._bindPhoneCallbacks.splice(index, 1);
     }
   },
   
