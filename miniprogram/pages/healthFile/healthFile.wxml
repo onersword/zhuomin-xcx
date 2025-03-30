@@ -19,7 +19,7 @@
         <view class="file-time">{{format.formatTime(item.updatedAt)}}</view>
       </view>
       <image class="download-btn" src="/images/download_black.svg" mode="aspectFit" data-file="{{item}}"
-        bindtap="handleDownload" />
+        bindtap="handleDownload" data-url="{{item.url}}" />
     </view>
   </view>
 </scroll-view>
