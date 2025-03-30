@@ -2,6 +2,7 @@ const { request } = require('../../utils/request')
 Page({
   data: {
     hasRecords: false,
+    recordPDFUrl: '',
     recordInfo: [{
       label: '档案编号',
       value: 'ZMCX2025001'
@@ -22,13 +23,7 @@ Page({
     this.getUserRecords()
   },
 
-  // 下载PDF功能
-  downloadPDF: function () {
-    wx.showToast({
-      title: 'PDF下载中...',
-      icon: 'loading'
-    });
-  },
+
 
   async getUserRecords() {
     const data = await request({
@@ -48,7 +43,8 @@ Page({
 
       this.setData({
         hasRecords: true,
-        recordInfo: list
+        recordInfo: list,
+        recordPDFUrl: data.records.pdfUrl
       })
     } else {
       this.setData({
@@ -63,5 +59,56 @@ Page({
       appId: 'wxebadf544ddae62cb',
       path: 'pages/webview/index?sid=17551916&hash=d24d&navigateBackMiniProgram=true'
     })
+  },
+  downloadPDF() {
+    const file = this.data.recordPDFUrl
+    console.log('Downloading file:', file)
+    if (!file) {
+      wx.showToast({
+        title: '暂无档案',
+        icon: 'none'
+      })
+      return
+    }
+
+    // Show loading toast
+    wx.showLoading({
+      title: '文件下载中...',
+      mask: true
+    })
+
+    // Download file
+    wx.downloadFile({
+      url: file.url,
+      success: (res) => {
+        if (res.statusCode === 200) {
+          // Open document after successful download
+          wx.openDocument({
+            filePath: res.tempFilePath,
+            success: () => {
+              console.log('File opened successfully')
+            },
+            fail: (error) => {
+              console.error('Failed to open file:', error)
+              wx.showToast({
+                title: '打开文件失败',
+                icon: 'none'
+              })
+            }
+          })
+        }
+      },
+      fail: (error) => {
+        console.error('Download failed:', error)
+        wx.showToast({
+          title: '下载失败',
+          icon: 'none'
+        })
+      },
+      complete: () => {
+        wx.hideLoading()
+      }
+    })
   }
+
 }); 

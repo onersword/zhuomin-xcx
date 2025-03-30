@@ -3,7 +3,7 @@
     <view class="header-left" hover-class="none" hover-stop-propagation="false">
       健康档案
     </view>
-    <view class="header-right" hover-class="none" hover-stop-propagation="false" wx:if="{{hasRecords}}">
+    <view class="header-right" hover-class="none" hover-stop-propagation="false" wx:if="{{hasRecords}}" bindtap="downloadPDF">
       <image src="/images/download.svg"></image>
       下载PDF
     </view>
