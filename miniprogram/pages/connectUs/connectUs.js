@@ -20,9 +20,7 @@ Page({
       extInfo: {
         url: 'https://work.weixin.qq.com/kfid/kfccbe26094fa4bca51',
       },
-      sendMessageTitle: '联系客服',
-      sendMessagePath: '/pages/connectUs/connectUs',
-      showMessageCard: true,
+      showMessageCard: false,
       success: () => {
         console.log('打开客服聊天界面成功, success')
       },
