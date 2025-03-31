@@ -4,13 +4,13 @@
   </view>
 
   <view class="calendar-area" hover-class="none" hover-stop-propagation="false">
-    <calendar id="calendar" config="{{calendarConfig}}" />
+    <calendar id="calendar" config="{{calendarConfig}}" bind:afterTapDate="handleAfterTapDate" />
   </view>
 
-  <block wx:if="{{scheduleList.length > 0}}">
+  <block wx:if="{{currentList.length > 0}}">
 
     <view class="schedule-list">
-      <schedule-item wx:for="{{scheduleList}}" wx:key="id" content="{{item.description}}" time="{{item.remindAt}}"
+      <schedule-item wx:for="{{currentList}}" wx:key="id" content="{{item.description}}" time="{{item.remindAt}}"
         styleClass="{{item.styleClass}}" />
     </view>
   </block>

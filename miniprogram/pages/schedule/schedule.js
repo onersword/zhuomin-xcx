@@ -4,7 +4,8 @@ Page({
     scheduleList: [],
     calendarConfig: {
       highlightToday: true,
-    }
+    },
+    currentList: [],
   },
 
   onLoad: function () {
@@ -51,6 +52,7 @@ Page({
           // },
         })
       })
+      this.getCurrentDateReminds(new Date().toLocaleDateString())
     })
   },
 
@@ -83,4 +85,30 @@ Page({
     //   scheduleList:mockData
     // })
   },
+  handleAfterTapDate: function (e) {
+    console.log('-- e --', e.detail)
+    const date = `${e.detail.year}/${e.detail.month}/${e.detail.date}`;
+    console.log('date', date, new Date(date))
+    this.getCurrentDateReminds (date)
+
+  },
+
+  getCurrentDateReminds(date) {
+    const startTime = new Date(date).getTime();
+    const endTime = new Date(date).getTime() + (24 * 60 * 60 * 1000);
+    console.log('range ', startTime, endTime, new Date(startTime), new Date(endTime))
+
+    const list = [];
+    this.data.scheduleList.forEach(item => {
+      const time = new Date(item.remindAt).getTime();
+      if (time < endTime && time >= startTime) {
+        list.push(item);
+      }
+    })
+
+    this.setData({
+      currentList: list,
+    })
+
+  }
 }) 
