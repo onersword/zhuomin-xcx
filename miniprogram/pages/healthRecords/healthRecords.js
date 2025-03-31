@@ -44,7 +44,7 @@ Page({
       this.setData({
         hasRecords: true,
         recordInfo: list,
-        recordPDFUrl: data.records.pdfUrl
+        recordPDFUrl: data.pdfUrl
       })
     } else {
       this.setData({
@@ -79,7 +79,7 @@ Page({
 
     // Download file
     wx.downloadFile({
-      url: file.url,
+      url: file,
       success: (res) => {
         if (res.statusCode === 200) {
           // Open document after successful download

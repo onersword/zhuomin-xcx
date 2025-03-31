@@ -39,6 +39,12 @@
       </block>
 
     </block>
+    <block wx:else>
+      <view class="empty-reminds" hover-class="none" hover-stop-propagation="false">
+        今天没有预约
+        
+      </view>
+    </block>
 
   </view>
   <health-list obj="{{healthManageList}}" />
