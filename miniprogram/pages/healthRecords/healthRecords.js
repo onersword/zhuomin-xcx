@@ -77,38 +77,24 @@ Page({
       mask: true
     })
 
-    // Download file
     wx.downloadFile({
-      url: file,
+      url: this.data.recordPDFUrl, // 文件的URL
       success: (res) => {
-        if (res.statusCode === 200) {
-          // Open document after successful download
-          wx.openDocument({
-            filePath: res.tempFilePath,
-            success: () => {
-              console.log('File opened successfully')
-            },
-            fail: (error) => {
-              console.error('Failed to open file:', error)
-              wx.showToast({
-                title: '打开文件失败',
-                icon: 'none'
-              })
-            }
-          })
-        }
+        const filePath = res.tempFilePath; // 下载后的临时文件路径
+        wx.hideLoading();
+        wx.openDocument({
+          filePath: filePath,
+          fileType: 'pdf', // 根据文件类型设置
+          showMenu: true,
+          success: () => {
+            console.log('打开文档成功');
+          }
+        });
       },
-      fail: (error) => {
-        console.error('Download failed:', error)
-        wx.showToast({
-          title: '下载失败',
-          icon: 'none'
-        })
-      },
-      complete: () => {
-        wx.hideLoading()
+      fail: function (err) {
+        console.error('下载失败', err);
       }
-    })
+    });
   }
 
 }); 

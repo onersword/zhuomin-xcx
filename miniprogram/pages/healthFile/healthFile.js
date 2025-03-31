@@ -52,6 +52,7 @@ Page({
           // Open document after successful download
           wx.openDocument({
             filePath: res.tempFilePath,
+            showMenu: true,
             success: () => {
               console.log('File opened successfully')
             },
