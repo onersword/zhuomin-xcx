@@ -7,58 +7,53 @@ page{
   background-size: 100%;
   background-position: bottom center;
   position: relative;
+  z-index: -1;
 
   .header {
     position: absolute;
-    top: 356rpx;
-    transform: translateY(-100%);
-    left: 0;
-    right: 0;
+    top: 200rpx;
     padding: 0 60rpx;
     font-size: 60rpx;
     color: #fff;
   }
-  .schedule-container {
-    position: absolute;
-    top: 406rpx;
-    left: 0;
-    right: 0;
+}
+ 
 
-    padding: 30rpx; 
-    margin:0 30rpx;
-    background-color: #3827FF;
-    color: #fff;
-    border-radius: 32rpx;
-    display:flex;
-    flex-direction: column;
-    gap: 30rpx;
-    .top-area{
+
+.container {
+  margin-top: -200rpx;
+  padding-bottom: 200rpx;
+  box-sizing: border-box;
+  z-index: 5;
+}
+
+.schedule-container {
+
+  padding: 30rpx; 
+  margin:0 30rpx;
+  background-color: #3827FF;
+  color: #fff;
+  border-radius: 32rpx;
+  display:flex;
+  flex-direction: column;
+  gap: 30rpx;
+  .top-area{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .top-right{
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      .top-right{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 4rpx;
-        font-size: 26rpx;
-        image{
-          width: 20rpx;
-          height: 20rpx;
-        }
+      justify-content: center;
+      gap: 4rpx;
+      font-size: 26rpx;
+      image{
+        width: 20rpx;
+        height: 20rpx;
       }
     }
   }
 }
-
-
-.container {
-  padding-top: 210rpx;
-  padding-bottom: 200rpx;
-  box-sizing: border-box;
-}
-
-
 
 .purchased-services {
 

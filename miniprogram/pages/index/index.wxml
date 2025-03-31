@@ -4,6 +4,18 @@
     你好
   </view>
 
+
+
+</view>
+
+<block wx:if="{{needShowLogin}}">
+
+  <view class="login-container" hover-class="none" hover-stop-propagation="false">
+    <login bindlogin="doLogin" />
+  </view>
+
+</block>
+<view class="container">
   <view class="schedule-container" hover-class="none" hover-stop-propagation="false">
     <view class="top-area" hover-class="none" hover-stop-propagation="false">
       <month-title />
@@ -29,18 +41,6 @@
     </block>
 
   </view>
-
-</view>
-
-<block wx:if="{{needShowLogin}}">
-
-  <view class="login-container" hover-class="none" hover-stop-propagation="false">
-    <login bindlogin="doLogin" />
-  </view>
-
-</block>
-<view class="container">
-
   <health-list obj="{{healthManageList}}" />
 
   <view class="purchased-services">
