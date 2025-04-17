@@ -1,3 +1,4 @@
+<data-loading text="加载中..." wx:if="{{loading}}" />
 <view class="header-area" hover-class="none" hover-stop-propagation="false">
   <view class="header" hover-class="none" hover-stop-propagation="false">
 

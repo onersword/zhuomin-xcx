@@ -6,7 +6,11 @@
     "schedule-item": "/components/scheduleItem/index",
     "health-list": "/components/healthList/index",
     "login": "/components/login/login",
-    "product-card": "/components/productCard/productCard"
+    "product-card": "/components/productCard/productCard",
+    "data-loading": "/components/dataLoading/loading"
   },
-  "navigationStyle": "custom"
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#F5F7F8",
+  "backgroundTextStyle": "dark"
 }

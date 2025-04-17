@@ -1,0 +1,9 @@
+<view class="loading-container">
+  <image class="main-image" src="/images/login-bg.svg" mode="aspectFit"></image>
+  <view class="loading-spinner">
+    <view class="loading-dot"></view>
+    <view class="loading-dot"></view>
+    <view class="loading-dot"></view>
+  </view>
+  <view class="loading-text" wx:if="{{text}}">{{text}}</view>
+</view>

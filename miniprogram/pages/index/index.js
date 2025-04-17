@@ -3,6 +3,7 @@ const { request } = require('../../utils/request.js')
 Page({
   data: {
     needShowLogin: false,
+    loading: false,
     calendarConfig: {
       hideHeader: true,
       weekMode: false,
@@ -36,6 +37,9 @@ Page({
     // 添加监听器
     app.watchLoginStatus(this.loginCallback);
     app.watchBindPhoneStatus(this.bindPhoneCallback);
+    this.setData({
+      loading: true
+    })
     if (app.globalData.isLoggedIn) {
       this.fetchPageData();
     }
@@ -49,11 +53,23 @@ Page({
     }
   },
 
-  fetchPageData() {
-    console.log('fetchPageData')
-    this.getProducts();
-    this.getReminders();
-    this.getRecords();
+  // 添加下拉刷新处理函数
+  onPullDownRefresh() {
+    this.fetchPageData(false).then(() => {
+      wx.stopPullDownRefresh()
+    })
+  },
+
+  async fetchPageData(showLoading = true) {
+    this.setData({
+      loading: true
+    })
+    await this.getProducts();
+    await this.getReminders();
+    await this.getRecords();
+    this.setData({
+      loading: false
+    })
   },
 
   async getRecords() {
