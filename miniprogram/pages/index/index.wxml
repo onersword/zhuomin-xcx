@@ -36,7 +36,7 @@
 
     <block wx:if="{{reminders && reminders.length > 0}}">
       <block wx:for="{{reminders}}" wx:key="index">
-        <schedule-item time="{{item.remindAt}}" content="{{item.description}}" styleClass="schedule-coral" />
+        <schedule-item time="{{item.remindAt}}" content="{{item.title}}" styleClass="schedule-coral" />
       </block>
 
     </block>

@@ -1,6 +1,7 @@
 const { formatPrice } = require('../../utils/util')
 Page({
   data: {
+    hasBuyed: false,
     product: {},
     currentId: 1,
     type: 'normal',
@@ -164,6 +165,8 @@ Page({
     // 确保 type 参数正确设置
     const type = options.type === '0' ? 'other' : 'normal';
     let currentId = 1;
+    let hasBuyed = options.hasBuyed === '1' ? true : false;
+    console.log('xxx hasBuyed', hasBuyed)
 
     // 只在 normal 类型时设置 currentId
     if (options.type) {
@@ -173,6 +176,7 @@ Page({
     this.setData({
       type,
       currentId,
+      hasBuyed,
       product: {
         id: options.id,
         name: options.name,

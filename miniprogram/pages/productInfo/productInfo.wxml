@@ -41,7 +41,7 @@
   </view>
 </view>
 
-<view class="price-section">
+<view class="price-section" wx:if="{{!hasBuyed}}">
   <view class="total-price">
     <text>价格：</text>
     <text class="price">{{type === 'other' ? product.formatPrice : productInfo[currentId].price}}</text>

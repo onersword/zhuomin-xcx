@@ -10,7 +10,7 @@
   <block wx:if="{{currentList.length > 0}}">
 
     <view class="schedule-list">
-      <schedule-item wx:for="{{currentList}}" wx:key="id" content="{{item.description}}" time="{{item.remindAt}}"
+      <schedule-item wx:for="{{currentList}}" wx:key="id" content="{{item.title}}" time="{{item.remindAt}}"
         styleClass="{{item.styleClass}}" />
     </view>
   </block>
