@@ -9,7 +9,8 @@ Page({
     }, {
       label: '建档日期',
       value: '2025-01-02'
-    }]
+    }],
+    loading: true
   },
 
   onShow: function () {
@@ -26,6 +27,9 @@ Page({
 
 
   async getUserRecords() {
+    this.setData({
+      loading: true
+    })
     const data = await request({
       path: '/api/records',
       method: 'GET'
@@ -51,6 +55,9 @@ Page({
         hasRecords: false,
       })
     }
+    this.setData({
+      loading: false
+    })
   },
 
   createRecord() {

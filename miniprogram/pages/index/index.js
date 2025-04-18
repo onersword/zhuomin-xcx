@@ -30,6 +30,7 @@ Page({
     };
     this.bindPhoneCallback = (isBindPhone) => {
       if (isBindPhone) {
+        console.log('xxx isBindPhone', isBindPhone)
         this.fetchPageData();
       }
     }
@@ -78,6 +79,10 @@ Page({
       path: '/api/records',
       method: 'GET',
     })
+    console.log('xxx index getRecords', data)
+    if (data && data.error) {
+      return;
+    }
     console.log('records', data);
     if (data.userInfo.status === 0) {
       this.setData({
@@ -87,14 +92,14 @@ Page({
     }
     if (data.userInfo.status >= 1) {
       this.setData({
-        needShowLogin:false,
+        needShowLogin: false,
       })
     }
     if (data.userInfo.status === 1 && !app.globalData.isRedirectToHealthRecord) {
       wx.redirectTo({
         url: '/pages/healthRecord/healthRecord'
       })
-      app.globalData.isRedirectToHealthRecord =true;
+      app.globalData.isRedirectToHealthRecord = true;
     }
     const healthManageList = { note: null, file: null };
     if (data.latestFile) {
@@ -144,23 +149,29 @@ Page({
       path: '/api/reminders',
       method: 'GET'
     })
-    
-    // Filter reminders for today
-    const now = new Date();
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    
-    const todayReminders = data.filter(reminder => {
-      const reminderTime = new Date(reminder.remindAt);
-      return reminderTime >= today && reminderTime < tomorrow;
-    });
-    
-    this.setData({
-      reminders: todayReminders
-    });
-    
-    console.log('today reminders', todayReminders);
+    if (data && data.error) {
+      return;
+    }
+    if (Array.isArray(data)) {
+      // Filter reminders for today
+      const now = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const tomorrow = new Date(today);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+
+      console.log('xxx index getReminders', data)
+      const todayReminders = data.filter(reminder => {
+        const reminderTime = new Date(reminder.remindAt);
+        return reminderTime >= today && reminderTime < tomorrow;
+      });
+      console.log('xxx index todayReminders', todayReminders)
+
+      this.setData({
+        reminders: todayReminders
+      });
+      console.log('today reminders', todayReminders);
+    }
+
   },
 
   async getProducts() {
@@ -168,9 +179,14 @@ Page({
       path: '/api/users/xxx/products',
       method: 'GET'
     })
-    this.setData({
-      purchasedServices: data ?? [],
-    })
+    if (data && data.error) {
+      return;
+    }
+    if (Array.isArray(data)) {
+      this.setData({
+        purchasedServices: data ?? [],
+      })
+    }
     console.log('products', data)
   },
 
