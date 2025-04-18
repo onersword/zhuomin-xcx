@@ -31,6 +31,9 @@ Page({
     const p = [];
     const op = [];
     for (const item of data) {
+      if (item.status !== 1) {
+        continue;
+      }
       if (item.type === 0) {
         op.push(item)
 
