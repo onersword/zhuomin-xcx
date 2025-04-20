@@ -153,14 +153,19 @@ Page({
       return;
     }
     if (Array.isArray(data)) {
-      // Filter reminders for today
+      // Filter out expired reminders first
       const now = new Date();
+      const validReminders = data.filter(reminder => {
+        return new Date(reminder.remindAt) >= now;
+      });
+
+      // Filter reminders for today
       const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
       const tomorrow = new Date(today);
       tomorrow.setDate(tomorrow.getDate() + 1);
 
-      console.log('xxx index getReminders', data)
-      const todayReminders = data.filter(reminder => {
+      console.log('xxx index getReminders', validReminders)
+      const todayReminders = validReminders.filter(reminder => {
         const reminderTime = new Date(reminder.remindAt);
         return reminderTime >= today && reminderTime < tomorrow;
       });
