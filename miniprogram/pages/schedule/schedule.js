@@ -24,15 +24,18 @@ Page({
       method: 'GET'
     }).then(res => {
       console.log('-- res --', res)
+      const now = new Date().getTime();
+      const validReminders = res.filter(item => new Date(item.remindAt).getTime() >= now);
+      
       this.setData({
-        scheduleList: res.map(item => {
+        scheduleList: validReminders.map(item => {
           item.styleClass = ['schedule-coral', 'schedule-blue', 'schedule-purple'][Math.floor(Math.random() * 3)]
           return item;
         })
       })
       calendar.setTodos({
         pos: 'bottom', // 待办点标记位置 ['top', 'bottom']
-        dates: res.map(item => {
+        dates: validReminders.map(item => {
           return {
             showTodoLabel: true,
             year: new Date(item.remindAt).getFullYear(),
@@ -41,15 +44,6 @@ Page({
             todoText: item.description,
             color: '#F6945D',
           }
-
-          // {
-          //   showTodoLabel: true,
-          //   year: 2025,
-          //   month: 1,
-          //   date: 28,
-          //   todoText: '待办',
-          //   color: '#CA87E7',
-          // },
         })
       })
       this.getCurrentDateReminds(new Date().toLocaleDateString())
@@ -93,15 +87,24 @@ Page({
 
   },
 
+  handleChangeMonth: function (e) {
+    console.log('-- e --', e.detail)
+    const date = `${e.detail.next.year}/${e.detail.next.month}/01`;
+    console.log('date', date, new Date(date))
+    this.getCurrentDateReminds (date)
+  },
+
   getCurrentDateReminds(date) {
-    const startTime = new Date(date).getTime();
-    const endTime = new Date(date).getTime() + (24 * 60 * 60 * 1000);
+    const currentDate = new Date(date);
+    const startTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getTime();
+    const endTime = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0, 23, 59, 59).getTime();
+    const now = new Date().getTime();
     console.log('range ', startTime, endTime, new Date(startTime), new Date(endTime))
 
     const list = [];
     this.data.scheduleList.forEach(item => {
       const time = new Date(item.remindAt).getTime();
-      if (time < endTime && time >= startTime) {
+      if (time <= endTime && time >= startTime && time >= now) {
         list.push(item);
       }
     })
@@ -109,6 +112,5 @@ Page({
     this.setData({
       currentList: list,
     })
-
   }
 }) 

@@ -4,7 +4,7 @@
   </view>
 
   <view class="calendar-area" hover-class="none" hover-stop-propagation="false">
-    <calendar id="calendar" config="{{calendarConfig}}" bind:afterTapDate="handleAfterTapDate" />
+    <calendar id="calendar" config="{{calendarConfig}}" bind:afterTapDate="handleAfterTapDate" bind:whenChangeMonth="handleChangeMonth" />
   </view>
 
   <block wx:if="{{currentList.length > 0}}">
