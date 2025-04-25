@@ -109,16 +109,7 @@
     <view class="form-item">
       <text class="form-label required">医疗保险类型</text>
       <view class="sub-label">选择适用的医疗保险类型（可多选）</view>
-      <!-- <view class="checkbox-grid">
-        <block wx:for="{{insuranceOptions}}" wx:key="index">
-          <view class="checkbox-item {{insuranceTypes.includes(item) ? 'checked' : ''}}" bindtap="onInsuranceTypeSelect" data-type="{{item}}">
-            <view class="checkbox-box">
-              <view class="checkbox-inner" wx:if="{{insuranceTypes.includes(item)}}"></view>
-            </view>
-            <text>{{item}}</text>
-          </view>
-        </block>
-      </view> -->
+     
       <checkbox-group class="checkbox-grid" bindchange="onInsuranceTypeSelect">
         <label class="checkbox-item" wx:for="{{insuranceOptions}}" wx:key="index">
           <checkbox class="checkbox-box" value="{{item.value}}" checked="{{item.checked}}"/>
@@ -203,16 +194,15 @@
       <text class="form-label required">过敏史</text>
       <view class="sub-label">选择您的过敏类型（可多选）</view>
       
-      <view class="checkbox-grid">
-        <block wx:for="{{allergyOptions}}" wx:key="index">
-          <view class="checkbox-item {{allergyHistory.includes(item) ? 'checked' : ''}}" bindtap="onAllergySelect" data-type="{{item}}">
-            <view class="checkbox-box">
-              <view class="checkbox-inner" wx:if="{{allergyHistory.includes(item)}}"></view>
-            </view>
-            <text>{{item}}</text>
-          </view>
-        </block>
-      </view>
+  
+      <checkbox-group class="checkbox-grid" bindchange="onAllergySelect">
+        <label class="checkbox-item" wx:for="{{allergyOptions}}" wx:key="index">
+          <checkbox class="checkbox-box" value="{{item.value}}" checked="{{item.checked}}"/>
+          <text>{{item.value}}</text>
+        </label>
+        
+        
+      </checkbox-group>
     </view>
   </view>
   

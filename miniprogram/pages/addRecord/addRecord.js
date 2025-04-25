@@ -36,8 +36,33 @@ Page({
     medication: '无',
     medicationDetail: '',
     // 过敏史
-    allergyHistory: ['无'],
-    allergyOptions: ['无', '头孢菌素', '海鲜', '坚果', '青霉素', '磺胺类药物', '花粉', '牛奶', '其他'],
+    allergyOptions: [{
+      value: '无', checked: false},
+      {
+        value: '头孢菌素', checked: false
+      },
+      {
+        value: '海鲜', checked: false
+      },
+      {
+        value: '坚果', checked: false
+      },
+      {
+        value: '青霉素', checked: false
+      },
+      {
+        value: '磺胺类药物', checked: false
+      },
+      {
+        value: '花粉', checked: false
+      },
+      {
+        value: '牛奶', checked: false
+      },
+      {
+        value: '其他', checked: false
+      }
+    ],
     // 既往史
     medicalHistory: ['无'],
     medicalHistoryOptions: [
@@ -287,33 +312,27 @@ Page({
 
   // 过敏史选择事件
   onAllergySelect: function (e) {
-    const type = e.currentTarget.dataset.type;
-    const types = [...this.data.allergyHistory];
-    const index = types.indexOf(type);
 
-    if (type === '无' && index === -1) {
-      // 如果选择了"无"，则清空其他选项
-      this.setData({
-        allergyHistory: ['无']
-      });
-    } else if (type !== '无') {
-      // 如果选择了其他选项，确保移除"无"
-      const noIndex = types.indexOf('无');
-      if (noIndex > -1) {
-        types.splice(noIndex, 1);
+
+
+    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
+
+    const items = this.data.allergyOptions
+    const values = e.detail.value
+    for (let i = 0, lenI = items.length; i < lenI; ++i) {
+      items[i].checked = false
+
+      for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
+        if (items[i].value === values[j]) {
+          items[i].checked = true
+          break
+        }
       }
-
-      // 切换当前选项
-      if (index > -1) {
-        types.splice(index, 1);
-      } else {
-        types.push(type);
-      }
-
-      this.setData({
-        allergyHistory: types
-      });
     }
+
+    this.setData({
+      allergyOptions: items
+    })
   },
 
   // 既往史选择事件
