@@ -8,7 +8,8 @@
     "pages/productInfo/productInfo",
     "pages/healthTips/healthTips",
     "pages/healthFile/healthFile",
-    "pages/report/report"
+    "pages/report/report",
+    "pages/addRecord/addRecord"
   ],
   "permission": {
   },

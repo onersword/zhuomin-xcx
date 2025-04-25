@@ -45,11 +45,11 @@ Page({
 
       }
 
-      this.setData({
-        hasRecords: true,
-        recordInfo: list,
-        recordPDFUrl: data.pdfUrl
-      })
+      // this.setData({
+      //   hasRecords: true,
+      //   recordInfo: list,
+      //   recordPDFUrl: data.pdfUrl
+      // })
     } else {
       this.setData({
         hasRecords: false,
@@ -62,9 +62,8 @@ Page({
 
   createRecord() {
     console.log('createRecord')
-    wx.openEmbeddedMiniProgram({
-      appId: 'wxebadf544ddae62cb',
-      path: 'pages/webview/index?sid=17551916&hash=d24d&navigateBackMiniProgram=true'
+    wx.navigateTo({
+      url: '/pages/addRecord/addRecord'
     })
   },
   downloadPDF() {
