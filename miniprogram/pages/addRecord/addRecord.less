@@ -158,19 +158,21 @@
 }
 
 .radio-group {
-  display: flex;
-  align-items: center;
+  padding: 20rpx;
+  display:grid;
+  grid-template-columns: 50% 50%;
+  gap: 20rpx;
+  margin-top: 10rpx;
+  border: 1px solid rgba(37,99,235, 0.1);
+  border-radius: 8rpx;
 }
 
-.radio-group-vertical {
-  display: flex;
-  flex-direction: column;
-  gap: 20rpx;
-}
+
 
 .radio-item {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   margin-right: 50rpx;
   text{
     font-size: 24rpx;
@@ -192,6 +194,29 @@
 .radio-circle.selected {
   border-color: #4169e1;
 }
+
+wx-radio .wx-radio-input.wx-radio-input-checked {
+  color: #fff !important;
+  background-color: #3F72FF;
+  border: 2rpx solid #3F72FF
+}
+wx-radio .wx-radio-input {
+  /*margin-right: 10rpx;*/
+  -webkit-appearance: none;
+  appearance: none;
+  outline: 0;
+  text-indent: 0;
+  width: 24rpx;
+  height: 24rpx;
+  background-color: transparent;
+  position: relative;
+  box-sizing: border-box;
+}
+/*钩大小*/
+wx-radio .wx-radio-input.wx-radio-input-checked:before {
+  font-size: 24rpx;
+}
+
 
 .radio-circle.selected:after {
   content: '';
@@ -300,7 +325,7 @@ wx-checkbox .wx-checkbox-input.wx-checkbox-input-checked:before {
   border-radius: 8rpx;
   padding: 20rpx;
   box-sizing: border-box;
-  font-size: 28rpx;
+  font-size: 24rpx;
   color: #333;
   background-color: #fff;
   margin-top: 20rpx;

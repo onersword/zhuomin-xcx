@@ -2,6 +2,7 @@ Page({
   data: {
     recordDate: '2025-04-25',
     name: '',
+    genderOptions: [{value: '男', checked: false}, {value: '女', checked: false}],
     gender: '',
     nationality: '',
     birthDate: '',
@@ -13,6 +14,7 @@ Page({
     emergencyContact: '',
     emergencyPhone: '',
     maritalStatus: '',
+    maritalStatusOptions: [{value: '已婚', checked: false}, {value: '未婚', checked: false}, {value: '离异或丧偶', checked: false}],
     // 医疗保险类型
     insuranceTypes: ['医保'],
     insuranceOptions: [{
@@ -34,6 +36,7 @@ Page({
     rhTypeIndex: -1,
     pulse: '',
     medication: '无',
+    medicationOptions: [{value: '无', checked: false}, {value: '有', checked: false}],
     medicationDetail: '',
     // 过敏史
     allergyOptions: [{
@@ -64,30 +67,71 @@ Page({
       }
     ],
     // 既往史
-    medicalHistory: ['无'],
     medicalHistoryOptions: [
-      '无', '糖尿病', '高血压', '高血脂', '高尿酸', '冠心病',
-      '脑卒中', '恶性肿瘤', '慢性阻塞性肺疾病', '乙肝',
-      '心律失常', '甲状腺疾病', '肾脏疾病', '胃肠道疾病',
-      '精神疾病', '过敏史', '脂肪肝', '胆结石', '肝脾肿', '其他'
+      { value: '无', checked: false },
+      { value: '糖尿病', checked: false },
+      { value: '高血压', checked: false },
+      { value: '高血脂', checked: false },
+      { value: '高尿酸', checked: false },
+      { value: '冠心病', checked: false },
+      { value: '脑卒中', checked: false },
+      { value: '恶性肿瘤', checked: false },
+      { value: '慢性阻塞性肺疾病', checked: false },
+      { value: '乙肝', checked: false },
+      { value: '心律失常', checked: false },
+      { value: '甲状腺疾病', checked: false },
+      { value: '肾脏疾病', checked: false },
+      { value: '胃肠道疾病', checked: false },
+      { value: '精神疾病', checked: false },
+      { value: '过敏史', checked: false },
+      { value: '脂肪肝', checked: false },
+      { value: '胆结石', checked: false },
+      { value: '肝脾肿', checked: false },
+      { value: '其他', checked: false }
     ],
     // 住院史
     hospitalizationHistory: '',
     // 生活习惯
-    smokingHistory: ['无'],
-    smokingOptions: ['无', '长期吸烟', '长期饮酒', '戒烟戒酒史'],
+    smokingOptions: [
+      { value: '无', checked: false },
+      { value: '长期吸烟', checked: false },
+      { value: '长期饮酒', checked: false },
+      { value: '戒烟戒酒史', checked: false }
+    ],
 
     // 运动习惯
-    exerciseHabits: ['基本不运动'],
-    exerciseOptions: ['基本不运动', '每日步行', '长跑', '游泳', '登山', '其他'],
+    exerciseOptions: [
+      { value: '基本不运动', checked: false },
+      { value: '每日步行', checked: false },
+      { value: '长跑', checked: false },
+      { value: '游泳', checked: false },
+      { value: '登山', checked: false },
+      { value: '其他', checked: false }
+    ],
 
     // 饮食习惯
-    dietaryHabits: ['三餐规律'],
-    dietaryOptions: ['三餐规律', '清淡', '偏咸', '辛辣', '喜甜食', '口味偏重', '应酬多', '三餐不规律', '其他'],
+    dietaryOptions: [
+      { value: '三餐规律', checked: false },
+      { value: '清淡', checked: false },
+      { value: '偏咸', checked: false },
+      { value: '辛辣', checked: false },
+      { value: '喜甜食', checked: false },
+      { value: '口味偏重', checked: false },
+      { value: '应酬多', checked: false },
+      { value: '三餐不规律', checked: false },
+      { value: '其他', checked: false }
+    ],
 
     // 睡眠质量
-    sleepQuality: ['一般'],
-    sleepQualityOptions: ['好', '一般', '差', '失眠无', '失眠有', '鼾症无', '鼾症有'],
+    sleepQualityOptions: [
+      { value: '好', checked: false },
+      { value: '一般', checked: false },
+      { value: '差', checked: false },
+      { value: '失眠无', checked: false },
+      { value: '失眠有', checked: false },
+      { value: '鼾症无', checked: false },
+      { value: '鼾症有', checked: false }
+    ],
 
     // 睡眠时间
     sleepHours: '7',
@@ -113,10 +157,14 @@ Page({
 
   // 性别选择事件
   onGenderSelect: function (e) {
-    const gender = e.currentTarget.dataset.gender;
+    const items = this.data.genderOptions
+    for (let i = 0, len = items.length; i < len; ++i) {
+      items[i].checked = items[i].value === e.detail.value
+    }
+
     this.setData({
-      gender: gender
-    });
+      genderOptions: items
+    })
   },
 
   // 国籍/籍贯输入事件
@@ -219,10 +267,14 @@ Page({
 
   // 婚姻状况选择事件
   onMaritalStatusSelect: function (e) {
-    const status = e.currentTarget.dataset.status;
+    const items = this.data.maritalStatusOptions
+    for (let i = 0, len = items.length; i < len; ++i) {
+      items[i].checked = items[i].value === e.detail.value
+    }
+
     this.setData({
-      maritalStatus: status
-    });
+      maritalStatusOptions: items
+    })
   },
 
   // 保险类型选择事件
@@ -312,9 +364,6 @@ Page({
 
   // 过敏史选择事件
   onAllergySelect: function (e) {
-
-
-
     console.log('checkbox发生change事件，携带value值为：', e.detail.value)
 
     const items = this.data.allergyOptions
@@ -337,33 +386,34 @@ Page({
 
   // 既往史选择事件
   onMedicalHistorySelect: function (e) {
-    const type = e.currentTarget.dataset.type;
-    const types = [...this.data.medicalHistory];
-    const index = types.indexOf(type);
+    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
 
-    if (type === '无' && index === -1) {
-      // 如果选择了"无"，则清空其他选项
-      this.setData({
-        medicalHistory: ['无']
-      });
-    } else if (type !== '无') {
-      // 如果选择了其他选项，确保移除"无"
-      const noIndex = types.indexOf('无');
-      if (noIndex > -1) {
-        types.splice(noIndex, 1);
-      }
-
-      // 切换当前选项
-      if (index > -1) {
-        types.splice(index, 1);
-      } else {
-        types.push(type);
-      }
-
-      this.setData({
-        medicalHistory: types
-      });
+    const items = this.data.medicalHistoryOptions
+    const values = e.detail.value
+    
+    // 处理"无"选项与其他选项的互斥
+    const hasNoOption = values.includes('无')
+    const hasOtherOptions = values.length > (hasNoOption ? 1 : 0)
+    
+    if (hasNoOption && hasOtherOptions) {
+      // 如果同时选了"无"和其他选项，优先保留其他选项
+      values.splice(values.indexOf('无'), 1)
     }
+    
+    for (let i = 0, lenI = items.length; i < lenI; ++i) {
+      items[i].checked = false
+
+      for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
+        if (items[i].value === values[j]) {
+          items[i].checked = true
+          break
+        }
+      }
+    }
+
+    this.setData({
+      medicalHistoryOptions: items
+    })
   },
 
   // 住院史输入事件
@@ -375,145 +425,155 @@ Page({
 
   // 吸烟饮酒史选择事件
   onSmokingHistorySelect: function (e) {
-    const type = e.currentTarget.dataset.type;
-    const types = [...this.data.smokingHistory];
-    const index = types.indexOf(type);
+    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
 
-    if (type === '无' && index === -1) {
-      // 如果选择了"无"，则清空其他选项
-      this.setData({
-        smokingHistory: ['无']
-      });
-    } else if (type !== '无') {
-      // 如果选择了其他选项，确保移除"无"
-      const noIndex = types.indexOf('无');
-      if (noIndex > -1) {
-        types.splice(noIndex, 1);
-      }
-
-      // 切换当前选项
-      if (index > -1) {
-        types.splice(index, 1);
-      } else {
-        types.push(type);
-      }
-
-      this.setData({
-        smokingHistory: types
-      });
+    const items = this.data.smokingOptions
+    const values = e.detail.value
+    
+    // 处理"无"选项与其他选项的互斥
+    const hasNoOption = values.includes('无')
+    const hasOtherOptions = values.length > (hasNoOption ? 1 : 0)
+    
+    if (hasNoOption && hasOtherOptions) {
+      // 如果同时选了"无"和其他选项，优先保留其他选项
+      values.splice(values.indexOf('无'), 1)
     }
+    
+    for (let i = 0, lenI = items.length; i < lenI; ++i) {
+      items[i].checked = false
+
+      for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
+        if (items[i].value === values[j]) {
+          items[i].checked = true
+          break
+        }
+      }
+    }
+
+    this.setData({
+      smokingOptions: items
+    })
   },
 
   // 运动习惯选择事件
   onExerciseHabitSelect: function (e) {
-    const type = e.currentTarget.dataset.type;
-    const types = [...this.data.exerciseHabits];
-    const index = types.indexOf(type);
+    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
 
-    if (type === '基本不运动' && index === -1) {
-      // 如果选择了"基本不运动"，则清空其他选项
-      this.setData({
-        exerciseHabits: ['基本不运动']
-      });
-    } else if (type !== '基本不运动') {
-      // 如果选择了其他选项，确保移除"基本不运动"
-      const noIndex = types.indexOf('基本不运动');
-      if (noIndex > -1) {
-        types.splice(noIndex, 1);
-      }
-
-      // 切换当前选项
-      if (index > -1) {
-        types.splice(index, 1);
-      } else {
-        types.push(type);
-      }
-
-      this.setData({
-        exerciseHabits: types
-      });
+    const items = this.data.exerciseOptions
+    const values = e.detail.value
+    
+    // 处理"基本不运动"选项与其他选项的互斥
+    const hasNoExerciseOption = values.includes('基本不运动')
+    const hasOtherOptions = values.length > (hasNoExerciseOption ? 1 : 0)
+    
+    if (hasNoExerciseOption && hasOtherOptions) {
+      // 如果同时选了"基本不运动"和其他选项，优先保留其他选项
+      values.splice(values.indexOf('基本不运动'), 1)
     }
+    
+    for (let i = 0, lenI = items.length; i < lenI; ++i) {
+      items[i].checked = false
+
+      for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
+        if (items[i].value === values[j]) {
+          items[i].checked = true
+          break
+        }
+      }
+    }
+
+    this.setData({
+      exerciseOptions: items
+    })
   },
 
   // 饮食习惯选择事件
   onDietaryHabitSelect: function (e) {
-    const type = e.currentTarget.dataset.type;
-    const types = [...this.data.dietaryHabits];
-    const index = types.indexOf(type);
+    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
 
-    // 三餐规律和三餐不规律是互斥的
-    if (type === '三餐规律' && index === -1) {
-      // 移除三餐不规律
-      const irregularIndex = types.indexOf('三餐不规律');
-      if (irregularIndex > -1) {
-        types.splice(irregularIndex, 1);
-      }
-    } else if (type === '三餐不规律' && index === -1) {
-      // 移除三餐规律
-      const regularIndex = types.indexOf('三餐规律');
-      if (regularIndex > -1) {
-        types.splice(regularIndex, 1);
+    const items = this.data.dietaryOptions
+    const values = e.detail.value
+    
+    // 处理"三餐规律"和"三餐不规律"的互斥
+    if (values.includes('三餐规律') && values.includes('三餐不规律')) {
+      // 如果同时选择了互斥选项，优先保留后选择的（保留在数组中靠后的选项）
+      if (values.indexOf('三餐规律') < values.indexOf('三餐不规律')) {
+        values.splice(values.indexOf('三餐规律'), 1)
+      } else {
+        values.splice(values.indexOf('三餐不规律'), 1)
       }
     }
+    
+    for (let i = 0, lenI = items.length; i < lenI; ++i) {
+      items[i].checked = false
 
-    // 切换当前选项
-    if (index > -1) {
-      types.splice(index, 1);
-    } else {
-      types.push(type);
+      for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
+        if (items[i].value === values[j]) {
+          items[i].checked = true
+          break
+        }
+      }
     }
 
     this.setData({
-      dietaryHabits: types
-    });
+      dietaryOptions: items
+    })
   },
 
   // 睡眠质量选择事件
   onSleepQualitySelect: function (e) {
-    const type = e.currentTarget.dataset.type;
-    const types = [...this.data.sleepQuality];
-    const index = types.indexOf(type);
+    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
 
-    // 处理互斥选项
-    if (type === '好' || type === '一般' || type === '差') {
-      // 这三个选项互斥，一次只能选一个
-      types.length = 0; // 清空当前选项
-      types.push(type);
-    } else {
-      // 处理失眠、鼾症的互斥情况
-      if (type === '失眠无') {
-        const oppositeIndex = types.indexOf('失眠有');
-        if (oppositeIndex > -1) {
-          types.splice(oppositeIndex, 1);
-        }
-      } else if (type === '失眠有') {
-        const oppositeIndex = types.indexOf('失眠无');
-        if (oppositeIndex > -1) {
-          types.splice(oppositeIndex, 1);
-        }
-      } else if (type === '鼾症无') {
-        const oppositeIndex = types.indexOf('鼾症有');
-        if (oppositeIndex > -1) {
-          types.splice(oppositeIndex, 1);
-        }
-      } else if (type === '鼾症有') {
-        const oppositeIndex = types.indexOf('鼾症无');
-        if (oppositeIndex > -1) {
-          types.splice(oppositeIndex, 1);
+    const items = this.data.sleepQualityOptions
+    const values = e.detail.value
+    
+    // 处理睡眠质量的互斥性
+    // 好、一般、差三个选项互斥
+    const qualityOptions = ['好', '一般', '差']
+    const selectedQualityOptions = qualityOptions.filter(opt => values.includes(opt))
+    
+    if (selectedQualityOptions.length > 1) {
+      // 保留最后选择的质量选项
+      const lastQualityOption = selectedQualityOptions[selectedQualityOptions.length - 1]
+      for (const opt of selectedQualityOptions) {
+        if (opt !== lastQualityOption) {
+          values.splice(values.indexOf(opt), 1)
         }
       }
-
-      // 切换当前选项
-      if (index > -1) {
-        types.splice(index, 1);
+    }
+    
+    // 处理失眠有/无的互斥
+    if (values.includes('失眠有') && values.includes('失眠无')) {
+      if (values.indexOf('失眠有') < values.indexOf('失眠无')) {
+        values.splice(values.indexOf('失眠有'), 1)
       } else {
-        types.push(type);
+        values.splice(values.indexOf('失眠无'), 1)
+      }
+    }
+    
+    // 处理鼾症有/无的互斥
+    if (values.includes('鼾症有') && values.includes('鼾症无')) {
+      if (values.indexOf('鼾症有') < values.indexOf('鼾症无')) {
+        values.splice(values.indexOf('鼾症有'), 1)
+      } else {
+        values.splice(values.indexOf('鼾症无'), 1)
+      }
+    }
+    
+    for (let i = 0, lenI = items.length; i < lenI; ++i) {
+      items[i].checked = false
+
+      for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
+        if (items[i].value === values[j]) {
+          items[i].checked = true
+          break
+        }
       }
     }
 
     this.setData({
-      sleepQuality: types
-    });
+      sleepQualityOptions: items
+    })
   },
 
   // 睡眠时间输入事件
@@ -561,15 +621,45 @@ Page({
         message: '请选择至少一种医疗保险类型' 
       },
       { 
-        condition: () => this.data.exerciseHabits.length === 0, 
+        condition: () => {
+          const checkedAllergy = this.data.allergyOptions.filter(item => item.checked);
+          return checkedAllergy.length === 0;
+        }, 
+        message: '请选择至少一项过敏史' 
+      },
+      { 
+        condition: () => {
+          const checkedMedicalHistory = this.data.medicalHistoryOptions.filter(item => item.checked);
+          return checkedMedicalHistory.length === 0;
+        }, 
+        message: '请选择至少一项既往史' 
+      },
+      { 
+        condition: () => {
+          const checkedSmoking = this.data.smokingOptions.filter(item => item.checked);
+          return checkedSmoking.length === 0;
+        }, 
+        message: '请选择至少一项吸烟饮酒史' 
+      },
+      { 
+        condition: () => {
+          const checkedExercise = this.data.exerciseOptions.filter(item => item.checked);
+          return checkedExercise.length === 0;
+        }, 
         message: '请选择至少一项运动习惯' 
       },
       { 
-        condition: () => this.data.dietaryHabits.length === 0, 
+        condition: () => {
+          const checkedDietary = this.data.dietaryOptions.filter(item => item.checked);
+          return checkedDietary.length === 0;
+        }, 
         message: '请选择至少一项饮食习惯' 
       },
       { 
-        condition: () => this.data.sleepQuality.length === 0, 
+        condition: () => {
+          const checkedSleepQuality = this.data.sleepQualityOptions.filter(item => item.checked);
+          return checkedSleepQuality.length === 0;
+        }, 
         message: '请选择睡眠质量' 
       },
       { field: 'sleepHours', message: '请输入睡眠时间' },
@@ -656,41 +746,68 @@ Page({
     if (this.data.medication !== '无' && this.data.medicationDetail) {
       formData.push({ label: '用药详情', value: this.data.medicationDetail });
     }
-    formData.push({ label: '过敏史', value: this.data.allergyHistory.join(',') });
-    formData.push({ label: '既往史', value: this.data.medicalHistory.join(',') });
+    
+    // 过敏史
+    formData.push({ 
+      label: '过敏史', 
+      value: this.data.allergyOptions.filter(item => item.checked).map(item => item.value).join(',') 
+    });
+    
+    // 既往史
+    formData.push({ 
+      label: '既往史', 
+      value: this.data.medicalHistoryOptions.filter(item => item.checked).map(item => item.value).join(',') 
+    });
+    
     if (this.data.hospitalizationHistory) {
       formData.push({ label: '住院史', value: this.data.hospitalizationHistory });
     }
 
     // 生活习惯
-    formData.push({ label: '吸烟饮酒史', value: this.data.smokingHistory.join(',') });
-    formData.push({ label: '运动习惯', value: this.data.exerciseHabits.join(',') });
-    formData.push({ label: '饮食习惯', value: this.data.dietaryHabits.join(',') });
-    formData.push({ label: '睡眠质量', value: this.data.sleepQuality.join(',') });
+    formData.push({ 
+      label: '吸烟饮酒史', 
+      value: this.data.smokingOptions.filter(item => item.checked).map(item => item.value).join(',') 
+    });
+    
+    formData.push({ 
+      label: '运动习惯', 
+      value: this.data.exerciseOptions.filter(item => item.checked).map(item => item.value).join(',') 
+    });
+    
+    formData.push({ 
+      label: '饮食习惯', 
+      value: this.data.dietaryOptions.filter(item => item.checked).map(item => item.value).join(',') 
+    });
+    
+    formData.push({ 
+      label: '睡眠质量', 
+      value: this.data.sleepQualityOptions.filter(item => item.checked).map(item => item.value).join(',') 
+    });
+    
     formData.push({ label: '睡眠时间', value: this.data.sleepHours + '小时' });
 
     console.log('提交的表单数据:', formData);
 
     // 提交数据
-    // wx.showLoading({
-    //   title: '保存中',
-    // });
+    wx.showLoading({
+      title: '保存中',
+    });
 
-    // // 这里添加实际的数据提交逻辑
-    // setTimeout(() => {
-    //   wx.hideLoading();
-    //   wx.showToast({
-    //     title: '保存成功',
-    //     icon: 'success',
-    //     duration: 2000,
-    //     success: () => {
-    //       // 返回上一页或跳转到其他页面
-    //       setTimeout(() => {
-    //         wx.navigateBack();
-    //       }, 2000);
-    //     }
-    //   });
-    // }, 1500);
+    // 这里添加实际的数据提交逻辑
+    setTimeout(() => {
+      wx.hideLoading();
+      wx.showToast({
+        title: '保存成功',
+        icon: 'success',
+        duration: 2000,
+        success: () => {
+          // 返回上一页或跳转到其他页面
+          setTimeout(() => {
+            wx.navigateBack();
+          }, 2000);
+        }
+      });
+    }, 1500);
   },
 
   showError: function (message) {
