@@ -15,7 +15,15 @@ Page({
     maritalStatus: '',
     // 医疗保险类型
     insuranceTypes: ['医保'],
-    insuranceOptions: ['医保', '自费', '商保', '其他'],
+    insuranceOptions: [{
+      value: '医保', checked: false
+    }, {
+      value: '自费', checked: false
+    }, {
+      value: '商保', checked: false
+    }, {
+      value: '其他', checked: false
+    }],
     // 健康信息
     height: '',
     weight: '',
@@ -194,20 +202,24 @@ Page({
 
   // 保险类型选择事件
   onInsuranceTypeSelect: function (e) {
-    const type = e.currentTarget.dataset.type;
-    const types = [...this.data.insuranceTypes];
-    const index = types.indexOf(type);
-    console.log('xx 医疗保险', e.currentTarget.dataset, types, index)
-    // 切换当前选项
-    if (index > -1) {
-      types.splice(index, 1);
-    } else {
-      types.push(type);
+    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
+
+    const items = this.data.insuranceOptions
+    const values = e.detail.value
+    for (let i = 0, lenI = items.length; i < lenI; ++i) {
+      items[i].checked = false
+
+      for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
+        if (items[i].value === values[j]) {
+          items[i].checked = true
+          break
+        }
+      }
     }
 
     this.setData({
-      insuranceTypes: types
-    });
+      insuranceOptions: items
+    })
   },
 
   // 身高输入事件
@@ -596,6 +608,15 @@ Page({
       return;
     }
 
+    const data = [];
+
+    data.push({
+      label: '医疗保险类型',
+      value: this.data.insuranceTypes.filter(item => item.checked).join(',')
+    })
+    console.log('data', data)
+
+
     // 准备提交的数据
     const formData = {
       basicInfo: {
@@ -643,19 +664,19 @@ Page({
     console.log('提交的表单数据:', formData);
 
     // 这里添加实际的数据提交逻辑
-    setTimeout(() => {
-      wx.hideLoading();
-      wx.showToast({
-        title: '保存成功',
-        icon: 'success',
-        duration: 2000,
-        success: () => {
-          // 返回上一页或跳转到其他页面
-          setTimeout(() => {
-            wx.navigateBack();
-          }, 2000);
-        }
-      });
-    }, 1500);
+    // setTimeout(() => {
+    //   wx.hideLoading();
+    //   wx.showToast({
+    //     title: '保存成功',
+    //     icon: 'success',
+    //     duration: 2000,
+    //     success: () => {
+    //       // 返回上一页或跳转到其他页面
+    //       setTimeout(() => {
+    //         wx.navigateBack();
+    //       }, 2000);
+    //     }
+    //   });
+    // }, 1500);
   }
 })  
