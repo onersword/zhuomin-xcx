@@ -109,7 +109,6 @@
     <view class="form-item">
       <text class="form-label required">医疗保险类型</text>
       <view class="sub-label">选择适用的医疗保险类型（可多选）</view>
-      <text>{{insuranceTypes[0]}}</text>
       <!-- <view class="checkbox-grid">
         <block wx:for="{{insuranceOptions}}" wx:key="index">
           <view class="checkbox-item {{insuranceTypes.includes(item) ? 'checked' : ''}}" bindtap="onInsuranceTypeSelect" data-type="{{item}}">
@@ -120,9 +119,9 @@
           </view>
         </block>
       </view> -->
-      <checkbox-group bindchange="onInsuranceTypeSelect">
-        <label wx:for="{{insuranceOptions}}" wx:key="index">
-          <checkbox value="{{item.value}}" checked="{{item.checked}}"/>
+      <checkbox-group class="checkbox-grid" bindchange="onInsuranceTypeSelect">
+        <label class="checkbox-item" wx:for="{{insuranceOptions}}" wx:key="index">
+          <checkbox class="checkbox-box" value="{{item.value}}" checked="{{item.checked}}"/>
           <text>{{item.value}}</text>
         </label>
         

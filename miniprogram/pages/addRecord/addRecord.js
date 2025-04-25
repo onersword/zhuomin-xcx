@@ -504,166 +504,160 @@ Page({
     });
   },
 
-  // 表单验证
-  validateForm: function () {
-    const {
-      recordDate, name, gender, nationality, birthDate,
-      occupationIndex, phone, idNumber,
-      emergencyContact, emergencyPhone, maritalStatus,
-      insuranceTypes,
-      exerciseHabits, dietaryHabits, sleepQuality, sleepHours
-    } = this.data;
-
-    if (!recordDate) {
-      this.showError('请选择建档日期');
-      return false;
-    }
-    if (!name) {
-      this.showError('请输入姓名');
-      return false;
-    }
-    if (!gender) {
-      this.showError('请选择性别');
-      return false;
-    }
-    if (!nationality) {
-      this.showError('请输入国籍/籍贯');
-      return false;
-    }
-    if (!birthDate) {
-      this.showError('请选择出生日期');
-      return false;
-    }
-    if (occupationIndex < 0) {
-      this.showError('请选择职业');
-      return false;
-    }
-    if (!phone) {
-      this.showError('请输入手机号码');
-      return false;
-    }
-    if (phone.length !== 11) {
-      this.showError('请输入有效的手机号码');
-      return false;
-    }
-    if (!idNumber) {
-      this.showError('请输入身份证号/护照号');
-      return false;
-    }
-    if (!emergencyContact) {
-      this.showError('请输入紧急联系人/关系');
-      return false;
-    }
-    if (!emergencyPhone) {
-      this.showError('请输入紧急联系人电话');
-      return false;
-    }
-    if (emergencyPhone.length !== 11) {
-      this.showError('请输入有效的紧急联系人电话');
-      return false;
-    }
-    if (!maritalStatus) {
-      this.showError('请选择婚姻状况');
-      return false;
-    }
-
-    if (insuranceTypes.length === 0) {
-      this.showError('请选择至少一种医疗保险类型');
-      return false;
-    }
-
-    if (exerciseHabits.length === 0) {
-      this.showError('请选择至少一项运动习惯');
-      return false;
-    }
-
-    if (dietaryHabits.length === 0) {
-      this.showError('请选择至少一项饮食习惯');
-      return false;
-    }
-
-    if (sleepQuality.length === 0) {
-      this.showError('请选择睡眠质量');
-      return false;
-    }
-
-    if (!sleepHours) {
-      this.showError('请输入睡眠时间');
-      return false;
-    }
-
-    return true;
-  },
-
-  showError: function (message) {
-    wx.showToast({
-      title: message,
-      icon: 'none'
-    });
-  },
-
-  // 提交表单
+  // 表单验证并提交
   submitForm: function () {
-    if (!this.validateForm()) {
-      return;
+    // 基本信息验证
+    const basicValidations = [
+      { field: 'recordDate', message: '请选择建档日期' },
+      { field: 'name', message: '请输入姓名' },
+      { field: 'gender', message: '请选择性别' },
+      { field: 'nationality', message: '请输入国籍/籍贯' },
+      { field: 'birthDate', message: '请选择出生日期' },
+      { 
+        condition: () => this.data.occupationIndex < 0, 
+        message: '请选择职业' 
+      },
+      { field: 'phone', message: '请输入手机号码' },
+      { 
+        condition: () => this.data.phone.length !== 11, 
+        message: '请输入有效的手机号码' 
+      },
+      { field: 'idNumber', message: '请输入身份证号/护照号' },
+      { field: 'emergencyContact', message: '请输入紧急联系人/关系' },
+      { field: 'emergencyPhone', message: '请输入紧急联系人电话' },
+      { 
+        condition: () => this.data.emergencyPhone.length !== 11, 
+        message: '请输入有效的紧急联系人电话' 
+      },
+      { field: 'maritalStatus', message: '请选择婚姻状况' },
+    ];
+
+    // 其他信息验证
+    const otherValidations = [
+      { 
+        condition: () => {
+          const checkedInsurance = this.data.insuranceOptions.filter(item => item.checked);
+          return checkedInsurance.length === 0;
+        }, 
+        message: '请选择至少一种医疗保险类型' 
+      },
+      { 
+        condition: () => this.data.exerciseHabits.length === 0, 
+        message: '请选择至少一项运动习惯' 
+      },
+      { 
+        condition: () => this.data.dietaryHabits.length === 0, 
+        message: '请选择至少一项饮食习惯' 
+      },
+      { 
+        condition: () => this.data.sleepQuality.length === 0, 
+        message: '请选择睡眠质量' 
+      },
+      { field: 'sleepHours', message: '请输入睡眠时间' },
+    ];
+
+    // 执行基本信息验证
+    for (const validation of basicValidations) {
+      if (validation.condition) {
+        if (validation.condition()) {
+          this.showError(validation.message);
+          return;
+        }
+      } else if (!this.data[validation.field]) {
+        this.showError(validation.message);
+        return;
+      }
     }
 
-    const data = [];
-
-    data.push({
-      label: '医疗保险类型',
-      value: this.data.insuranceTypes.filter(item => item.checked).join(',')
-    })
-    console.log('data', data)
-
-
-    // 准备提交的数据
-    const formData = {
-      basicInfo: {
-        recordDate: this.data.recordDate,
-        name: this.data.name,
-        gender: this.data.gender,
-        nationality: this.data.nationality,
-        birthDate: this.data.birthDate,
-        occupation: this.data.occupationIndex >= 0 ? this.data.occupations[this.data.occupationIndex] : '',
-        phone: this.data.phone,
-        address: this.data.address,
-        idNumber: this.data.idNumber,
-        emergencyContact: this.data.emergencyContact,
-        emergencyPhone: this.data.emergencyPhone,
-        maritalStatus: this.data.maritalStatus,
-        insuranceTypes: this.data.insuranceTypes
-      },
-      healthInfo: {
-        height: this.data.height,
-        weight: this.data.weight,
-        waistline: this.data.waistline,
-        bloodType: this.data.bloodTypeIndex >= 0 ? this.data.bloodTypes[this.data.bloodTypeIndex] : '',
-        rhType: this.data.rhTypeIndex >= 0 ? this.data.rhTypes[this.data.rhTypeIndex] : '',
-        pulse: this.data.pulse,
-        medication: this.data.medication,
-        medicationDetail: this.data.medicationDetail,
-        allergyHistory: this.data.allergyHistory,
-        medicalHistory: this.data.medicalHistory,
-        hospitalizationHistory: this.data.hospitalizationHistory
-      },
-      lifeStyle: {
-        smokingHistory: this.data.smokingHistory,
-        exerciseHabits: this.data.exerciseHabits,
-        dietaryHabits: this.data.dietaryHabits,
-        sleepQuality: this.data.sleepQuality,
-        sleepHours: this.data.sleepHours
+    // 执行其他信息验证
+    for (const validation of otherValidations) {
+      if (validation.condition) {
+        if (validation.condition()) {
+          this.showError(validation.message);
+          return;
+        }
+      } else if (!this.data[validation.field]) {
+        this.showError(validation.message);
+        return;
       }
-    };
+    }
 
-    // 提交数据
-    wx.showLoading({
-      title: '保存中',
+    // 验证通过，组织数据
+    const formData = [];
+
+    // 基本信息
+    formData.push({ label: '建档日期', value: this.data.recordDate });
+    formData.push({ label: '姓名', value: this.data.name });
+    formData.push({ label: '性别', value: this.data.gender });
+    formData.push({ label: '国籍/籍贯', value: this.data.nationality });
+    formData.push({ label: '出生日期', value: this.data.birthDate });
+    formData.push({ 
+      label: '职业', 
+      value: this.data.occupationIndex >= 0 ? this.data.occupations[this.data.occupationIndex] : '' 
     });
+    formData.push({ label: '手机号码', value: this.data.phone });
+    formData.push({ label: '地址', value: this.data.address });
+    formData.push({ label: '身份证号/护照号', value: this.data.idNumber });
+    formData.push({ label: '紧急联系人/关系', value: this.data.emergencyContact });
+    formData.push({ label: '紧急联系人电话', value: this.data.emergencyPhone });
+    formData.push({ label: '婚姻状况', value: this.data.maritalStatus });
+
+    // 医疗保险类型
+    formData.push({
+      label: '医疗保险类型',
+      value: this.data.insuranceOptions.filter(item => item.checked).map(item => item.value).join(',')
+    });
+
+    // 健康信息
+    if (this.data.height) {
+      formData.push({ label: '身高', value: this.data.height + 'cm' });
+    }
+    if (this.data.weight) {
+      formData.push({ label: '体重', value: this.data.weight + 'kg' });
+    }
+    if (this.data.waistline) {
+      formData.push({ label: '腰围', value: this.data.waistline + 'cm' });
+    }
+    if (this.data.bloodTypeIndex >= 0) {
+      formData.push({ 
+        label: '血型', 
+        value: this.data.bloodTypes[this.data.bloodTypeIndex] 
+      });
+    }
+    if (this.data.rhTypeIndex >= 0) {
+      formData.push({ 
+        label: 'Rh血型', 
+        value: this.data.rhTypes[this.data.rhTypeIndex] 
+      });
+    }
+    if (this.data.pulse) {
+      formData.push({ label: '脉搏', value: this.data.pulse + '次/分' });
+    }
+    formData.push({ label: '用药情况', value: this.data.medication });
+    if (this.data.medication !== '无' && this.data.medicationDetail) {
+      formData.push({ label: '用药详情', value: this.data.medicationDetail });
+    }
+    formData.push({ label: '过敏史', value: this.data.allergyHistory.join(',') });
+    formData.push({ label: '既往史', value: this.data.medicalHistory.join(',') });
+    if (this.data.hospitalizationHistory) {
+      formData.push({ label: '住院史', value: this.data.hospitalizationHistory });
+    }
+
+    // 生活习惯
+    formData.push({ label: '吸烟饮酒史', value: this.data.smokingHistory.join(',') });
+    formData.push({ label: '运动习惯', value: this.data.exerciseHabits.join(',') });
+    formData.push({ label: '饮食习惯', value: this.data.dietaryHabits.join(',') });
+    formData.push({ label: '睡眠质量', value: this.data.sleepQuality.join(',') });
+    formData.push({ label: '睡眠时间', value: this.data.sleepHours + '小时' });
 
     console.log('提交的表单数据:', formData);
 
-    // 这里添加实际的数据提交逻辑
+    // 提交数据
+    // wx.showLoading({
+    //   title: '保存中',
+    // });
+
+    // // 这里添加实际的数据提交逻辑
     // setTimeout(() => {
     //   wx.hideLoading();
     //   wx.showToast({
@@ -678,5 +672,12 @@ Page({
     //     }
     //   });
     // }, 1500);
+  },
+
+  showError: function (message) {
+    wx.showToast({
+      title: message,
+      icon: 'none'
+    });
   }
 })  
