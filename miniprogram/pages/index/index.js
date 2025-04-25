@@ -81,25 +81,22 @@ Page({
     })
     console.log('xxx index getRecords', data)
     if (data && data.error) {
-      return;
-    }
-    console.log('records', data);
-    if (data.userInfo.status === 0) {
       this.setData({
         needShowLogin: true
       })
       return;
     }
-    if (data.userInfo.status >= 1) {
+    console.log('records', data);
+    if (!data.userInfo.phoneNumber) {
+      this.setData({
+        needShowLogin: true
+      })
+      return;
+    } else {
+
       this.setData({
         needShowLogin: false,
       })
-    }
-    if (data.userInfo.status === 1 && !app.globalData.isRedirectToHealthRecord) {
-      wx.redirectTo({
-        url: '/pages/healthRecord/healthRecord'
-      })
-      app.globalData.isRedirectToHealthRecord = true;
     }
     const healthManageList = { note: null, file: null };
     if (data.latestFile) {
@@ -119,19 +116,6 @@ Page({
       url: '../schedule/schedule'
     })
   },
-
-  getUserProfile(e) {
-    wx.getUserProfile({
-      desc: '展示用户信息',
-      success: (res) => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    })
-  },
-
 
   onShow: function () {
     if (typeof this.getTabBar === 'function' &&

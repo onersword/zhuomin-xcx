@@ -47,7 +47,7 @@ Component({
             method: 'GET',
           })
           console.log('record', record)
-          if (record.userInfo.status >= 1) {
+          if (record.userInfo.phoneNumber) {
             app.setBindPhoneStatus(true);
           }
         }
