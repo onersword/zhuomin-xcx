@@ -16,13 +16,6 @@
     </view>
 
     <view class="form-item">
-      <text class="form-label required">建档日期</text>
-      <picker mode="date" value="{{recordDate}}" bindchange="onDateChange">
-        <view class="form-input date-input">{{recordDate || '2025-04-25'}}</view>
-      </picker>
-    </view>
-
-    <view class="form-item">
       <text class="form-label required">姓名</text>
       <input class="form-input" type="text" placeholder="请输入姓名" value="{{name}}" bindinput="onNameInput" />
     </view>

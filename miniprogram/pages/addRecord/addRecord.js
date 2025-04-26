@@ -2,7 +2,7 @@ Page({
   data: {
     recordDate: '2025-04-25',
     name: '',
-    genderOptions: [{value: '男', checked: false}, {value: '女', checked: false}],
+    genderOptions: [{ value: '男', checked: false }, { value: '女', checked: false }],
     gender: '',
     nationality: '',
     birthDate: '',
@@ -14,7 +14,7 @@ Page({
     emergencyContact: '',
     emergencyPhone: '',
     maritalStatus: '',
-    maritalStatusOptions: [{value: '已婚', checked: false}, {value: '未婚', checked: false}, {value: '离异或丧偶', checked: false}],
+    maritalStatusOptions: [{ value: '已婚', checked: false }, { value: '未婚', checked: false }, { value: '离异或丧偶', checked: false }],
     // 医疗保险类型
     insuranceTypes: ['医保'],
     insuranceOptions: [{
@@ -36,35 +36,36 @@ Page({
     rhTypeIndex: -1,
     pulse: '',
     medication: '无',
-    medicationOptions: [{value: '无', checked: false}, {value: '有', checked: false}],
+    medicationOptions: [{ value: '无', checked: false }, { value: '有', checked: false }],
     medicationDetail: '',
     // 过敏史
     allergyOptions: [{
-      value: '无', checked: false},
-      {
-        value: '头孢菌素', checked: false
-      },
-      {
-        value: '海鲜', checked: false
-      },
-      {
-        value: '坚果', checked: false
-      },
-      {
-        value: '青霉素', checked: false
-      },
-      {
-        value: '磺胺类药物', checked: false
-      },
-      {
-        value: '花粉', checked: false
-      },
-      {
-        value: '牛奶', checked: false
-      },
-      {
-        value: '其他', checked: false
-      }
+      value: '无', checked: false
+    },
+    {
+      value: '头孢菌素', checked: false
+    },
+    {
+      value: '海鲜', checked: false
+    },
+    {
+      value: '坚果', checked: false
+    },
+    {
+      value: '青霉素', checked: false
+    },
+    {
+      value: '磺胺类药物', checked: false
+    },
+    {
+      value: '花粉', checked: false
+    },
+    {
+      value: '牛奶', checked: false
+    },
+    {
+      value: '其他', checked: false
+    }
     ],
     // 既往史
     medicalHistoryOptions: [
@@ -390,16 +391,16 @@ Page({
 
     const items = this.data.medicalHistoryOptions
     const values = e.detail.value
-    
+
     // 处理"无"选项与其他选项的互斥
     const hasNoOption = values.includes('无')
     const hasOtherOptions = values.length > (hasNoOption ? 1 : 0)
-    
+
     if (hasNoOption && hasOtherOptions) {
       // 如果同时选了"无"和其他选项，优先保留其他选项
       values.splice(values.indexOf('无'), 1)
     }
-    
+
     for (let i = 0, lenI = items.length; i < lenI; ++i) {
       items[i].checked = false
 
@@ -429,16 +430,16 @@ Page({
 
     const items = this.data.smokingOptions
     const values = e.detail.value
-    
+
     // 处理"无"选项与其他选项的互斥
     const hasNoOption = values.includes('无')
     const hasOtherOptions = values.length > (hasNoOption ? 1 : 0)
-    
+
     if (hasNoOption && hasOtherOptions) {
       // 如果同时选了"无"和其他选项，优先保留其他选项
       values.splice(values.indexOf('无'), 1)
     }
-    
+
     for (let i = 0, lenI = items.length; i < lenI; ++i) {
       items[i].checked = false
 
@@ -461,16 +462,16 @@ Page({
 
     const items = this.data.exerciseOptions
     const values = e.detail.value
-    
+
     // 处理"基本不运动"选项与其他选项的互斥
     const hasNoExerciseOption = values.includes('基本不运动')
     const hasOtherOptions = values.length > (hasNoExerciseOption ? 1 : 0)
-    
+
     if (hasNoExerciseOption && hasOtherOptions) {
       // 如果同时选了"基本不运动"和其他选项，优先保留其他选项
       values.splice(values.indexOf('基本不运动'), 1)
     }
-    
+
     for (let i = 0, lenI = items.length; i < lenI; ++i) {
       items[i].checked = false
 
@@ -493,7 +494,7 @@ Page({
 
     const items = this.data.dietaryOptions
     const values = e.detail.value
-    
+
     // 处理"三餐规律"和"三餐不规律"的互斥
     if (values.includes('三餐规律') && values.includes('三餐不规律')) {
       // 如果同时选择了互斥选项，优先保留后选择的（保留在数组中靠后的选项）
@@ -503,7 +504,7 @@ Page({
         values.splice(values.indexOf('三餐不规律'), 1)
       }
     }
-    
+
     for (let i = 0, lenI = items.length; i < lenI; ++i) {
       items[i].checked = false
 
@@ -526,12 +527,12 @@ Page({
 
     const items = this.data.sleepQualityOptions
     const values = e.detail.value
-    
+
     // 处理睡眠质量的互斥性
     // 好、一般、差三个选项互斥
     const qualityOptions = ['好', '一般', '差']
     const selectedQualityOptions = qualityOptions.filter(opt => values.includes(opt))
-    
+
     if (selectedQualityOptions.length > 1) {
       // 保留最后选择的质量选项
       const lastQualityOption = selectedQualityOptions[selectedQualityOptions.length - 1]
@@ -541,7 +542,7 @@ Page({
         }
       }
     }
-    
+
     // 处理失眠有/无的互斥
     if (values.includes('失眠有') && values.includes('失眠无')) {
       if (values.indexOf('失眠有') < values.indexOf('失眠无')) {
@@ -550,7 +551,7 @@ Page({
         values.splice(values.indexOf('失眠无'), 1)
       }
     }
-    
+
     // 处理鼾症有/无的互斥
     if (values.includes('鼾症有') && values.includes('鼾症无')) {
       if (values.indexOf('鼾症有') < values.indexOf('鼾症无')) {
@@ -559,7 +560,7 @@ Page({
         values.splice(values.indexOf('鼾症无'), 1)
       }
     }
-    
+
     for (let i = 0, lenI = items.length; i < lenI; ++i) {
       items[i].checked = false
 
@@ -587,80 +588,79 @@ Page({
   submitForm: function () {
     // 基本信息验证
     const basicValidations = [
-      { field: 'recordDate', message: '请选择建档日期' },
       { field: 'name', message: '请输入姓名' },
       { field: 'gender', message: '请选择性别' },
       { field: 'nationality', message: '请输入国籍/籍贯' },
       { field: 'birthDate', message: '请选择出生日期' },
-      { 
-        condition: () => this.data.occupationIndex < 0, 
-        message: '请选择职业' 
+      {
+        condition: () => this.data.occupationIndex < 0,
+        message: '请选择职业'
       },
       { field: 'phone', message: '请输入手机号码' },
-      { 
-        condition: () => this.data.phone.length !== 11, 
-        message: '请输入有效的手机号码' 
+      {
+        condition: () => this.data.phone.length !== 11,
+        message: '请输入有效的手机号码'
       },
       { field: 'idNumber', message: '请输入身份证号/护照号' },
       { field: 'emergencyContact', message: '请输入紧急联系人/关系' },
       { field: 'emergencyPhone', message: '请输入紧急联系人电话' },
-      { 
-        condition: () => this.data.emergencyPhone.length !== 11, 
-        message: '请输入有效的紧急联系人电话' 
+      {
+        condition: () => this.data.emergencyPhone.length !== 11,
+        message: '请输入有效的紧急联系人电话'
       },
       { field: 'maritalStatus', message: '请选择婚姻状况' },
     ];
 
     // 其他信息验证
     const otherValidations = [
-      { 
+      {
         condition: () => {
           const checkedInsurance = this.data.insuranceOptions.filter(item => item.checked);
           return checkedInsurance.length === 0;
-        }, 
-        message: '请选择至少一种医疗保险类型' 
+        },
+        message: '请选择至少一种医疗保险类型'
       },
-      { 
+      {
         condition: () => {
           const checkedAllergy = this.data.allergyOptions.filter(item => item.checked);
           return checkedAllergy.length === 0;
-        }, 
-        message: '请选择至少一项过敏史' 
+        },
+        message: '请选择至少一项过敏史'
       },
-      { 
+      {
         condition: () => {
           const checkedMedicalHistory = this.data.medicalHistoryOptions.filter(item => item.checked);
           return checkedMedicalHistory.length === 0;
-        }, 
-        message: '请选择至少一项既往史' 
+        },
+        message: '请选择至少一项既往史'
       },
-      { 
+      {
         condition: () => {
           const checkedSmoking = this.data.smokingOptions.filter(item => item.checked);
           return checkedSmoking.length === 0;
-        }, 
-        message: '请选择至少一项吸烟饮酒史' 
+        },
+        message: '请选择至少一项吸烟饮酒史'
       },
-      { 
+      {
         condition: () => {
           const checkedExercise = this.data.exerciseOptions.filter(item => item.checked);
           return checkedExercise.length === 0;
-        }, 
-        message: '请选择至少一项运动习惯' 
+        },
+        message: '请选择至少一项运动习惯'
       },
-      { 
+      {
         condition: () => {
           const checkedDietary = this.data.dietaryOptions.filter(item => item.checked);
           return checkedDietary.length === 0;
-        }, 
-        message: '请选择至少一项饮食习惯' 
+        },
+        message: '请选择至少一项饮食习惯'
       },
-      { 
+      {
         condition: () => {
           const checkedSleepQuality = this.data.sleepQualityOptions.filter(item => item.checked);
           return checkedSleepQuality.length === 0;
-        }, 
-        message: '请选择睡眠质量' 
+        },
+        message: '请选择睡眠质量'
       },
       { field: 'sleepHours', message: '请输入睡眠时间' },
     ];
@@ -695,14 +695,20 @@ Page({
     const formData = [];
 
     // 基本信息
-    formData.push({ label: '建档日期', value: this.data.recordDate });
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+    
+    formData.push({ label: '建档日期', value: formattedDate });
     formData.push({ label: '姓名', value: this.data.name });
     formData.push({ label: '性别', value: this.data.gender });
     formData.push({ label: '国籍/籍贯', value: this.data.nationality });
     formData.push({ label: '出生日期', value: this.data.birthDate });
-    formData.push({ 
-      label: '职业', 
-      value: this.data.occupationIndex >= 0 ? this.data.occupations[this.data.occupationIndex] : '' 
+    formData.push({
+      label: '职业',
+      value: this.data.occupationIndex >= 0 ? this.data.occupations[this.data.occupationIndex] : ''
     });
     formData.push({ label: '手机号码', value: this.data.phone });
     formData.push({ label: '地址', value: this.data.address });
@@ -728,15 +734,15 @@ Page({
       formData.push({ label: '腰围', value: this.data.waistline + 'cm' });
     }
     if (this.data.bloodTypeIndex >= 0) {
-      formData.push({ 
-        label: '血型', 
-        value: this.data.bloodTypes[this.data.bloodTypeIndex] 
+      formData.push({
+        label: '血型',
+        value: this.data.bloodTypes[this.data.bloodTypeIndex]
       });
     }
     if (this.data.rhTypeIndex >= 0) {
-      formData.push({ 
-        label: 'Rh血型', 
-        value: this.data.rhTypes[this.data.rhTypeIndex] 
+      formData.push({
+        label: 'Rh血型',
+        value: this.data.rhTypes[this.data.rhTypeIndex]
       });
     }
     if (this.data.pulse) {
@@ -746,44 +752,44 @@ Page({
     if (this.data.medication !== '无' && this.data.medicationDetail) {
       formData.push({ label: '用药详情', value: this.data.medicationDetail });
     }
-    
+
     // 过敏史
-    formData.push({ 
-      label: '过敏史', 
-      value: this.data.allergyOptions.filter(item => item.checked).map(item => item.value).join(',') 
+    formData.push({
+      label: '过敏史',
+      value: this.data.allergyOptions.filter(item => item.checked).map(item => item.value).join(',')
     });
-    
+
     // 既往史
-    formData.push({ 
-      label: '既往史', 
-      value: this.data.medicalHistoryOptions.filter(item => item.checked).map(item => item.value).join(',') 
+    formData.push({
+      label: '既往史',
+      value: this.data.medicalHistoryOptions.filter(item => item.checked).map(item => item.value).join(',')
     });
-    
+
     if (this.data.hospitalizationHistory) {
       formData.push({ label: '住院史', value: this.data.hospitalizationHistory });
     }
 
     // 生活习惯
-    formData.push({ 
-      label: '吸烟饮酒史', 
-      value: this.data.smokingOptions.filter(item => item.checked).map(item => item.value).join(',') 
+    formData.push({
+      label: '吸烟饮酒史',
+      value: this.data.smokingOptions.filter(item => item.checked).map(item => item.value).join(',')
     });
-    
-    formData.push({ 
-      label: '运动习惯', 
-      value: this.data.exerciseOptions.filter(item => item.checked).map(item => item.value).join(',') 
+
+    formData.push({
+      label: '运动习惯',
+      value: this.data.exerciseOptions.filter(item => item.checked).map(item => item.value).join(',')
     });
-    
-    formData.push({ 
-      label: '饮食习惯', 
-      value: this.data.dietaryOptions.filter(item => item.checked).map(item => item.value).join(',') 
+
+    formData.push({
+      label: '饮食习惯',
+      value: this.data.dietaryOptions.filter(item => item.checked).map(item => item.value).join(',')
     });
-    
-    formData.push({ 
-      label: '睡眠质量', 
-      value: this.data.sleepQualityOptions.filter(item => item.checked).map(item => item.value).join(',') 
+
+    formData.push({
+      label: '睡眠质量',
+      value: this.data.sleepQualityOptions.filter(item => item.checked).map(item => item.value).join(',')
     });
-    
+
     formData.push({ label: '睡眠时间', value: this.data.sleepHours + '小时' });
 
     console.log('提交的表单数据:', formData);
