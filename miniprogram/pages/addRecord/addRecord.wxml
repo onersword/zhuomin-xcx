@@ -34,7 +34,7 @@
 
     <view class="form-item">
       <text class="form-label required">国籍/籍贯</text>
-      <input class="form-input" type="text" placeholder="请输入国籍（默认中国）" value="{{nationality}}"
+      <input class="form-input" type="text" placeholder="请输入国籍" value="{{nationality}}"
         bindinput="onNationalityInput" />
     </view>
 
@@ -87,21 +87,6 @@
 
     <view class="form-item">
       <text class="form-label required">婚姻状况</text>
-
-      <!-- <view class="radio-group-vertical">
-        <view class="radio-item" bindtap="onMaritalStatusSelect" data-status="已婚">
-          <view class="radio-circle {{maritalStatus === '已婚' ? 'selected' : ''}}"></view>
-          <text>已婚</text>
-        </view>
-        <view class="radio-item" bindtap="onMaritalStatusSelect" data-status="未婚">
-          <view class="radio-circle {{maritalStatus === '未婚' ? 'selected' : ''}}"></view>
-          <text>未婚</text>
-        </view>
-        <view class="radio-item" bindtap="onMaritalStatusSelect" data-status="离异或丧偶">
-          <view class="radio-circle {{maritalStatus === '离异或丧偶' ? 'selected' : ''}}"></view>
-          <text>离异或丧偶</text>
-        </view>
-      </view> -->
 
       <radio-group class="radio-group" bindchange="onMaritalStatusSelect">
         <label class="radio-item" wx:for="{{maritalStatusOptions}}" wx:key="index" value="{{item.value}}"
@@ -172,7 +157,6 @@
 
     <view class="form-item">
       <text class="form-label">用药情况</text>
-      <view class="sub-label">如不填写，将默认为无用药情况</view>
       <radio-group class="radio-group" bindchange="onMedicationSelect">
         <label class="radio-item" wx:for="{{medicationOptions}}" wx:key="index" value="{{item.value}}"
           checked="{{item.checked}}">
@@ -181,8 +165,8 @@
         </label>
       </radio-group>
 
-      <view class="medication-detail" wx:if="{{medication === '有'}}">
-        <textarea class="form-textarea" placeholder="请描述您的用药情况" value="{{medicationDetail}}"
+      <view class="medication-detail" wx:if="{{medicationOptions[1].checked}}">
+        <textarea class="form-textarea" placeholder="请描述您的用药情况(药物名称；剂量；复用频率)" value="{{medicationDetail}}"
           bindinput="onMedicationDetailInput"></textarea>
       </view>
     </view>

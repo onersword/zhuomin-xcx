@@ -4,7 +4,7 @@ Page({
     name: '',
     genderOptions: [{ value: '男', checked: false }, { value: '女', checked: false }],
     gender: '',
-    nationality: '',
+    nationality: '中国',
     birthDate: '',
     occupations: ['医生', '教师', '工程师', '公务员', '销售', '学生', '自由职业', '其他'],
     occupationIndex: -1,
@@ -126,12 +126,8 @@ Page({
     // 睡眠质量
     sleepQualityOptions: [
       { value: '好', checked: false },
-      { value: '一般', checked: false },
-      { value: '差', checked: false },
-      { value: '失眠无', checked: false },
-      { value: '失眠有', checked: false },
-      { value: '鼾症无', checked: false },
-      { value: '鼾症有', checked: false }
+      { value: '有失眠', checked: false },
+      { value: '有鼾症', checked: false }
     ],
 
     // 睡眠时间
@@ -344,10 +340,17 @@ Page({
 
   // 用药情况选择事件
   onMedicationSelect: function (e) {
-    const status = e.currentTarget.dataset.status;
+    const status = e.detail.value;
+
+    const items = this.data.medicationOptions
+    for (let i = 0, len = items.length; i < len; ++i) {
+      items[i].checked = items[i].value === e.detail.value
+    }
+
+    console.log('用药情况选择事件，携带value值为：', e.detail.value, items)
     this.setData({
-      medication: status
-    });
+      medicationOptions: items
+    })
 
     if (status === '无') {
       this.setData({
@@ -367,9 +370,36 @@ Page({
   onAllergySelect: function (e) {
     console.log('checkbox发生change事件，携带value值为：', e.detail.value)
 
+
+
     const items = this.data.allergyOptions
     const values = e.detail.value
+    const noIndex = e.detail.value.indexOf('无')
+    // 只要选择了无，就取消其他选中
+    if (noIndex === e.detail.value.length - 1) {
+
+      this.setData({
+        allergyOptions: items.map(item => {
+          if (item.value === '无') {
+            item.checked = true;
+            return item;
+          }
+          item.checked = false;
+          return item;
+        })
+      })
+      return;
+    }
+
+      // 无是第一个，需要去掉
+    if (noIndex !== -1 && noIndex < values.length - 1) {
+      values.splice(noIndex, 1);
+    }
+
     for (let i = 0, lenI = items.length; i < lenI; ++i) {
+      if (items[i].value === '无') {
+        items[i].checked = false;
+      }
       items[i].checked = false
 
       for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
@@ -379,6 +409,7 @@ Page({
         }
       }
     }
+
 
     this.setData({
       allergyOptions: items
@@ -387,21 +418,37 @@ Page({
 
   // 既往史选择事件
   onMedicalHistorySelect: function (e) {
-    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
 
+
+    const noLabel = '无';
     const items = this.data.medicalHistoryOptions
     const values = e.detail.value
+    const noIndex = e.detail.value.indexOf(noLabel)
+    // 只要选择了无，就取消其他选中
+    if (noIndex === e.detail.value.length - 1) {
 
-    // 处理"无"选项与其他选项的互斥
-    const hasNoOption = values.includes('无')
-    const hasOtherOptions = values.length > (hasNoOption ? 1 : 0)
+      this.setData({
+        medicalHistoryOptions: items.map(item => {
+          if (item.value === noLabel) {
+            item.checked = true;
+            return item;
+          }
+          item.checked = false;
+          return item;
+        })
+      })
+      return;
+    }
 
-    if (hasNoOption && hasOtherOptions) {
-      // 如果同时选了"无"和其他选项，优先保留其他选项
-      values.splice(values.indexOf('无'), 1)
+      // 无是第一个，需要去掉
+    if (noIndex !== -1 && noIndex < values.length - 1) {
+      values.splice(noIndex, 1);
     }
 
     for (let i = 0, lenI = items.length; i < lenI; ++i) {
+      if (items[i].value === noLabel) {
+        items[i].checked = false;
+      }
       items[i].checked = false
 
       for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
@@ -411,6 +458,7 @@ Page({
         }
       }
     }
+
 
     this.setData({
       medicalHistoryOptions: items
@@ -430,17 +478,32 @@ Page({
 
     const items = this.data.smokingOptions
     const values = e.detail.value
+    const noIndex = e.detail.value.indexOf('无')
+    // 只要选择了无，就取消其他选中
+    if (noIndex === e.detail.value.length - 1) {
 
-    // 处理"无"选项与其他选项的互斥
-    const hasNoOption = values.includes('无')
-    const hasOtherOptions = values.length > (hasNoOption ? 1 : 0)
+      this.setData({
+        smokingOptions: this.data.smokingOptions.map(item => {
+          if (item.value === '无') {
+            item.checked = true;
+            return item;
+          }
+          item.checked = false;
+          return item;
+        })
+      })
+      return;
+    }
 
-    if (hasNoOption && hasOtherOptions) {
-      // 如果同时选了"无"和其他选项，优先保留其他选项
-      values.splice(values.indexOf('无'), 1)
+      // 无是第一个，需要去掉
+    if (noIndex !== -1 && noIndex < values.length - 1) {
+      values.splice(noIndex, 1);
     }
 
     for (let i = 0, lenI = items.length; i < lenI; ++i) {
+      if (items[i].value === '无') {
+        items[i].checked = false;
+      }
       items[i].checked = false
 
       for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
@@ -450,6 +513,7 @@ Page({
         }
       }
     }
+
 
     this.setData({
       smokingOptions: items
@@ -458,21 +522,36 @@ Page({
 
   // 运动习惯选择事件
   onExerciseHabitSelect: function (e) {
-    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
 
+    const noLabel = '基本不运动';
     const items = this.data.exerciseOptions
     const values = e.detail.value
+    const noIndex = e.detail.value.indexOf(noLabel)
+    // 只要选择了无，就取消其他选中
+    if (noIndex === e.detail.value.length - 1) {
 
-    // 处理"基本不运动"选项与其他选项的互斥
-    const hasNoExerciseOption = values.includes('基本不运动')
-    const hasOtherOptions = values.length > (hasNoExerciseOption ? 1 : 0)
+      this.setData({
+        exerciseOptions: items.map(item => {
+          if (item.value === noLabel) {
+            item.checked = true;
+            return item;
+          }
+          item.checked = false;
+          return item;
+        })
+      })
+      return;
+    }
 
-    if (hasNoExerciseOption && hasOtherOptions) {
-      // 如果同时选了"基本不运动"和其他选项，优先保留其他选项
-      values.splice(values.indexOf('基本不运动'), 1)
+      // 无是第一个，需要去掉
+    if (noIndex !== -1 && noIndex < values.length - 1) {
+      values.splice(noIndex, 1);
     }
 
     for (let i = 0, lenI = items.length; i < lenI; ++i) {
+      if (items[i].value === '无') {
+        items[i].checked = false;
+      }
       items[i].checked = false
 
       for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
@@ -482,6 +561,7 @@ Page({
         }
       }
     }
+
 
     this.setData({
       exerciseOptions: items
@@ -523,45 +603,36 @@ Page({
 
   // 睡眠质量选择事件
   onSleepQualitySelect: function (e) {
-    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
-
+   
+    const noLabel = '好';
     const items = this.data.sleepQualityOptions
     const values = e.detail.value
+    const noIndex = e.detail.value.indexOf(noLabel)
+    // 只要选择了无，就取消其他选中
+    if (noIndex === e.detail.value.length - 1) {
 
-    // 处理睡眠质量的互斥性
-    // 好、一般、差三个选项互斥
-    const qualityOptions = ['好', '一般', '差']
-    const selectedQualityOptions = qualityOptions.filter(opt => values.includes(opt))
-
-    if (selectedQualityOptions.length > 1) {
-      // 保留最后选择的质量选项
-      const lastQualityOption = selectedQualityOptions[selectedQualityOptions.length - 1]
-      for (const opt of selectedQualityOptions) {
-        if (opt !== lastQualityOption) {
-          values.splice(values.indexOf(opt), 1)
-        }
-      }
+      this.setData({
+        sleepQualityOptions: items.map(item => {
+          if (item.value === noLabel) {
+            item.checked = true;
+            return item;
+          }
+          item.checked = false;
+          return item;
+        })
+      })
+      return;
     }
 
-    // 处理失眠有/无的互斥
-    if (values.includes('失眠有') && values.includes('失眠无')) {
-      if (values.indexOf('失眠有') < values.indexOf('失眠无')) {
-        values.splice(values.indexOf('失眠有'), 1)
-      } else {
-        values.splice(values.indexOf('失眠无'), 1)
-      }
-    }
-
-    // 处理鼾症有/无的互斥
-    if (values.includes('鼾症有') && values.includes('鼾症无')) {
-      if (values.indexOf('鼾症有') < values.indexOf('鼾症无')) {
-        values.splice(values.indexOf('鼾症有'), 1)
-      } else {
-        values.splice(values.indexOf('鼾症无'), 1)
-      }
+      // 无是第一个，需要去掉
+    if (noIndex !== -1 && noIndex < values.length - 1) {
+      values.splice(noIndex, 1);
     }
 
     for (let i = 0, lenI = items.length; i < lenI; ++i) {
+      if (items[i].value === noLabel) {
+        items[i].checked = false;
+      }
       items[i].checked = false
 
       for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
@@ -571,6 +642,7 @@ Page({
         }
       }
     }
+
 
     this.setData({
       sleepQualityOptions: items
@@ -589,7 +661,12 @@ Page({
     // 基本信息验证
     const basicValidations = [
       { field: 'name', message: '请输入姓名' },
-      { field: 'gender', message: '请选择性别' },
+      {
+        condition: () => {
+          const checkValue = this.data.genderOptions.filter(item => item.checked);
+          return !checkValue.length;
+        }, message: '请选择性别'
+      },
       { field: 'nationality', message: '请输入国籍/籍贯' },
       { field: 'birthDate', message: '请选择出生日期' },
       {
@@ -608,29 +685,33 @@ Page({
         condition: () => this.data.emergencyPhone.length !== 11,
         message: '请输入有效的紧急联系人电话'
       },
-      { field: 'maritalStatus', message: '请选择婚姻状况' },
+      {
+        condition: () => {
+          const checkValue = this.data.maritalStatusOptions.filter(item => item.checked);
+          return !checkValue.length;
+        }, message: '请选择婚姻状况'
+      },
+      {
+        condition: () => {
+          const checkValue = this.data.insuranceOptions.filter(item => item.checked);
+          return !checkValue.length;
+        }, message: '请选择医疗保险类型'
+      },
     ];
 
     // 其他信息验证
     const otherValidations = [
       {
         condition: () => {
-          const checkedInsurance = this.data.insuranceOptions.filter(item => item.checked);
-          return checkedInsurance.length === 0;
-        },
-        message: '请选择至少一种医疗保险类型'
-      },
-      {
-        condition: () => {
-          const checkedAllergy = this.data.allergyOptions.filter(item => item.checked);
-          return checkedAllergy.length === 0;
+          const checkValue = this.data.allergyOptions.filter(item => item.checked);
+          return !checkValue.length;
         },
         message: '请选择至少一项过敏史'
       },
       {
         condition: () => {
-          const checkedMedicalHistory = this.data.medicalHistoryOptions.filter(item => item.checked);
-          return checkedMedicalHistory.length === 0;
+          const checkValue = this.data.medicalHistoryOptions.filter(item => item.checked);
+          return !checkValue.length;
         },
         message: '请选择至少一项既往史'
       },
@@ -643,29 +724,29 @@ Page({
       },
       {
         condition: () => {
-          const checkedExercise = this.data.exerciseOptions.filter(item => item.checked);
-          return checkedExercise.length === 0;
+          const checkValue = this.data.exerciseOptions.filter(item => item.checked);
+          return !checkValue.length;
         },
         message: '请选择至少一项运动习惯'
       },
       {
         condition: () => {
-          const checkedDietary = this.data.dietaryOptions.filter(item => item.checked);
-          return checkedDietary.length === 0;
+          const checkValue = this.data.dietaryOptions.filter(item => item.checked);
+          return !checkValue.length;
         },
         message: '请选择至少一项饮食习惯'
       },
       {
         condition: () => {
-          const checkedSleepQuality = this.data.sleepQualityOptions.filter(item => item.checked);
-          return checkedSleepQuality.length === 0;
+          const checkValue = this.data.sleepQualityOptions.filter(item => item.checked);
+          return !checkValue.length;
         },
         message: '请选择睡眠质量'
       },
       { field: 'sleepHours', message: '请输入睡眠时间' },
     ];
 
-    // 执行基本信息验证
+    // // 执行基本信息验证
     for (const validation of basicValidations) {
       if (validation.condition) {
         if (validation.condition()) {
@@ -700,10 +781,11 @@ Page({
     const month = String(now.getMonth() + 1).padStart(2, '0');
     const day = String(now.getDate()).padStart(2, '0');
     const formattedDate = `${year}-${month}-${day}`;
-    
+
+    //基本信息
     formData.push({ label: '建档日期', value: formattedDate });
     formData.push({ label: '姓名', value: this.data.name });
-    formData.push({ label: '性别', value: this.data.gender });
+    formData.push({ label: '性别', value: this.data.genderOptions.find(item => item.checked).value });
     formData.push({ label: '国籍/籍贯', value: this.data.nationality });
     formData.push({ label: '出生日期', value: this.data.birthDate });
     formData.push({
@@ -715,13 +797,14 @@ Page({
     formData.push({ label: '身份证号/护照号', value: this.data.idNumber });
     formData.push({ label: '紧急联系人/关系', value: this.data.emergencyContact });
     formData.push({ label: '紧急联系人电话', value: this.data.emergencyPhone });
-    formData.push({ label: '婚姻状况', value: this.data.maritalStatus });
+    formData.push({ label: '婚姻状况', value: this.data.maritalStatusOptions.find(item => item.checked).value });
 
     // 医疗保险类型
     formData.push({
       label: '医疗保险类型',
       value: this.data.insuranceOptions.filter(item => item.checked).map(item => item.value).join(',')
     });
+    // 基本信息结束
 
     // 健康信息
     if (this.data.height) {
@@ -748,7 +831,16 @@ Page({
     if (this.data.pulse) {
       formData.push({ label: '脉搏', value: this.data.pulse + '次/分' });
     }
-    formData.push({ label: '用药情况', value: this.data.medication });
+    const medication = this.data.medicationOptions.find(item => item.checked);
+    const medicationObj = {
+      label: '用药情况',
+      value: '无',
+    }
+    if (medication.value === '有') {
+      medicationObj.value = this.data.medicationDetail || '无';
+    }
+    formData.push(medicationObj);
+    formData.push({ label: '用药情况', value: this.data.medicationOptions });
     if (this.data.medication !== '无' && this.data.medicationDetail) {
       formData.push({ label: '用药详情', value: this.data.medicationDetail });
     }
@@ -794,26 +886,26 @@ Page({
 
     console.log('提交的表单数据:', formData);
 
-    // 提交数据
-    wx.showLoading({
-      title: '保存中',
-    });
+    // // 提交数据
+    // wx.showLoading({
+    //   title: '保存中',
+    // });
 
-    // 这里添加实际的数据提交逻辑
-    setTimeout(() => {
-      wx.hideLoading();
-      wx.showToast({
-        title: '保存成功',
-        icon: 'success',
-        duration: 2000,
-        success: () => {
-          // 返回上一页或跳转到其他页面
-          setTimeout(() => {
-            wx.navigateBack();
-          }, 2000);
-        }
-      });
-    }, 1500);
+    // // 这里添加实际的数据提交逻辑
+    // setTimeout(() => {
+    //   wx.hideLoading();
+    //   wx.showToast({
+    //     title: '保存成功',
+    //     icon: 'success',
+    //     duration: 2000,
+    //     success: () => {
+    //       // 返回上一页或跳转到其他页面
+    //       setTimeout(() => {
+    //         wx.navigateBack();
+    //       }, 2000);
+    //     }
+    //   });
+    // }, 1500);
   },
 
   showError: function (message) {
