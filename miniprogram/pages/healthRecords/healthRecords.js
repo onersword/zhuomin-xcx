@@ -1,15 +1,9 @@
 const { request } = require('../../utils/request')
 Page({
   data: {
-    hasRecords: false,
+    status: 0,
     recordPDFUrl: '',
-    recordInfo: [{
-      label: '档案编号',
-      value: 'ZMCX2025001'
-    }, {
-      label: '建档日期',
-      value: '2025-01-02'
-    }],
+    recordInfo: [],
     loading: true
   },
 
@@ -45,14 +39,14 @@ Page({
 
       }
 
-      // this.setData({
-      //   hasRecords: true,
-      //   recordInfo: list,
-      //   recordPDFUrl: data.pdfUrl
-      // })
+      this.setData({
+        status: data.userInfo.status,
+        recordInfo: list,
+        recordPDFUrl: data.pdfUrl
+      })
     } else {
       this.setData({
-        hasRecords: false,
+        status: data.userInfo.status,
       })
     }
     this.setData({

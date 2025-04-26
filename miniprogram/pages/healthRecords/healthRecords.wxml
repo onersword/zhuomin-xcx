@@ -4,7 +4,7 @@
     <view class="header-left" hover-class="none" hover-stop-propagation="false">
       健康档案
     </view>
-    <view class="header-right" hover-class="none" hover-stop-propagation="false" wx:if="{{hasRecords}}" bindtap="downloadPDF">
+    <view class="header-right" hover-class="none" hover-stop-propagation="false" wx:if="{{status === 2}}" bindtap="downloadPDF">
       <image src="/images/download.svg"></image>
       下载PDF
     </view>
@@ -14,12 +14,16 @@
 
 <scroll-view scroll-y class="scroll-area" enhanced="true" show-scrollbar="false">
   <view class="container">
-    <view class="empty-state" wx:if="{{!hasRecords}}">
+    <view class="empty-state" wx:if="{{status === 0}}">
       <text class="empty-text">您还未录入健康档案</text>
       <button class="create-btn" bindtap="createRecord">创建健康档案</button>
     </view>
 
-    <view class="card" wx:else>
+    <view class="empty-state" wx:if="{{status === 1}}">
+      <text class="empty-text">您的健康档案正在审核中</text>
+    </view>
+
+    <view class="card" wx:if="{{status === 2}}">
       <view class="info-item" wx:for="{{recordInfo}}" wx:key="index">
         <text class="label">{{item.label}}</text>
         <text class="value">{{item.value}}</text>

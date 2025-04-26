@@ -1,5 +1,7 @@
+const { request } = require('../../utils/request')
 Page({
   data: {
+    phoneNumber: '',
     recordDate: '2025-04-25',
     name: '',
     genderOptions: [{ value: '男', checked: false }, { value: '女', checked: false }],
@@ -136,6 +138,20 @@ Page({
 
   onLoad: function (options) {
     // 页面加载时的初始化
+    this.getRecordInfo()
+  },
+
+  getRecordInfo: async function () {
+    const data = await request({
+      path: '/api/records',
+      method: 'GET'
+    })
+    console.log('获取健康档案信息:', data)
+    if (data.userInfo.phoneNumber) {
+      this.setData({
+        phoneNumber: data.userInfo.phoneNumber
+      })
+    }
   },
 
   // 日期选择器变化事件
@@ -657,7 +673,7 @@ Page({
   },
 
   // 表单验证并提交
-  submitForm: function () {
+  submitForm: async function () {
     // 基本信息验证
     const basicValidations = [
       { field: 'name', message: '请输入姓名' },
@@ -673,11 +689,7 @@ Page({
         condition: () => this.data.occupationIndex < 0,
         message: '请选择职业'
       },
-      { field: 'phone', message: '请输入手机号码' },
-      {
-        condition: () => this.data.phone.length !== 11,
-        message: '请输入有效的手机号码'
-      },
+ 
       { field: 'idNumber', message: '请输入身份证号/护照号' },
       { field: 'emergencyContact', message: '请输入紧急联系人/关系' },
       { field: 'emergencyPhone', message: '请输入紧急联系人电话' },
@@ -792,7 +804,7 @@ Page({
       label: '职业',
       value: this.data.occupationIndex >= 0 ? this.data.occupations[this.data.occupationIndex] : ''
     });
-    formData.push({ label: '手机号码', value: this.data.phone });
+    formData.push({ label: '手机号码', value: this.data.phoneNumber });
     formData.push({ label: '地址', value: this.data.address });
     formData.push({ label: '身份证号/护照号', value: this.data.idNumber });
     formData.push({ label: '紧急联系人/关系', value: this.data.emergencyContact });
@@ -840,11 +852,6 @@ Page({
       medicationObj.value = this.data.medicationDetail || '无';
     }
     formData.push(medicationObj);
-    formData.push({ label: '用药情况', value: this.data.medicationOptions });
-    if (this.data.medication !== '无' && this.data.medicationDetail) {
-      formData.push({ label: '用药详情', value: this.data.medicationDetail });
-    }
-
     // 过敏史
     formData.push({
       label: '过敏史',
@@ -857,9 +864,7 @@ Page({
       value: this.data.medicalHistoryOptions.filter(item => item.checked).map(item => item.value).join(',')
     });
 
-    if (this.data.hospitalizationHistory) {
-      formData.push({ label: '住院史', value: this.data.hospitalizationHistory });
-    }
+    formData.push({ label: '住院史', value: this.data.hospitalizationHistory || '无' });
 
     // 生活习惯
     formData.push({
@@ -886,11 +891,42 @@ Page({
 
     console.log('提交的表单数据:', formData);
 
-    // // 提交数据
-    // wx.showLoading({
-    //   title: '保存中',
-    // });
+    // 提交数据
+    wx.showLoading({
+      title: '保存中',
+    });
 
+    const data = await request({
+      path: '/api/records',
+      method: 'POST',
+      data: {
+        forms: formData,
+        name: this.data.name,
+        phoneNumber: this.data.phoneNumber,
+        idCard: this.data.idNumber,
+      }
+    })
+    console.log('提交数据返回结果:', data)
+
+    if (data.status === 200) {
+      wx.hideLoading();
+      wx.showToast({
+        title: '保存成功',
+        icon: 'success',
+        duration: 2000,
+        success: () => {
+          setTimeout(() => {
+            wx.navigateBack();
+          }, 2000);
+        }
+      });
+    } else {
+      wx.hideLoading();
+      wx.showToast({
+        title: '保存失败',
+        icon: 'none'
+      });
+    }
     // // 这里添加实际的数据提交逻辑
     // setTimeout(() => {
     //   wx.hideLoading();
