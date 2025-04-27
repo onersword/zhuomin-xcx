@@ -1,12 +1,10 @@
 <view class="header-area" hover-class="none" hover-stop-propagation="false">
   <view class="header-container">
-    <view class="header-left" hover-class="none" hover-stop-propagation="false">
-      健康档案采集
-    </view>
+    <view class="header-title">卓敏医生集团健康档案采集</view>
+    <view class="header-subtitle">请填写您的个人健康信息，帮助我们提供更好的医疗服务</view>
   </view>
 </view>
 <view class="add-record-container">
-  <view class="form-description">请填写您的个人健康信息，帮助我们提供更好的医疗服务</view>
 
   <view class="form-section">
     <view class="section-title">
@@ -52,7 +50,7 @@
         <view class="form-input picker-input">{{occupationIndex >= 0 ? occupations[occupationIndex] : '请选择职业'}}</view>
       </picker>
     </view>
-<!-- 
+    <!-- 
     <view class="form-item">
       <text class="form-label required">手机号码</text>
       <input class="form-input" type="number" maxlength="11" placeholder="请输入手机号码" value="{{phone}}"
