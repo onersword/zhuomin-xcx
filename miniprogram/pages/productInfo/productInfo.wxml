@@ -1,52 +1,22 @@
-<view class="product-info" wx:if="{{type === 'normal'}}">
-  <view class="title">{{productInfo[currentId].title}}</view>
+<data-loading text="加载中..." wx:if="{{loading}}" />
 
+
+<view class="product-info">
+  <view class="title">{{productInfo.name}}</view>
   <view class="service-section">
-    <view class="section-title">服务大类:</view>
-
-    <block wx:for="{{productInfo[currentId].services}}" wx:key="title">
-      <view class="service-item">
-        <view class="item-title-container">
-          <view class="item-title">{{item.title}}</view>
-          <view class="frequency" wx:if="{{item.frequency}}">{{item.frequency}}</view>
-        </view>
-
-        <block wx:for="{{item.subServices}}" wx:for-item="subItem" wx:key="title">
-          <view class="sub-item">
-            <view class="sub-item-title-container" wx:if="{{subItem.title}}">
-              <view class="sub-item-title">{{subItem.title}}</view>
-              <view class="frequency" wx:if="{{subItem.frequency}}">{{subItem.frequency}}</view>
-            </view>
-            <view class="frequency" wx:if="{{!subItem.title && subItem.frequency}}">{{subItem.frequency}}</view>
-            <view class="description" wx:if="{{subItem.description}}">{{subItem.description}}</view>
-            <block wx:if="{{subItem.descriptions}}">
-              <view class="description" wx:for="{{subItem.descriptions}}" wx:for-item="desc" wx:key="*this">
-                {{desc}}
-              </view>
-            </block>
-          </view>
-        </block>
-      </view>
-    </block>
-  </view>
-</view>
-
-<view class="product-info" wx:if="{{type === 'other'}}">
-  <view class="title">{{product.name}}</view>
-  <view class="service-section">
-    <view class="section-title">详细内容:</view>
-    <view class="container">
-      {{product.description}}
+    <view wx:for="{{productInfo.images}}" wx:key="index" class="image-item">
+      <image src="{{item}}" mode="widthFix" />
     </view>
+
   </view>
 </view>
 
 <view class="price-section" wx:if="{{!hasBuyed}}">
   <view class="total-price">
     <text>价格：</text>
-    <text class="price">{{type === 'other' ? product.formatPrice : productInfo[currentId].price}}</text>
+    <text class="price">{{productInfo.formatPrice}}</text>
     <text class="price-split">｜</text>
-    <text class="duration">{{type === 'other' ? '1' + product.unit : productInfo[currentId].duration}}</text>
+    <text class="duration">{{productInfo.unit}}</text>
   </view>
-  <button class="contact-btn" bindtap="handleContact" data-id="{{productInfo[currentId].id}}">联系客服购买</button>
+  <button class="contact-btn" bindtap="handleContact" data-id="{{productInfo.id}}">联系客服购买</button>
 </view>

@@ -1,4 +1,7 @@
 {
+  "usingComponents": {
+    "data-loading": "/components/dataLoading/loading" 
+   },
   "navigationBarTitleText": "产品详情",
   "navigationBarTextStyle": "black",
   "navigationBarBackgroundColor": "#fff"
