@@ -7,7 +7,8 @@ Page({
     ],
     otherProducts: [
 
-    ]
+    ],
+    loading: true
   },
 
   // 添加价格格式化方法
@@ -23,6 +24,9 @@ Page({
   },
 
   async getProducts() {
+    this.setData({
+      loading: true
+    })
     const data = await request({
       path: '/api/products',
       method: 'GET',
@@ -42,8 +46,9 @@ Page({
       }
 
     }
-
+    
     this.setData({
+      loading: false,
       products: p.sort((a, b) => a.type - b.type),
       otherProducts: op
     })

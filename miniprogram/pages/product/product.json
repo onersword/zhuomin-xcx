@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "navigation-bar": "/components/navigation-bar/navigation-bar",
-    "product-card": "/components/productCard/productCard"
+    "product-card": "/components/productCard/productCard",
+    "data-loading": "/components/dataLoading/loading"
   },
   "navigationStyle": "custom"
 } 

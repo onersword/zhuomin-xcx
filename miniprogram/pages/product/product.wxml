@@ -1,3 +1,4 @@
+<data-loading text="加载中..." wx:if="{{loading}}" />
 <view class="bg"></view>
 <view class="container">
   <view class="header-area">
