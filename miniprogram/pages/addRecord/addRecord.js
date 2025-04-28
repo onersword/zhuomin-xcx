@@ -215,47 +215,6 @@ Page({
     });
   },
 
-  // 获取位置信息
-  getLocation: function () {
-    const that = this;
-    wx.getSetting({
-      success(res) {
-        if (!res.authSetting['scope.userLocation']) {
-          wx.authorize({
-            scope: 'scope.userLocation',
-            success() {
-              that.chooseLocation();
-            },
-            fail() {
-              wx.showToast({
-                title: '请授权位置信息',
-                icon: 'none'
-              });
-            }
-          });
-        } else {
-          that.chooseLocation();
-        }
-      }
-    });
-  },
-
-  chooseLocation: function () {
-    const that = this;
-    wx.chooseLocation({
-      success: function (res) {
-        that.setData({
-          address: res.address
-        });
-      },
-      fail: function () {
-        wx.showToast({
-          title: '获取位置失败',
-          icon: 'none'
-        });
-      }
-    });
-  },
 
   // 身份证号/护照号输入事件
   onIdNumberInput: function (e) {
