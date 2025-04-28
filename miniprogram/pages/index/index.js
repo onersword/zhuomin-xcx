@@ -137,30 +137,25 @@ Page({
       return;
     }
     if (Array.isArray(data)) {
-      // Filter out expired reminders first
       const now = new Date();
-      const validReminders = data.filter(reminder => {
-        return new Date(reminder.remindAt) >= now;
-      });
+      const currentWeekStart = new Date(now);
+      currentWeekStart.setDate(now.getDate() - now.getDay()); // Set to start of current week (Sunday)
+      const nextWeekStart = new Date(currentWeekStart);
+      nextWeekStart.setDate(currentWeekStart.getDate() + 7); // Set to start of next week
 
-      // Filter reminders for today
-      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-      const tomorrow = new Date(today);
-      tomorrow.setDate(tomorrow.getDate() + 1);
-
-      console.log('xxx index getReminders', validReminders)
-      const todayReminders = validReminders.filter(reminder => {
+      // Filter out expired reminders and get current week's reminders
+      const currentWeekReminders = data.filter(reminder => {
         const reminderTime = new Date(reminder.remindAt);
-        return reminderTime >= today && reminderTime < tomorrow;
+        return reminderTime >= now && // Not expired
+               reminderTime >= currentWeekStart && // After start of current week
+               reminderTime < nextWeekStart; // Before start of next week
       });
-      console.log('xxx index todayReminders', todayReminders)
 
+      console.log('xxx index currentWeekReminders', currentWeekReminders)
       this.setData({
-        reminders: todayReminders
+        reminders: currentWeekReminders
       });
-      console.log('today reminders', todayReminders);
     }
-
   },
 
   async getProducts() {
