@@ -5,6 +5,7 @@ Component({
       type: Object,
       value: {},
       observer: function (newVal) {
+        console.log('newVal', newVal)
         if (newVal) {
           // 将时间戳转换为格式化的时间字符串
           const formattedPrice = formatPrice(newVal.price)

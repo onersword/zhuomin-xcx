@@ -7,7 +7,7 @@
         <text class="price-label">价格：</text>
         <text class="price">{{product.price}}</text>
         <text class="price-split">｜</text>
-        <text class="duration">1{{product.unit}}</text>
+        <text class="duration">{{product.unit}}</text>
       </view>
     </view>
   </view>
