@@ -30,18 +30,10 @@ Page({
     })
     console.log('userRecords', data)
     if (data.userInfo.status === 2) {
-      const list = [];
-      for (const key of Object.keys(data.records)) {
-        list.push({
-          label: key,
-          value: data.records[key]
-        })
-
-      }
 
       this.setData({
         status: data.userInfo.status,
-        recordInfo: list,
+        recordInfo:data.records,
         recordPDFUrl: data.pdfUrl
       })
     } else {
