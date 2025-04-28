@@ -908,7 +908,6 @@ Page({
     })
     console.log('提交数据返回结果:', data)
 
-    if (data.status === 200) {
       wx.hideLoading();
       wx.showToast({
         title: '保存成功',
@@ -920,13 +919,11 @@ Page({
           }, 2000);
         }
       });
-    } else {
-      wx.hideLoading();
-      wx.showToast({
-        title: '保存失败',
-        icon: 'none'
-      });
-    }
+      // wx.hideLoading();
+      // wx.showToast({
+      //   title: '保存失败',
+      //   icon: 'none'
+      // });
     // // 这里添加实际的数据提交逻辑
     // setTimeout(() => {
     //   wx.hideLoading();
