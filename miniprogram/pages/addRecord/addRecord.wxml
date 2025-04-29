@@ -107,6 +107,11 @@
 
 
       </checkbox-group>
+
+      <view class="insurance-detail" wx:if="{{showInsuranceDetail}}">
+        <textarea class="form-textarea" placeholder="请描述您的医疗保险类型" value="{{insuranceDetail}}"
+          bindinput="onInsuranceDetailInput"></textarea>
+      </view>
     </view>
   </view>
 
@@ -190,6 +195,12 @@
 
 
       </checkbox-group>
+
+
+      <view class="allergy-detail" wx:if="{{showAllergyDetail}}">
+        <textarea class="form-textarea" placeholder="请描述您的过敏史" value="{{allergyDetail}}"
+          bindinput="onAllergyDetailInput"></textarea>
+      </view>
     </view>
   </view>
 
@@ -211,10 +222,28 @@
           <text>{{item.value}}</text>
         </label>
       </checkbox-group>
+      <view class="medical-history-detail" wx:if="{{showMedicalHistoryDetail}}">
+        <textarea class="form-textarea" placeholder="请描述其他慢性疾病" value="{{medicalHistoryDetail}}"
+          bindinput="onMedicalHistoryDetailInput"></textarea>
+      </view>
     </view>
-
     <view class="form-item">
-      <text class="form-label required">住院史</text>
+      <text class="form-label required">家族性疾病史（直系亲属）</text>
+      <view class="sub-label">选择家族性疾病史（可多选）</view>
+
+      <checkbox-group class="checkbox-grid" bindchange="onFamilyMedicalHistorySelect">
+        <label class="checkbox-item" wx:for="{{familyMedicalHistoryOptions}}" wx:key="index">
+          <checkbox class="checkbox-box" value="{{item.value}}" checked="{{item.checked}}" />
+          <text>{{item.value}}</text>
+        </label>
+      </checkbox-group>
+      <view class="medical-history-detail" wx:if="{{showFamilyMedicalHistoryDetail}}">
+        <textarea class="form-textarea" placeholder="请描述其他家族性疾病史" value="{{familyMedicalHistoryDetail}}"
+          bindinput="onFamilyMedicalHistoryDetailInput"></textarea>
+      </view>
+    </view>
+    <view class="form-item">
+      <text class="form-label required">手术史</text>
       <textarea class="form-textarea" placeholder="无" value="{{hospitalizationHistory}}"
         bindinput="onHospitalizationHistoryInput"></textarea>
     </view>
@@ -250,6 +279,10 @@
           <text>{{item.value}}</text>
         </label>
       </checkbox-group>
+      <view class="exercise-habit-detail" wx:if="{{showExerciseHabitDetail}}">
+        <textarea class="form-textarea" placeholder="请描述您的运动习惯" value="{{exerciseHabitDetail}}"
+          bindinput="onExerciseHabitDetailInput"></textarea>
+      </view>
     </view>
 
     <view class="form-item">
@@ -262,6 +295,10 @@
           <text>{{item.value}}</text>
         </label>
       </checkbox-group>
+      <view class="dietary-habit-detail" wx:if="{{showDietaryHabitDetail}}">
+        <textarea class="form-textarea" placeholder="请描述您的饮食习惯" value="{{dietaryHabitDetail}}"
+          bindinput="onDietaryHabitDetailInput"></textarea>
+      </view>
     </view>
   </view>
 

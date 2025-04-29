@@ -8,7 +8,8 @@ Page({
     gender: '',
     nationality: '中国',
     birthDate: '',
-    occupations: ['医生', '教师', '工程师', '公务员', '销售', '学生', '自由职业', '其他'],
+    occupations: ["退休", "商人", "企业单位工作人员", "公务员", "事业单位工作人员", "技术人员", "军人", "学生", "其他"],
+
     occupationIndex: -1,
     phone: '',
     address: '',
@@ -18,7 +19,8 @@ Page({
     maritalStatus: '',
     maritalStatusOptions: [{ value: '已婚', checked: false }, { value: '未婚', checked: false }, { value: '离异或丧偶', checked: false }],
     // 医疗保险类型
-    insuranceTypes: ['医保'],
+    showInsuranceDetail: false,
+    insuranceDetail: '',
     insuranceOptions: [{
       value: '医保', checked: false
     }, {
@@ -69,6 +71,8 @@ Page({
       value: '其他', checked: false
     }
     ],
+    showAllergyDetail: false,
+    allergyDetail: '',
     // 既往史
     medicalHistoryOptions: [
       { value: '无', checked: false },
@@ -92,7 +96,24 @@ Page({
       { value: '肝脾肿', checked: false },
       { value: '其他', checked: false }
     ],
-    // 住院史
+    showMedicalHistoryDetail: false,
+    medicalHistoryDetail: '',
+    familyMedicalHistoryOptions:
+      [
+        { value: '无', checked: false },
+        { value: '高血压', checked: false },
+        { value: '糖尿病', checked: false },
+        { value: '冠心病', checked: false },
+        { value: '高血脂', checked: false },
+        { value: '恶性肿瘤', checked: false },
+        { value: '脑卒中', checked: false },
+        { value: '慢性阻塞性肺病', checked: false },
+        { value: '乙肝', checked: false },
+        { value: '其他', checked: false }
+      ],
+    showFamilyMedicalHistoryDetail: false,
+    familyMedicalHistoryDetail: '',
+    // 手术史
     hospitalizationHistory: '',
     // 生活习惯
     smokingOptions: [
@@ -111,7 +132,8 @@ Page({
       { value: '登山', checked: false },
       { value: '其他', checked: false }
     ],
-
+    showExerciseHabitDetail: false,
+    exerciseHabitDetail: '',
     // 饮食习惯
     dietaryOptions: [
       { value: '三餐规律', checked: false },
@@ -124,6 +146,8 @@ Page({
       { value: '三餐不规律', checked: false },
       { value: '其他', checked: false }
     ],
+    showDietaryHabitDetail: false,
+    dietaryHabitDetail: '',
 
     // 睡眠质量
     sleepQualityOptions: [
@@ -255,6 +279,16 @@ Page({
 
     const items = this.data.insuranceOptions
     const values = e.detail.value
+    if (values.includes('其他')) {
+      this.setData({
+        showInsuranceDetail: true
+      })
+    } else {
+      this.setData({
+        showInsuranceDetail: false,
+        insuranceDetail: ''
+      })
+    }
     for (let i = 0, lenI = items.length; i < lenI; ++i) {
       items[i].checked = false
 
@@ -268,6 +302,12 @@ Page({
 
     this.setData({
       insuranceOptions: items
+    })
+  },
+  
+  onInsuranceDetailInput: function(e) {
+    this.setData({
+      insuranceDetail: e.detail.value
     })
   },
 
@@ -334,6 +374,72 @@ Page({
     }
   },
 
+  checkOtherShowDetail: (data) => {
+    return data.filter(item => item.value === '其他' && item.checked).length > 0
+  },
+
+  onFamilyMedicalHistoryDetailInput: function(e) {
+    this.setData({
+      familyMedicalHistoryDetail: e.detail.value
+    })
+  },
+  onFamilyMedicalHistorySelect:function (e) {
+    const items = this.data.familyMedicalHistoryOptions;
+
+    const noLabel = '无';
+    const values = e.detail.value
+    const noIndex = e.detail.value.indexOf(noLabel)
+    if (values.includes('其他')) {
+      this.setData({
+        showFamilyMedicalHistoryDetail: true
+      })
+    } else {
+      this.setData({
+        showFamilyMedicalHistoryDetail: false,
+        familyMedicalHistoryDetail: ''
+      })
+    }
+    // 只要选择了无，就取消其他选中
+    if (noIndex === e.detail.value.length - 1) {
+
+      this.setData({
+        familyMedicalHistoryOptions: items.map(item => {
+          if (item.value === noLabel) {
+            item.checked = true;
+            return item;
+          }
+          item.checked = false;
+          return item;
+        })
+      })
+      return;
+    }
+
+    // 无是第一个，需要去掉
+    if (noIndex !== -1 && noIndex < values.length - 1) {
+      values.splice(noIndex, 1);
+    }
+
+    for (let i = 0, lenI = items.length; i < lenI; ++i) {
+      if (items[i].value === noLabel) {
+        items[i].checked = false;
+      }
+      items[i].checked = false
+
+      for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
+        if (items[i].value === values[j]) {
+          items[i].checked = true
+          break
+        }
+      }
+    }
+
+
+    this.setData({
+      familyMedicalHistoryOptions: items
+    })
+  },
+
   // 用药情况详情输入事件
   onMedicationDetailInput: function (e) {
     this.setData({
@@ -341,6 +447,12 @@ Page({
     });
   },
 
+
+  onAllergyDetailInput: function(e) {
+    this.setData({
+      allergyDetail: e.detail.value
+    })
+  },
   // 过敏史选择事件
   onAllergySelect: function (e) {
     console.log('checkbox发生change事件，携带value值为：', e.detail.value)
@@ -350,6 +462,16 @@ Page({
     const items = this.data.allergyOptions
     const values = e.detail.value
     const noIndex = e.detail.value.indexOf('无')
+    if (values.includes('其他')) {
+      this.setData({
+        showAllergyDetail: true
+      })
+    } else {
+      this.setData({
+        showAllergyDetail: false,
+        allergyDetail: ''
+      })
+    }
     // 只要选择了无，就取消其他选中
     if (noIndex === e.detail.value.length - 1) {
 
@@ -366,7 +488,7 @@ Page({
       return;
     }
 
-      // 无是第一个，需要去掉
+    // 无是第一个，需要去掉
     if (noIndex !== -1 && noIndex < values.length - 1) {
       values.splice(noIndex, 1);
     }
@@ -391,14 +513,28 @@ Page({
     })
   },
 
+  onMedicalHistoryDetailInput: function(e) {
+    this.setData({
+      medicalHistoryDetail: e.detail.value
+    })
+  },
   // 既往史选择事件
   onMedicalHistorySelect: function (e) {
-
 
     const noLabel = '无';
     const items = this.data.medicalHistoryOptions
     const values = e.detail.value
     const noIndex = e.detail.value.indexOf(noLabel)
+    if (values.includes('其他')) {  
+      this.setData({
+        showMedicalHistoryDetail: true
+      })
+    } else {
+      this.setData({
+        showMedicalHistoryDetail: false,
+        medicalHistoryDetail: ''
+      })
+    }
     // 只要选择了无，就取消其他选中
     if (noIndex === e.detail.value.length - 1) {
 
@@ -415,7 +551,7 @@ Page({
       return;
     }
 
-      // 无是第一个，需要去掉
+    // 无是第一个，需要去掉
     if (noIndex !== -1 && noIndex < values.length - 1) {
       values.splice(noIndex, 1);
     }
@@ -440,7 +576,7 @@ Page({
     })
   },
 
-  // 住院史输入事件
+  // 手术史输入事件
   onHospitalizationHistoryInput: function (e) {
     this.setData({
       hospitalizationHistory: e.detail.value
@@ -470,7 +606,7 @@ Page({
       return;
     }
 
-      // 无是第一个，需要去掉
+    // 无是第一个，需要去掉
     if (noIndex !== -1 && noIndex < values.length - 1) {
       values.splice(noIndex, 1);
     }
@@ -495,6 +631,11 @@ Page({
     })
   },
 
+  onExerciseHabitDetailInput: function(e) {
+    this.setData({
+      exerciseHabitDetail: e.detail.value
+    })
+  },
   // 运动习惯选择事件
   onExerciseHabitSelect: function (e) {
 
@@ -502,6 +643,16 @@ Page({
     const items = this.data.exerciseOptions
     const values = e.detail.value
     const noIndex = e.detail.value.indexOf(noLabel)
+    if (values.includes('其他')) {
+      this.setData({
+        showExerciseHabitDetail: true
+      })
+    } else {
+      this.setData({
+        showExerciseHabitDetail: false,
+        exerciseHabitDetail: ''
+      })
+    }
     // 只要选择了无，就取消其他选中
     if (noIndex === e.detail.value.length - 1) {
 
@@ -518,7 +669,7 @@ Page({
       return;
     }
 
-      // 无是第一个，需要去掉
+    // 无是第一个，需要去掉
     if (noIndex !== -1 && noIndex < values.length - 1) {
       values.splice(noIndex, 1);
     }
@@ -549,7 +700,17 @@ Page({
 
     const items = this.data.dietaryOptions
     const values = e.detail.value
-
+    const noIndex = e.detail.value.indexOf('无')
+    if (values.includes('其他')) {
+      this.setData({
+        showDietaryHabitDetail: true
+      })
+    } else {
+      this.setData({
+        showDietaryHabitDetail: false,
+        dietaryHabitDetail: ''
+      })
+    }
     // 处理"三餐规律"和"三餐不规律"的互斥
     if (values.includes('三餐规律') && values.includes('三餐不规律')) {
       // 如果同时选择了互斥选项，优先保留后选择的（保留在数组中靠后的选项）
@@ -576,9 +737,15 @@ Page({
     })
   },
 
+  onDietaryHabitDetailInput: function(e) {
+    this.setData({
+      dietaryHabitDetail: e.detail.value
+    })
+  },
+
   // 睡眠质量选择事件
   onSleepQualitySelect: function (e) {
-   
+
     const noLabel = '好';
     const items = this.data.sleepQualityOptions
     const values = e.detail.value
@@ -599,7 +766,7 @@ Page({
       return;
     }
 
-      // 无是第一个，需要去掉
+    // 无是第一个，需要去掉
     if (noIndex !== -1 && noIndex < values.length - 1) {
       values.splice(noIndex, 1);
     }
@@ -631,6 +798,16 @@ Page({
     });
   },
 
+  handleOther: (options, detail) => {
+    if (options.filter(item => item.value === '其他' && item.checked).length > 0) {
+      const arr = options.filter(item => item.value !== '其他' && item.checked).map(item => item.value);
+      return [...arr, detail].join(',');
+    } else {
+      return options.filter(item =>  item.checked).map(item => item.value).join(',');
+    }
+
+  },
+
   // 表单验证并提交
   submitForm: async function () {
     // 基本信息验证
@@ -648,7 +825,7 @@ Page({
         condition: () => this.data.occupationIndex < 0,
         message: '请选择职业'
       },
- 
+
       { field: 'idNumber', message: '请输入身份证号/护照号' },
       { field: 'emergencyContact', message: '请输入紧急联系人/关系' },
       { field: 'emergencyPhone', message: '请输入紧急联系人电话' },
@@ -688,6 +865,13 @@ Page({
       },
       {
         condition: () => {
+          const checkValue = this.data.familyMedicalHistoryOptions.filter(item => item.checked);
+          return !checkValue.length;
+        },
+        message: '请选择至少一项家族性疾病史'
+      },
+      {
+        condition: () => {
           const checkedSmoking = this.data.smokingOptions.filter(item => item.checked);
           return checkedSmoking.length === 0;
         },
@@ -717,7 +901,7 @@ Page({
       { field: 'sleepHours', message: '请输入睡眠时间' },
     ];
 
-    // // 执行基本信息验证
+    // 执行基本信息验证
     for (const validation of basicValidations) {
       if (validation.condition) {
         if (validation.condition()) {
@@ -773,7 +957,7 @@ Page({
     // 医疗保险类型
     formData.push({
       label: '医疗保险类型',
-      value: this.data.insuranceOptions.filter(item => item.checked).map(item => item.value).join(',')
+      value: this.handleOther(this.data.insuranceOptions, this.data.insuranceDetail)
     });
     // 基本信息结束
 
@@ -814,16 +998,20 @@ Page({
     // 过敏史
     formData.push({
       label: '过敏史',
-      value: this.data.allergyOptions.filter(item => item.checked).map(item => item.value).join(',')
+      value: this.handleOther(this.data.allergyOptions, this.data.allergyDetail)
     });
 
     // 既往史
     formData.push({
       label: '既往史',
-      value: this.data.medicalHistoryOptions.filter(item => item.checked).map(item => item.value).join(',')
+      value: this.handleOther(this.data.medicalHistoryOptions, this.data.medicalHistoryDetail)
     });
+    formData.push({
+      label: '家族性疾病史（直系亲属）',
+      value: this.handleOther(this.data.familyMedicalHistoryOptions, this.data.familyMedicalHistoryDetail)
+    })
 
-    formData.push({ label: '住院史', value: this.data.hospitalizationHistory || '无' });
+    formData.push({ label: '手术史', value: this.data.hospitalizationHistory || '无' });
 
     // 生活习惯
     formData.push({
@@ -833,12 +1021,12 @@ Page({
 
     formData.push({
       label: '运动习惯',
-      value: this.data.exerciseOptions.filter(item => item.checked).map(item => item.value).join(',')
+      value: this.handleOther(this.data.exerciseOptions, this.data.exerciseHabitDetail)
     });
 
     formData.push({
       label: '饮食习惯',
-      value: this.data.dietaryOptions.filter(item => item.checked).map(item => item.value).join(',')
+      value: this.handleOther(this.data.dietaryOptions, this.data.dietaryHabitDetail)
     });
 
     formData.push({
@@ -867,22 +1055,22 @@ Page({
     })
     console.log('提交数据返回结果:', data)
 
-      wx.hideLoading();
-      wx.showToast({
-        title: '保存成功',
-        icon: 'success',
-        duration: 2000,
-        success: () => {
-          setTimeout(() => {
-            wx.navigateBack();
-          }, 2000);
-        }
-      });
-      // wx.hideLoading();
-      // wx.showToast({
-      //   title: '保存失败',
-      //   icon: 'none'
-      // });
+    wx.hideLoading();
+    wx.showToast({
+      title: '保存成功',
+      icon: 'success',
+      duration: 2000,
+      success: () => {
+        setTimeout(() => {
+          wx.navigateBack();
+        }, 2000);
+      }
+    });
+    // wx.hideLoading();
+    // wx.showToast({
+    //   title: '保存失败',
+    //   icon: 'none'
+    // });
     // // 这里添加实际的数据提交逻辑
     // setTimeout(() => {
     //   wx.hideLoading();
