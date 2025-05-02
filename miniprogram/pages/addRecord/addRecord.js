@@ -152,8 +152,13 @@ Page({
     // 睡眠质量
     sleepQualityOptions: [
       { value: '好', checked: false },
-      { value: '有失眠', checked: false },
-      { value: '有鼾症', checked: false }
+      { value: '一般', checked: false },
+      { value: '差', checked: false },
+      { value: '失眠有', checked: false },
+      { value: '失眠无', checked: false },
+      { value: '睡眠时长（小时）', checked: false },
+      { value: '鼾症有', checked: false },
+      { value: '鼾症无', checked: false }
     ],
 
     // 睡眠时间
@@ -304,8 +309,8 @@ Page({
       insuranceOptions: items
     })
   },
-  
-  onInsuranceDetailInput: function(e) {
+
+  onInsuranceDetailInput: function (e) {
     this.setData({
       insuranceDetail: e.detail.value
     })
@@ -378,12 +383,12 @@ Page({
     return data.filter(item => item.value === '其他' && item.checked).length > 0
   },
 
-  onFamilyMedicalHistoryDetailInput: function(e) {
+  onFamilyMedicalHistoryDetailInput: function (e) {
     this.setData({
       familyMedicalHistoryDetail: e.detail.value
     })
   },
-  onFamilyMedicalHistorySelect:function (e) {
+  onFamilyMedicalHistorySelect: function (e) {
     const items = this.data.familyMedicalHistoryOptions;
 
     const noLabel = '无';
@@ -448,7 +453,7 @@ Page({
   },
 
 
-  onAllergyDetailInput: function(e) {
+  onAllergyDetailInput: function (e) {
     this.setData({
       allergyDetail: e.detail.value
     })
@@ -513,7 +518,7 @@ Page({
     })
   },
 
-  onMedicalHistoryDetailInput: function(e) {
+  onMedicalHistoryDetailInput: function (e) {
     this.setData({
       medicalHistoryDetail: e.detail.value
     })
@@ -525,7 +530,7 @@ Page({
     const items = this.data.medicalHistoryOptions
     const values = e.detail.value
     const noIndex = e.detail.value.indexOf(noLabel)
-    if (values.includes('其他')) {  
+    if (values.includes('其他')) {
       this.setData({
         showMedicalHistoryDetail: true
       })
@@ -631,7 +636,7 @@ Page({
     })
   },
 
-  onExerciseHabitDetailInput: function(e) {
+  onExerciseHabitDetailInput: function (e) {
     this.setData({
       exerciseHabitDetail: e.detail.value
     })
@@ -639,10 +644,8 @@ Page({
   // 运动习惯选择事件
   onExerciseHabitSelect: function (e) {
 
-    const noLabel = '基本不运动';
     const items = this.data.exerciseOptions
     const values = e.detail.value
-    const noIndex = e.detail.value.indexOf(noLabel)
     if (values.includes('其他')) {
       this.setData({
         showExerciseHabitDetail: true
@@ -653,31 +656,9 @@ Page({
         exerciseHabitDetail: ''
       })
     }
-    // 只要选择了无，就取消其他选中
-    if (noIndex === e.detail.value.length - 1) {
 
-      this.setData({
-        exerciseOptions: items.map(item => {
-          if (item.value === noLabel) {
-            item.checked = true;
-            return item;
-          }
-          item.checked = false;
-          return item;
-        })
-      })
-      return;
-    }
-
-    // 无是第一个，需要去掉
-    if (noIndex !== -1 && noIndex < values.length - 1) {
-      values.splice(noIndex, 1);
-    }
 
     for (let i = 0, lenI = items.length; i < lenI; ++i) {
-      if (items[i].value === '无') {
-        items[i].checked = false;
-      }
       items[i].checked = false
 
       for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
@@ -700,7 +681,6 @@ Page({
 
     const items = this.data.dietaryOptions
     const values = e.detail.value
-    const noIndex = e.detail.value.indexOf('无')
     if (values.includes('其他')) {
       this.setData({
         showDietaryHabitDetail: true
@@ -710,15 +690,6 @@ Page({
         showDietaryHabitDetail: false,
         dietaryHabitDetail: ''
       })
-    }
-    // 处理"三餐规律"和"三餐不规律"的互斥
-    if (values.includes('三餐规律') && values.includes('三餐不规律')) {
-      // 如果同时选择了互斥选项，优先保留后选择的（保留在数组中靠后的选项）
-      if (values.indexOf('三餐规律') < values.indexOf('三餐不规律')) {
-        values.splice(values.indexOf('三餐规律'), 1)
-      } else {
-        values.splice(values.indexOf('三餐不规律'), 1)
-      }
     }
 
     for (let i = 0, lenI = items.length; i < lenI; ++i) {
@@ -737,7 +708,7 @@ Page({
     })
   },
 
-  onDietaryHabitDetailInput: function(e) {
+  onDietaryHabitDetailInput: function (e) {
     this.setData({
       dietaryHabitDetail: e.detail.value
     })
@@ -745,36 +716,10 @@ Page({
 
   // 睡眠质量选择事件
   onSleepQualitySelect: function (e) {
-
-    const noLabel = '好';
     const items = this.data.sleepQualityOptions
     const values = e.detail.value
-    const noIndex = e.detail.value.indexOf(noLabel)
-    // 只要选择了无，就取消其他选中
-    if (noIndex === e.detail.value.length - 1) {
-
-      this.setData({
-        sleepQualityOptions: items.map(item => {
-          if (item.value === noLabel) {
-            item.checked = true;
-            return item;
-          }
-          item.checked = false;
-          return item;
-        })
-      })
-      return;
-    }
-
-    // 无是第一个，需要去掉
-    if (noIndex !== -1 && noIndex < values.length - 1) {
-      values.splice(noIndex, 1);
-    }
 
     for (let i = 0, lenI = items.length; i < lenI; ++i) {
-      if (items[i].value === noLabel) {
-        items[i].checked = false;
-      }
       items[i].checked = false
 
       for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
@@ -803,7 +748,7 @@ Page({
       const arr = options.filter(item => item.value !== '其他' && item.checked).map(item => item.value);
       return [...arr, detail].join(',');
     } else {
-      return options.filter(item =>  item.checked).map(item => item.value).join(',');
+      return options.filter(item => item.checked).map(item => item.value).join(',');
     }
 
   },
