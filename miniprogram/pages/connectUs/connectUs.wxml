@@ -1,4 +1,4 @@
-<view class="header-area" hover-class="none" hover-stop-propagation="false">
+<!-- <view class="header-area" hover-class="none" hover-stop-propagation="false">
   <view class="header-container">
     <view class="header-left" hover-class="none" hover-stop-propagation="false">
       联络客服
@@ -7,12 +7,22 @@
   </view>
 
 
-</view>
+</view> -->
 
+<view class="bg"></view>
 <view class="connect-us" hover-class="none" hover-stop-propagation="false">
   <view class="contact-btn" hover-class="none" hover-stop-propagation="false" bindtap="connectUs">
     联系客服微信
   </view>
+  <view class="address-container">
+    <view class="address-title">
+
+      服务中心地址
+    </view>
+    <view class="address-content">
+
+      浙江省慈溪市浒山街道寺山路8号水映天成商业2号楼1107室
+    </view>
+  </view>
 
 </view>
-
