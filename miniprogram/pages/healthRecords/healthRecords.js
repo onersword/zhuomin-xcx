@@ -4,7 +4,18 @@ Page({
     status: 0,
     recordPDFUrl: '',
     recordInfo: [],
-    loading: true
+    loading: true,
+    activeTab: 0,  // 当前激活的tab，默认为0
+    files: [],
+    notes: [],
+  },
+
+  // 切换tab方法
+  switchTab(e) {
+    const index = parseInt(e.currentTarget.dataset.index)
+    this.setData({
+      activeTab: index
+    })
   },
 
   // 脱敏处理方法
@@ -51,6 +62,8 @@ Page({
     }
 
     this.getUserRecords()
+    this.getUserNotes();
+    this.getUserFiles();
   },
 
   async getUserRecords() {
@@ -78,6 +91,28 @@ Page({
     }
     this.setData({
       loading: false
+    })
+  },
+
+  async getUserNotes() {
+    const data = await request({
+      path: '/api/notes',
+      method: 'GET'
+    })
+    console.log('userNotes', data)
+    this.setData({
+      notes: data
+    })
+  },
+
+  async getUserFiles() {
+    const data = await request({
+      path: '/api/files',
+      method: 'GET'
+    })
+    console.log('userFiles', data)
+    this.setData({
+      files: data
     })
   },
 
@@ -122,6 +157,52 @@ Page({
         console.error('下载失败', err);
       }
     });
+  },
+  downloadFile(e) {
+    // Get file info from dataset
+    const file = e.currentTarget.dataset.file
+    console.log('Downloading file:', file)
+    
+    // Show loading toast
+    wx.showLoading({
+      title: '文件下载中...',
+      mask: true
+    })
+
+    // Download file
+    wx.downloadFile({
+      url: file.url,
+      success: (res) => {
+        if (res.statusCode === 200) {
+          // Open document after successful download
+          wx.openDocument({
+            filePath: res.tempFilePath,
+            showMenu: true,
+            success: () => {
+              console.log('File opened successfully')
+            },
+            fail: (error) => {
+              console.error('Failed to open file:', error)
+              wx.showToast({
+                title: '打开文件失败',
+                icon: 'none'
+              })
+            }
+          })
+        }
+      },
+      fail: (error) => {
+        console.error('Download failed:', error)
+        wx.showToast({
+          title: '下载失败',
+          icon: 'none'
+        })
+      },
+      complete: () => {
+        wx.hideLoading()
+      }
+    })
   }
+
 
 }); 

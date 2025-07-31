@@ -47,8 +47,62 @@ page {
   }
 }
 
-.scroll-area {
-  margin-top: 300rpx;
+.scroll-area {}
+
+// Tab样式
+.record-tab {
+  position: fixed;
+  top: 300rpx;
+  left: 0;
+  right: 0;
+  z-index: 9;
+  height: 124rpx;
+  background: #fff;
+  padding: 0 40rpx ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .tab-container {
+    padding: 0 4rpx;
+    display: flex;
+    align-items: center;
+    background: #F5F5F5;
+    border-radius: 16rpx;
+    height: 64rpx;
+    width: 100%;
+  }
+
+  .tab-item {
+    flex: 1;
+    text-align: center;
+    font-size: 28rpx;
+    color: #666;
+    border-radius: 8rpx;
+    transition: all 0.3s ease;
+    position: relative;
+    height: 56rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.active {
+      background: #fff;
+      color: #3827FF;
+      font-weight: 500;
+      box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+    }
+
+    &:first-child {
+      border-top-left-radius: 8rpx;
+      border-bottom-left-radius: 8rpx;
+    }
+
+    &:last-child {
+      border-top-right-radius: 8rpx;
+      border-bottom-right-radius: 8rpx;
+    }
+  }
 }
 
 .container {
@@ -57,6 +111,7 @@ page {
   display: flex;
   flex-direction: column;
   gap: 30rpx;
+  margin-top: 424rpx; // 为tab留出空间
 
 
   .card {
@@ -66,8 +121,9 @@ page {
     display: flex;
     flex-direction: column;
     gap: 12rpx;
+
     .info-item {
-      display:grid;
+      display: grid;
       gap: 10rpx;
       grid-template-columns: repeat(9, 1fr);
       justify-content: space-between;
@@ -99,17 +155,18 @@ page {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
+
     .empty-text {
       font-size: 40rpx;
       color: #333;
       font-weight: 400;
       padding: 179rpx 0 90rpx 0;
     }
-    
+
     .create-btn {
       width: 500rpx;
-      height: 105rpx;;
+      height: 105rpx;
+      ;
       line-height: 88rpx;
       background: #3827FF;
       color: #fff;
@@ -119,6 +176,57 @@ page {
       justify-content: center;
       align-items: center;
       font-weight: 500;
+    }
+  }
+}
+
+.tab-content {
+}
+
+.file-list {
+  background-color: #fff;
+  padding: 0 50rpx 50rpx 50rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 23rpx;
+  .file-item {
+    padding: 20rpx 0;
+    border-bottom: 2rpx solid #D4DCDD;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .file-item-left {
+      display: flex;
+      flex-direction: column;
+      gap: 20rpx;
+      color: #000;
+
+      .label {
+        font-size: 28rpx;
+        color: #020202;
+        font-weight: 600;
+      }
+
+      .time {
+        font-size: 20rpx;
+        ;
+        color: #999;
+
+      }
+    }
+
+    .download-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60rpx;
+      height: 60rpx;
+
+      image {
+        width: 31rpx;
+        height: 31rpx;
+      }
     }
   }
 }

@@ -4,7 +4,8 @@
     <view class="header-left" hover-class="none" hover-stop-propagation="false">
       健康档案
     </view>
-    <view class="header-right" hover-class="none" hover-stop-propagation="false" wx:if="{{status === 2}}" bindtap="downloadPDF">
+    <view class="header-right" hover-class="none" hover-stop-propagation="false" wx:if="{{status === 2}}"
+      bindtap="downloadPDF">
       <image src="/images/download.svg"></image>
       下载PDF
     </view>
@@ -12,22 +13,99 @@
   </view>
 </view>
 
-<scroll-view scroll-y class="scroll-area" enhanced="true" show-scrollbar="false">
+<block wx:if="{{status === 0}}">
+
   <view class="container">
     <view class="empty-state" wx:if="{{status === 0}}">
+
       <text class="empty-text">您还未录入健康档案</text>
       <button class="create-btn" bindtap="createRecord">创建健康档案</button>
     </view>
+  </view>
+</block>
 
-    <view class="empty-state" wx:if="{{status === 1}}">
+<block wx:if="{{status === 1}}">
+  <view class="container">
+
+    <view class="empty-state">
       <text class="empty-text">您的健康档案正在审核中</text>
     </view>
+  </view>
+</block>
 
-    <view class="card" wx:if="{{status === 2}}">
-      <view class="info-item" wx:for="{{recordInfo}}" wx:key="index">
-        <text class="label">{{item.label}}</text>
-        <text class="value">{{item.value}}</text>
+<block wx:if="{{status === 2}}">
+
+  <view class="container">
+
+
+    <!-- Tab切换区域 -->
+    <view class="record-tab">
+      <view class="tab-container">
+        <view class="tab-item {{activeTab === 0 ? 'active' : ''}}" bindtap="switchTab" data-index="0">
+          基础健康信息
+        </view>
+        <view class="tab-item {{activeTab === 1 ? 'active' : ''}}" bindtap="switchTab" data-index="1">
+          检查报告
+        </view>
+        <view class="tab-item {{activeTab === 2 ? 'active' : ''}}" bindtap="switchTab" data-index="2">
+          健康小结
+        </view>
       </view>
     </view>
+
+    <scroll-view scroll-y class="scroll-area" enhanced="true" show-scrollbar="false">
+
+      <view class="tab-content" wx:if="{{activeTab === 0}}">
+
+        <view class="card" wx:if="{{status === 2}}">
+          <view class="info-item" wx:for="{{recordInfo}}" wx:key="index">
+            <text class="label">{{item.label}}</text>
+            <text class="value">{{item.value}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="tab-content" wx:if="{{activeTab === 1}}">
+        <view class="empty-state" wx:if="{{files.length === 0}}">
+          <text class="empty-text">暂无检查报告</text>
+        </view>
+        <view class="file-list" wx:else>
+          <view class="file-item" wx:for="{{files}}" wx:key="index">
+            <view class="file-item-left">
+              <text class="label">{{item.name}}</text>
+              <text class="time">{{item.updatedAt}}</text>
+            </view>
+
+            <view class="download-btn" hover-class="none" hover-stop-propagation="false" bindtap="downloadFile"
+              data-url="{{item.url}}"
+              data-file="{{item}}"
+              >
+              <image src="/images/download_black.svg"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="tab-content" wx:if="{{activeTab === 2}}">
+        <view class="empty-state" wx:if="{{notes.length === 0}}">
+          <text class="empty-text">暂无健康小结</text>
+        </view>
+        <view class="file-list" wx:else>
+          <view class="file-item" wx:for="{{notes}}" wx:key="index">
+            <view class="file-item-left">
+              <text class="label">{{item.name}}</text>
+              <text class="time">{{item.updatedAt}}</text>
+            </view>
+
+            <view class="download-btn" hover-class="none" hover-stop-propagation="false" bindtap="downloadFile"
+              data-url="{{item.url}}"
+              data-file="{{item}}"
+              >
+              <image src="/images/download_black.svg"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
   </view>
-</scroll-view>
+</block>
