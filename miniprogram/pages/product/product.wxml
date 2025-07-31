@@ -1,33 +1,110 @@
-<data-loading text="加载中..." wx:if="{{loading}}" />
-<view class="bg"></view>
+<view class="header-area" hover-class="none" hover-stop-propagation="false">
+  <view class="header-container">
+    <view class="header-left" hover-class="none" hover-stop-propagation="false">
+      卓敏产品
+    </view>
+  </view>
+</view>
+
 <view class="container">
-  <view class="header-area">
-    <view class="header-container">
-      <view class="header-left">
-        卓敏产品
+  <view class="card-area">
+  </view>
+
+  <view class="package-header">
+    <view class="package-title">5000元/年起</view>
+    <view class="package-desc">卓敏家庭医生充值卡，包含年度健康管理费3000元，以及预充值金额2000起，可以抵扣卓敏健康所有服务以及享受额外折扣。</view>
+  </view>
+  <view class="product-area">
+    <!-- 健康管理服务 -->
+    <view class="service-section">
+      <view class="section-title">
+        <text class="title-text">健康管理服务 (3000元/年)</text>
+      </view>
+
+      <view class="service-list">
+        <view class="service-item">
+          <view class="service-name">健康咨询 无限次</view>
+          <view class="service-desc">包括常见疾病咨询、日常饮食咨询、就医分诊咨询、日常用药咨询、门诊报告解读等（无限次，仅限本人使用，子女可代替咨询）。</view>
+        </view>
+
+        <view class="service-item">
+          <view class="service-name">健康档案 1次/年</view>
+          <view class="service-desc">建立并维护连续、动态的电子健康档案，并根据健康档案制定管理计划及年度体检方案（仅限本人使用）。</view>
+        </view>
+
+        <view class="service-item">
+          <view class="service-name">慈溪健康中心氧舱体验服务 10次</view>
+          <view class="service-desc">微压氧舱体验不限次数，缓解疲劳，改善睡眠，提升脏器功能。</view>
+        </view>
+
+        <view class="service-item">
+          <view class="service-name">慈溪健康中心检验服务</view>
+          <view class="service-desc">血压、血糖、尿酸等测试，免费抽血送检服务（不含上门服务）。</view>
+        </view>
       </view>
     </view>
-  </view>
 
-  <view class="product-list-area" hover-class="none" hover-stop-propagation="false">
-    <view class="area-title" hover-class="none" hover-stop-propagation="false">
-      推荐套餐
+    <!-- 充值卡可抵扣项目 -->
+    <view class="service-section">
+      <view class="section-title">
+        <text class="title-text">充值卡可抵扣项目</text>
+      </view>
+
+      <view class="deductible-list">
+        <view class="deductible-category">
+          <view class="category-title">就医体验</view>
+          <view class="category-items">
+            <text class="item">导医挂号服务</text>
+            <text class="item">陪诊服务</text>
+            <text class="item">一站式就医服务</text>
+          </view>
+        </view>
+
+        <view class="deductible-category">
+          <view class="category-title">检测服务</view>
+          <view class="category-items">
+            <text class="item">肿瘤风险筛查</text>
+            <text class="item">超早期肿瘤预警甲基化检测</text>
+            <text class="item">甲基化年龄评估</text>
+            <text class="item">肠道菌群检测</text>
+          </view>
+        </view>
+
+        <view class="deductible-category">
+          <view class="category-title">健康产品</view>
+          <view class="category-items">
+            <text class="item">定制鞋垫</text>
+            <text class="item">护眼水</text>
+            <text class="item">减肥贴</text>
+            <text class="item">氧舱体验</text>
+          </view>
+        </view>
+
+        <view class="deductible-category">
+          <view class="category-title">中医系列服务</view>
+          <view class="category-items">
+            <text class="item">上海名中医挂号费</text>
+            <text class="item">三伏贴</text>
+            <text class="item">艾灸</text>
+            <text class="item">拔罐</text>
+            <text class="item">台式理疗</text>
+          </view>
+        </view>
+        <view class="deductible-category">
+          <view class="category-title">体检</view>
+          <view class="category-items">
+            <text class="item">中山医院门诊体检（部分可走医保）</text>
+            <text class="item">中山医院佘山分院高端体检三伏贴</text>
+            <text class="item">瑞金医院古北分院体检</text>
+          </view>
+        </view>
+      </view>
     </view>
+    <view class="contact-btn-area">
 
-    <view class="product-list">
-      <product-card wx:for="{{products}}" wx:key="id" item="{{item}}" type="normal"
-        bind:cardtap="navigateToProductInfo" data-id="{{item.id}}" data-type="{{item.type}}" data-name="{{item.name}}" data-description="{{item.description}}" />
+    <view class="contact-btn" hover-class="none" hover-stop-propagation="false" bindtap="connectUs">
+      联系客服
     </view>
-  </view>
-
-  <view class="product-list-area" hover-class="none" hover-stop-propagation="false">
-    <view class="area-title" hover-class="none" hover-stop-propagation="false">
-      其他服务
-    </view>
-
-    <view class="product-list">
-      <product-card wx:for="{{otherProducts}}" wx:key="id" item="{{item}}" type="other"
-        bind:cardtap="navigateToProductInfo" data-id="{{item.id}}" data-type="{{item.type}}" data-name="{{item.name}}" data-description="{{item.description}}" data-price="{{item.price}}" data-unit="{{item.unit}}" />
     </view>
   </view>
 </view>
