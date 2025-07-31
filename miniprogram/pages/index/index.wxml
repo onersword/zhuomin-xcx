@@ -55,7 +55,7 @@
     <block wx:if="{{purchasedServices && purchasedServices.length > 0}}">
       <view class="service-list">
         <product-card wx:for="{{purchasedServices}}" wx:key="id" item="{{item}}" type="normal"
-          bind:cardtap="navigateToProductInfo" data-id="{{item.id}}" data-type="{{item.type}}" data-name="{{item.name}}" data-description="{{item.description}}" data-price="{{item.price}}" data-unit="{{item.unit}}" />
+          bind:cardtap="navigateToProductInfo" data-id="{{item.id}}" data-name="{{item.name}}" data-description="{{item.description}}"  />
       </view>
     </block>
     <view wx:else class="empty-state">
