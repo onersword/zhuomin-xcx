@@ -8,6 +8,12 @@
 
 <view class="container">
   <view class="card-area">
+    <!-- <view class="card-item"></view> -->
+     <image 
+     src="https://636c-cloud1-2g3w0puta97f2130-1345362468.tcb.qcloud.la/card.png?sign=55415aaaf7cfcfad2b710247e3032fcf&t=1753976547" 
+     mode="scaleToFill" 
+     class="card-item"
+     ></image>
   </view>
 
   <view class="package-header">

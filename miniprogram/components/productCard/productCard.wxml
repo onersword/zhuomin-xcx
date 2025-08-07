@@ -1,6 +1,6 @@
 <view class="product-item" bindtap="onTap">
   <view class="product-container">
-    <view class="product-title">{{product.name}}</view>
-    <view class="product-desc">{{product.description}}</view>
+    <view class="product-title">{{name}}</view>
+    <view class="product-desc">{{description}}</view>
   </view>
 </view>

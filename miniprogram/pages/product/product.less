@@ -1,4 +1,5 @@
 @import '../../styles/theme.less';
+
 page {
   background-color: #F4F4F5;
 }
@@ -38,13 +39,18 @@ page {
   padding-bottom: 150rpx;
   background: #fff;
 
+
   .card-area {
     height: 400rpx;
     padding: 30rpx;
-    background: url('https://636c-cloud1-2g3w0puta97f2130-1345362468.tcb.qcloud.la/card.png?sign=55415aaaf7cfcfad2b710247e3032fcf&t=1753976547') no-repeat center center;
-    background-size: 100% 100%;
+    .card-item {
+      width: 100%;
+      height: 100%;
+ 
+    }
 
   }
+
 
   .package-header {
     padding: 0 60rpx;
@@ -102,7 +108,7 @@ page {
 
           .service-name {
             font-size: 32rpx;
-            font-weight:600;
+            font-weight: 600;
             color: #000;
             margin-bottom: 8rpx;
           }
@@ -130,7 +136,7 @@ page {
 
           .category-title {
             font-size: 32rpx;
-            font-weight:600;
+            font-weight: 600;
             color: #000;
           }
 
@@ -170,7 +176,8 @@ page {
     }
   }
 }
-.contact-btn-area{
+
+.contact-btn-area {
   display: flex;
   justify-content: center;
   align-items: center;

@@ -35,7 +35,19 @@ Component({
       const data = e.currentTarget.dataset
       const url = data.path
       wx.switchTab({
-        url
+        url,
+        success: function(res){
+            var page = getCurrentPages().pop();
+            if (page == undefined || page == null) return;
+            console.log('page', page);
+            // page.onLoad();
+        },
+        fail: function() {
+          // fail
+        },
+        complete: function() {
+          // complete
+        }
       })
       this.setData({
         selected: data.index

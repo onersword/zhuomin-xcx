@@ -18,6 +18,12 @@ Page({
     })
   },
 
+  resetTab() {
+    this.setData({
+      activeTab: 0
+    })
+  },
+
   // 脱敏处理方法
   desensitizeData(records) {
     return records.map(item => {
@@ -59,6 +65,26 @@ Page({
       this.getTabBar().setData({
         selected: 1
       })
+    }
+
+    // 从全局数据中获取传递的参数
+    const app = getApp();
+    if (app.globalData && app.globalData.healthRecordParams) {
+      const params = app.globalData.healthRecordParams;
+      console.log('接收到的健康记录tab id:', params.tabId);
+      
+      // 根据tab id设置激活的tab
+      this.setData({
+        activeTab: params.tabId
+      });
+      
+      // 清除全局数据，避免重复使用
+      delete app.globalData.healthRecordParams;
+    } else {
+      // 如果没有传递参数，默认显示第一个tab (index: 0)
+      this.setData({
+        activeTab: 0
+      });
     }
 
     this.getUserRecords()

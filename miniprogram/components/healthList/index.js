@@ -24,15 +24,27 @@ Component({
       const { index } = e.currentTarget.dataset;
     },
     goNotes() {
-      wx.navigateTo({
-        url: '/pages/healthTips/healthTips'
-      })
+      // 跳转到 healthRecord 页面并传递健康小结 tab id (index: 2)
+      getApp().globalData = getApp().globalData || {};
+      getApp().globalData.healthRecordParams = {
+        tabId: 2
+      };
+      
+      wx.switchTab({
+        url: '/pages/healthRecords/healthRecords'
+      });
     },
 
     goFiles() {
-      wx.navigateTo({
-        url: '/pages/healthFile/healthFile'
-      })
+      // 跳转到 healthRecord 页面并传递检查报告 tab id (index: 1)
+      getApp().globalData = getApp().globalData || {};
+      getApp().globalData.healthRecordParams = {
+        tabId: 1
+      };
+      
+      wx.switchTab({
+        url: '/pages/healthRecords/healthRecords'
+      });
     }
 
   },

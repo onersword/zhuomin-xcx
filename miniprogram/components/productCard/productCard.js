@@ -1,32 +1,31 @@
-import { formatPrice } from '../../utils/util'
 Component({
   properties: {
-    item: {
-      type: Object,
-      value: {},
+    name: {
+      type: String,
       observer: function (newVal) {
-        console.log('newVal', newVal)
-        if (newVal) {
-
-          this.setData({
-            product: {
-              ...newVal,
-            }
-          })
-        }
+        this.setData({
+          name: newVal
+        })
+      }
+    },
+    description: {
+      type: String,
+      observer: function (newVal) {
+        console.log('new value description', newVal)
+        this.setData({
+          description: newVal
+        })
       }
     },
   },
   data: {
-    product: {}
+    name: '',
+    description: ''
   },
 
   methods: {
     onTap() {
       this.triggerEvent('cardtap', {
-        id: this.data.product.id,
-        name: this.data.product.name,
-        description: this.data.product.description
       })
     }
   }

@@ -16,7 +16,8 @@ Page({
     purchasedServices: [
 
     ],
-    reminders: []
+    reminders: [],
+    cards: [],
   },
 
   onLoad() {
@@ -102,6 +103,12 @@ Page({
     if (data.latestFile) {
       healthManageList.file = data.latestFile;
     }
+    if (data.cards) {
+      console.log('cards', data.cards);
+      this.setData({
+        cards: data.cards
+      })
+    }
     if (data.latestNote) {
       healthManageList.note = data.latestNote;
     }
@@ -175,10 +182,18 @@ Page({
   },
 
   navigateToProductInfo(e) {
-    console.log('navigateToProductInfo', e.currentTarget.dataset)
-    const { id, type, name, description, price, unit } = e.currentTarget.dataset;
-    wx.navigateTo({
-      url: `/pages/productInfo/productInfo?id=${id}&type=${type}&name=${name}&description=${description}&price=${price}&unit=${unit}&hasBuyed=1`
+    
+    wx.switchTab({
+      url: '/pages/product/product',
+      success: function(res){
+        // success
+      },
+      fail: function() {
+        // fail
+      },
+      complete: function() {
+        // complete
+      }
     });
   }
 

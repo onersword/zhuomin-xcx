@@ -43,7 +43,7 @@
     <block wx:else>
       <view class="empty-reminds" hover-class="none" hover-stop-propagation="false">
         今天没有预约
-        
+
       </view>
     </block>
 
@@ -52,10 +52,12 @@
 
   <view class="purchased-services">
     <view class="title">已购服务</view>
-    <block wx:if="{{purchasedServices && purchasedServices.length > 0}}">
+    <block wx:if="{{(cards && cards.length > 0) || (purchasedServices && purchasedServices.length > 0)}}">
       <view class="service-list">
-        <product-card wx:for="{{purchasedServices}}" wx:key="id" item="{{item}}" type="normal"
-          bind:cardtap="navigateToProductInfo" data-id="{{item.id}}" data-name="{{item.name}}" data-description="{{item.description}}"  />
+        <product-card wx:for="{{cards}}" wx:key="id" bind:cardtap="navigateToProductInfo" name="{{item.title}}"
+          description="{{item.content}}" />
+        <product-card wx:for="{{purchasedServices}}" wx:key="id" bind:cardtap="navigateToProductInfo"
+          name="{{item.name}}" description="{{item.description}}" />
       </view>
     </block>
     <view wx:else class="empty-state">
