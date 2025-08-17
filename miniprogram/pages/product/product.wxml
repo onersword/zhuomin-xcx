@@ -108,6 +108,8 @@
       </view>
     </view>
 
+    
+
     <view class="service-section">
       <view class="section-title">
         <text class="title-text">就医服务</text>
@@ -161,6 +163,86 @@
             <view class="price">5000元/次</view>
             （主任/教授级别，不点名）
             <view class="price">10000元/次</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="service-section">
+      <view class="section-title">
+        <text class="title-text">检测服务</text>
+      </view>
+      <view class="section-desc">
+        提供体检服务、定制化早筛、专科检查等，覆盖上海、杭州、慈溪等主要医院，提供下单、预约、陪检、取报告、专业解读等一站式服务，让您更高效、更安心。
+      </view>
+
+      <view class="service-list">
+        <view class="service-item">
+          <view class="service-name">超早期肿瘤预警甲基化检测</view>
+          <view class="service-desc">
+            覆盖肺腺癌、肺鳞癌、结直肠癌、胃癌、乳腺癌、食管癌、前列腺癌、宫颈癌、尿路上皮癌、胶质母细胞瘤、头颈部鳞癌、肾癌、子宫内膜癌等常见及罕见肿瘤的早筛预警，一次检测覆盖全部癌种。
+            <view class="price">2500元/次</view>
+          </view>
+        </view>
+
+        <view class="service-item">
+          <view class="service-name">肿瘤风险筛查-男性</view>
+          <view class="service-desc">
+            肺癌、胃癌、食管癌、结直肠癌、膀胱癌、前列腺癌、肝癌等男性常见癌症早筛。
+            <view class="price">888元/次</view>
+          </view>
+        </view>
+
+        <view class="service-item">
+          <view class="service-name">肿瘤风险筛查-女性</view>
+          <view class="service-desc">
+            肺癌、胃癌、食管癌、结直肠癌、乳腺癌、卵巢癌、子宫内膜癌、宫颈癌、膀胱癌、肝癌等女性常见癌症早筛。
+            <view class="price">1188元/次</view>
+          </view>
+        </view>
+
+        <view class="service-item">
+          <view class="service-name">肠道菌群检测</view>
+          <view class="service-desc">
+            全面评估肠道微生态健康及相关疾病风险，提供相应膳食指导。
+            <view class="price">1500元/次</view>
+          </view>
+        </view>
+
+        <view class="service-item">
+          <view class="service-name">肝脏专项筛查</view>
+          <view class="service-desc">
+            血检：血常规、肝肾功能、电解质、血糖、糖化血红蛋白、血脂、肝硬化指标全套、乙肝五项、丙肝抗体、肿瘤标志物（AFP、CEA、CA199）<br/>
+            超声：肝、胆、胰、脾、肾<br/>
+            肝脏弹性检测<br/>
+            注：①上腹部核磁可选，需额外付费<br/>
+            ②超声检查可由主任医师级别专家操作，需额外专家点名费<br/>
+            ③本专项检查可用医保，实际费用按医院收费（预估约1800元）
+            <view class="price">1000元/次</view>
+            不含医院收取费用，可用医保卡
+          </view>
+        </view>
+
+        <view class="service-item">
+          <view class="service-name">心血管专项筛查</view>
+          <view class="service-desc">
+            血检：血常规、肝肾功能、电解质、血糖、糖化血红蛋白、血脂、同型半胱氨酸<br/>
+            超声：颈动脉彩超<br/>
+            核磁：头颅核磁+头颅核磁血管成像<br/>
+            注：①超声检查可由主任医师级别专家操作，需额外专家点名费<br/>
+            ②本专项检查可用医保，实际费用按医院收费（预估约1500元）
+            <view class="price">1200元/次</view>
+            不含医院收取费用，可用医保卡
+          </view>
+        </view>
+
+        <view class="service-item">
+          <view class="service-name">胃肠镜检查</view>
+          <view class="service-desc">
+            专业客服协助下单、预约、检查、取报告等。
+            <view class="price">副主任医师预约：2000元/次</view>
+            <view class="price">主任医师预约：2500元/次</view>
+            <view class="price">注：价格不含医院收费，可用医保卡</view>
           </view>
         </view>
       </view>
