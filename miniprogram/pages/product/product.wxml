@@ -247,6 +247,67 @@
         </view>
       </view>
     </view>
+
+    <view class="service-section">
+      <view class="section-title">
+        <text class="title-text">健康产品</text>
+      </view>
+      <view class="section-desc">
+        卓敏提供各类辅助健康产品,为您的健康添砖加瓦。
+      </view>
+
+      <view class="service-list">
+        <view class="service-item">
+          <view class="service-name">氧舱体验</view>
+          <view class="service-desc">
+            氧仓体验1次,时长1小时。可调节免疫功能、抗感染、促进神经功能恢复。
+            <view class="price">199元/次</view>
+          </view>
+        </view>
+
+        <view class="service-item">
+          <view class="service-name">睡眠监测</view>
+          <view class="service-desc">
+            睡眠暂停综合症筛查,评估夜间由于呼吸暂停出现低血氧症,并提出进一步治疗建议。
+            <view class="price">99元/次</view>
+          </view>
+        </view>
+
+        <view class="service-item">
+          <view class="service-name">心电监测</view>
+          <view class="service-desc">
+            心血管疾病初筛,可早期发现心肌炎、心律失常、心肌缺血等心脏问题。长程动态监测,收到设备后直接佩戴即可使用。
+            <view class="price">199元/次</view>
+          </view>
+        </view>
+
+        <view class="service-item">
+          <view class="service-name">护眼水</view>
+          <view class="service-desc">
+            九千水护眼水,低氘小分子水,可改善干眼、眼疲劳、红血丝、迎风流泪、飞蚊症、黄斑病变等眼部问题。无防腐剂、无化学药剂,安全有效。
+            <view class="price">69元/瓶</view>
+          </view>
+        </view>
+
+        <view class="service-item">
+          <view class="service-name">定制鞋垫</view>
+          <view class="service-desc">
+            根据用户足弓情况定制专属鞋垫,改善扁平足。
+            <view class="price">499元/双</view>
+          </view>
+        </view>
+
+        <view class="service-item">
+          <view class="service-name">廿舍度假村</view>
+          <view class="service-desc">
+            两天一晚/三天两晚定制化疗愈套餐1份,慈溪出发2小时可达,高达10000个/cm³以上负氧离子含量,专属健康管家服务,定制健康饮食和活动,最多两大一小可享。
+            <view class="price">1500元/两天一晚</view>
+            <view class="price">3000元/三天两晚</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
     <view class="contact-btn-area">
 
       <view class="contact-btn" hover-class="none" hover-stop-propagation="false" bindtap="connectUs">
