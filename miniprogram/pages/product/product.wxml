@@ -9,11 +9,9 @@
 <view class="container">
   <view class="card-area">
     <!-- <view class="card-item"></view> -->
-     <image 
-     src="https://636c-cloud1-2g3w0puta97f2130-1345362468.tcb.qcloud.la/card.jpg?sign=32b739e9d5bb7f2bf8c6a90fe351d907&t=1754721338" 
-     mode="scaleToFill" 
-     class="card-item"
-     ></image>
+    <image
+      src="https://636c-cloud1-2g3w0puta97f2130-1345362468.tcb.qcloud.la/card.jpg?sign=32b739e9d5bb7f2bf8c6a90fe351d907&t=1754721338"
+      mode="scaleToFill" class="card-item"></image>
   </view>
 
   <view class="package-header">
@@ -49,6 +47,9 @@
         </view>
       </view>
     </view>
+
+    <!-- 充值卡可抵扣项目 -->
+
 
     <!-- 充值卡可抵扣项目 -->
     <view class="service-section">
@@ -106,11 +107,69 @@
         </view>
       </view>
     </view>
+
+    <view class="service-section">
+      <view class="section-title">
+        <text class="title-text">就医服务</text>
+      </view>
+      <view class="section-desc">
+
+      </view>
+
+      <view class="service-list">
+        <view class="service-item">
+          <view class="service-name">一站式就医 1200元/次</view>
+          <view class="service-desc">诊前一对一专人沟通,全面了解就诊需求;精准分诊,针对性推荐医生; 并协助门诊预约安排。(不含挂号费)</view>
+        </view>
+
+        <view class="service-item">
+          <view class="service-name">名医预约</view>
+          <view class="service-desc">
+            三甲医院专家推荐，门诊预约（副主任医师）
+            <view class="price"> 800元/次</view>
+            三甲医院专家推荐，门诊预约（主任医师）
+            <view class="price"> 1000元/次 (不含挂号费)</view>
+          </view>
+        </view>
+
+        <view class="service-item">
+          <view class="service-name">专业陪诊 </view>
+          <view class="service-desc">
+            VIP全程陪诊服务,专业护士全程代办就诊手续,包括诊前病史资料整理、可垫付在院内发生的相关医疗费用(与客户协商后明确的挂号、缴费等费用)、检查预约、排队配药等,并协助跟医生沟通病情,记录注意事项。
+            <view class="price">600元/次</view>
+          </view>
+        </view>
+
+        <view class="service-item">
+          <view class="service-name">代诊 </view>
+          <view class="service-desc">按客户要求及时间,专业客服人员代替客户向专家描述病情,并将医生的医嘱及建议形成书面意见书进行反馈。
+            <view class="price">800元/次</view>
+          </view>
+        </view>
+
+        <view class="service-item">
+          <view class="service-name">住院管家 </view>
+          <view class="service-desc">根据客户病情协助安排住院床位。客服协助住院前准备,代为办理出入院手续;住院期间如有任何医疗或生活相关问题,客服随时协调解决。出院后家庭医生定期随访,进行康复指导。
+            <view class="price">5000-20000元/次</view>
+          </view>
+        </view>
+
+        <view class="service-item">
+          <view class="service-name">手术专家安排</view>
+          <view class="service-desc">
+            （副主任/副教授级别，不点名）
+            <view class="price">5000元/次</view>
+            （主任/教授级别，不点名）
+            <view class="price">10000元/次</view>
+          </view>
+        </view>
+      </view>
+    </view>
     <view class="contact-btn-area">
 
-    <view class="contact-btn" hover-class="none" hover-stop-propagation="false" bindtap="connectUs">
-      联系客服
-    </view>
+      <view class="contact-btn" hover-class="none" hover-stop-propagation="false" bindtap="connectUs">
+        联系客服
+      </view>
     </view>
   </view>
 </view>
